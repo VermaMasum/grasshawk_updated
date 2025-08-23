@@ -35,4 +35,21 @@ temp-clean-clone/
 now for adding into git
 git add.
 
+git status
 
+git commit -m "Initial commit: Complete mole trap e-commerce application with React frontend and multiple Node.js backends
+
+git remote add origin https://github.com/VermaMasum/grasshawk_updated.git
+
+git push -u origin master --force
+
+git commit --amend --no-edit
+
+
+
+
+--https://github.com/VermaMasum/grasshawk_updated
+
+git add .
+git commit -m "Your commit message"
+git push origin master
