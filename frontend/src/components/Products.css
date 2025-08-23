@@ -1,0 +1,637 @@
+/* below this and till ////////// this it's final one */
+/* Products Section with Creative Color Palette - Matching Contact Page */
+.product-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, var(--off-white) 0%, #e8e9ea 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23FF0000" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  opacity: 0.3;
+}
+
+.product-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.product-section h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--primary-red), #cc0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.product-section > p {
+  font-size: 18px;
+  color: var(--dark-gray);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Central Image Section - Creative Styling */
+.product-image-section {
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-frame-container {
+  perspective: 1000px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Animated gradient border frame */
+.image-frame {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #ff0000);
+  background-size: 300% 300%;
+  animation: gradientShift 6s ease infinite;
+}
+/* Rotating dashed outer frame */
+.image-frame::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  border: 2px dashed #cc0000;
+  border-radius: 25px;
+  animation: rotateDashed 10s linear infinite;
+}
+
+/* Product Image Styling */
+.product-center-image {
+  display: block;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 15px;
+  background: var(--off-white);
+  padding: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+/* Glow pulse effect */
+.product-center-image::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.3), transparent);
+  animation: pulseGlow 3s infinite ease-in-out;
+  z-index: -1;
+}
+
+/* Hover 3D Tilt Effect */
+.product-center-image:hover {
+  transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+}
+/* Product Cards - Matching Contact Info Card Style */
+.product-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin: 60px 0;
+}
+
+.product-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px var(--shadow-gray);
+  transition: transform 0.3s ease;
+  animation: slideInRight 1s ease-out;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+}
+
+.product-card h3 {
+  color: var(--dark-gray);
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-card h3::before {
+  content: "";
+  width: 30px;
+  height: 3px;
+  background: var(--primary-red);
+}
+
+.product-card p {
+  color: var(--dark-gray);
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.product-card strong {
+  font-size: 20px;
+  color: var(--primary-red);
+  font-weight: 700;
+}
+
+.product-card button {
+  background: linear-gradient(135deg, var(--primary-red), #cc0000);
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.product-card button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.product-card button:hover::before {
+  left: 100%;
+}
+
+.product-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-red);
+}
+
+/* Instructions Section - Matching Contact Info Style */
+.instructions-section {
+  margin-top: 60px;
+  animation: slideInRight 1s ease-out;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rotateDashed {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Decorative Elements */
+.product-section::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--primary-red), #cc0000);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.product-section::before {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, var(--dark-gray), var(--light-gray));
+  border-radius: 50%;
+  opacity: 0.05;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-section {
+    padding: 60px 20px;
+  }
+
+  .product-section h2 {
+    font-size: 32px;
+  }
+
+  .product-cards {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .image-frame-container,
+  .product-card {
+    padding: 30px 20px;
+  }
+
+  .product-center-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-center-image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* //////////////////////////////////////////////////////////////////// */
+/* Products Section with Creative Color Palette - Matching Contact Page
+.product-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, var(--off-white) 0%, #e8e9ea 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23FF0000" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+  opacity: 0.3;
+}
+
+.product-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.product-section h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--primary-red), #cc0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.product-section > p {
+  font-size: 18px;
+  color: var(--dark-gray);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Central Image Section - Matching Contact Form Container */
+/* .product-image-section {
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-frame-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px var(--shadow-gray);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInLeft 1s ease-out;
+  max-width: 400px;
+  width: 100%;
+}
+
+.image-frame-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px var(--shadow-red);
+}
+
+.image-frame {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-center-image {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 15px;
+  background: var(--off-white);
+  padding: 20px;
+}
+
+/* Product Cards - Matching Contact Info Card Style */
+/* .product-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin: 60px 0;
+}
+
+.product-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px var(--shadow-gray);
+  transition: transform 0.3s ease;
+  animation: slideInRight 1s ease-out;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+}
+
+.product-card h3 {
+  color: var(--dark-gray);
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-card h3::before {
+  content: "";
+  width: 30px;
+  height: 3px;
+  background: var(--primary-red);
+}
+
+.product-card p {
+  color: var(--dark-gray);
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.product-card strong {
+  font-size: 20px;
+  color: var(--primary-red);
+  font-weight: 700;
+}
+
+.product-card button {
+  background: linear-gradient(135deg, var(--primary-red), #cc0000);
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.product-card button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.product-card button:hover::before {
+  left: 100%;
+}
+
+.product-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-red);
+}  */
+
+/* Instructions Section - Matching Contact Info Style */
+/* .instructions-section {
+  margin-top: 60px;
+  animation: slideInRight 1s ease-out;
+}
+
+/* Animations - Matching Contact Page */
+/* @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+} */
+
+/* Floating Animation for Background - Matching Contact Page */
+/* @keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Decorative Elements - Matching Contact Page */
+/* .product-section::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--primary-red), #cc0000);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.product-section::before {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, var(--dark-gray), var(--light-gray));
+  border-radius: 50%;
+  opacity: 0.05;
+  animation: float 8s ease-in-out infinite reverse; */
+/* }  */
+
+/* Responsive Design - Matching Contact Page */
+/* @media (max-width: 768px) {
+  .product-section {
+    padding: 60px 20px;
+  }
+
+  .product-section h2 {
+    font-size: 32px;
+  }
+
+  .product-cards {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .image-frame-container,
+  .product-card {
+    padding: 30px 20px;
+  }
+
+  .product-center-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-center-image {
+    width: 200px;
+    height: 200px;
+  }
+} */
