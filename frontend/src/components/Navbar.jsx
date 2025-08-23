@@ -209,6 +209,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LanguageToggle from "./LanguageToggle";
+import logo from "../assets/logo.png";
 import "./Navbar.css";
 
 // Simple SVG icons
@@ -266,6 +267,7 @@ const Navbar = ({ language, setLanguage }) => {
       <div className="navbar-container">
         {/* Logo Section */}
         <Link to="/" className="navbar-logo">
+          <img src={logo} alt="GrassHawk Logo" className="navbar-logo-image" />
           GrassHawk
         </Link>
 
