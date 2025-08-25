@@ -60,63 +60,178 @@
   width: 100%;
 }
 
+/* Features Section */
+.features-section {
+  margin: 60px 0 40px 0;
+  text-align: center;
+}
+.features-section h3 {
+  font-size: 28px;
+  color: var(--primary-red);
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
+.feature-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px var(--shadow-gray);
+  padding: 24px 18px 16px 18px;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+}
+.feature-card p {
+  color: var(--dark-gray);
+  font-size: 16px;
+  font-weight: 500;
+}
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 8px 24px var(--shadow-red);
+}
+
+/* Reviews Section */
+.reviews-section {
+  margin: 60px 0 0 0;
+  text-align: center;
+}
+.reviews-section h3 {
+  font-size: 28px;
+  color: var(--primary-red);
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+.reviews-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
+.review-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px var(--shadow-gray);
+  padding: 24px 18px 16px 18px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.review-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 24px var(--shadow-red);
+}
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.reviewer-name {
+  font-weight: 600;
+  color: var(--primary-red);
+  font-size: 16px;
+}
+.review-rating {
+  color: #ffb400;
+  font-size: 18px;
+  font-weight: 700;
+}
+.review-text {
+  color: var(--dark-gray);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Responsive for features and reviews */
+@media (max-width: 900px) {
+  .features-grid,
+  .reviews-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .feature-card,
+  .review-card {
+    width: 90%;
+    max-width: 350px;
+  }
+}
+
 /* Animated gradient border frame */
+
+/* Modern floating image frame */
 .image-frame {
   position: relative;
   display: inline-block;
-  padding: 10px;
-  border-radius: 20px;
-  background: linear-gradient(45deg, #ff0000, #ff7300, #ff0000);
-  background-size: 300% 300%;
-  animation: gradientShift 6s ease infinite;
+  padding: 18px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 8px 32px 0 rgba(255, 0, 0, 0.1),
+    0 1.5px 8px 0 rgba(44, 62, 80, 0.08);
+  animation: floatImage 4s ease-in-out infinite;
+  transition: box-shadow 0.3s;
 }
-/* Rotating dashed outer frame */
-.image-frame::before {
-  content: "";
-  position: absolute;
-  top: -12px;
-  left: -12px;
-  right: -12px;
-  bottom: -12px;
-  border: 2px dashed #cc0000;
-  border-radius: 25px;
-  animation: rotateDashed 10s linear infinite;
+.image-frame:hover {
+  box-shadow: 0 16px 48px 0 rgba(255, 0, 0, 0.18),
+    0 3px 16px 0 rgba(44, 62, 80, 0.12);
 }
 
 /* Product Image Styling */
+
 .product-center-image {
   display: block;
   width: 300px;
   height: 300px;
   object-fit: contain;
-  border-radius: 15px;
+  border-radius: 18px;
   background: var(--off-white);
-  padding: 20px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 4px 24px 0 rgba(255, 0, 0, 0.1);
+  transition: transform 0.5s cubic-bezier(0.23, 1.02, 0.64, 1), box-shadow 0.3s;
   position: relative;
   z-index: 2;
+  animation: floatImageInner 4s ease-in-out infinite;
+}
+.image-frame:hover .product-center-image {
+  transform: scale(1.04) translateY(-6px) rotate(-2deg);
+  box-shadow: 0 12px 36px 0 rgba(255, 0, 0, 0.18);
 }
 
-/* Glow pulse effect */
-.product-center-image::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
-  background: radial-gradient(circle, rgba(255, 0, 0, 0.3), transparent);
-  animation: pulseGlow 3s infinite ease-in-out;
-  z-index: -1;
+@keyframes floatImage {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
-
-/* Hover 3D Tilt Effect */
-.product-center-image:hover {
-  transform: rotateY(10deg) rotateX(5deg) scale(1.05);
-  box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+@keyframes floatImageInner {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 /* Product Cards - Matching Contact Info Card Style */
 .product-cards {

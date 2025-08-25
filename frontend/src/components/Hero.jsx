@@ -11,10 +11,9 @@ const Hero = () => {
         <h2>Welcome to Grass Hawk</h2>
         <p>Precision farming starts here. Discover our mole trap solution.</p>
         <p className="tagline">
-          {/* <span className="tagline-part">You grow it,</span> */}
-          <span className="tagline-part">You grow it , we protect it</span>
+          <span className="tagline-part">You grow it, we protect it</span>
         </p>
-        <button className="hero-btn" onClick={() => navigate('/product-page')}>
+        <button className="hero-btn" onClick={() => navigate('/products')}>
           Explore Products
         </button>
       </div>

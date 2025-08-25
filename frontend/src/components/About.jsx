@@ -6,19 +6,49 @@ const About = () => {
     <section className="about-section" id="about">
       <div className="about-container">
         <center>
-          <h2>About Grass Hawk</h2>
+          <h2>About Grasshawk Canada</h2>
           <p>
-            Grass Hawk is committed to developing innovative tools that help
-            farmers manage pests efficiently and sustainably. With a focus on
-            precision engineering and eco-friendly solutions, we strive to make
-            farming smarter and more productive.
+            At Grasshawk, we believe that a well-kept lawn is more than just a
+            patch of green—it's a reflection of care, pride, and the Canadian
+            spirit of stewardship. Our mission is simple: to help you protect
+            the spaces you've worked hard to grow.
           </p>
           <p>
-            Our team blends agricultural expertise with modern technology to
-            create practical solutions that meet real-world farming challenges.
-            We are proud to introduce our flagship product – the Mole Trap –
-            which simplifies underground pest control with high accuracy and
-            minimal effort.
+            We specialize in the Grass Hawk Mole Trap, a durable, pet-conscious,
+            and weather-resistant solution designed specifically for Canadian
+            environments. Whether you're dealing with mole damage in your
+            backyard or maintaining larger green spaces, our trap offers a safe,
+            effective, and eco-friendly way to restore balance to your
+            landscape.
+          </p>
+          <p>
+            <center>
+              <h3>What Sets Us Apart</h3>
+            </center>
+            <ul>
+              <li>
+                Canadian-Ready Design: Built to perform in diverse soil and
+                weather conditions across Canada
+              </li>
+              <li>
+                Safe & Responsible: Designed to avoid harm to pets and
+                non-target wildlife
+              </li>
+              <li>
+                Simple Setup: Just four easy steps from detection to capture
+              </li>
+              <li>
+                Reusable & Eco-Friendly: Heavy-duty materials that last season
+                after season
+              </li>
+              <li>
+                Local Support: Backed by responsive Canadian customer service
+              </li>
+            </ul>
+          </p>
+          <p>
+            We're proud to support Canadians in preserving the beauty and health
+            of their outdoor spaces. Grasshawk—You grow it, we protect it.
           </p>
         </center>
       </div>
