@@ -1,5 +1,5 @@
 /* Hero Section with Clean Style */
-.hero {
+/* .hero {
   height: 100vh;
   padding: 0 20px;
   display: flex;
@@ -9,7 +9,38 @@
   position: relative;
   background: linear-gradient(135deg, var(--off-white) 0%, #e6f4e6 100%);
   overflow: hidden;
+} */
+.hero {
+  height: 100vh;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+
+  /* 🔹 Background Image with Soft Overlay */
+  /* background: linear-gradient( */
+      /* rgba(255, 255, 255, 0.7),   light overlay at top */
+      /* rgba(255, 255, 255, 0.7)    light overlay at bottom */
+    /* ),
+    url("C:\Users\masum\Desktop\grasshawk\frontend\src\assets\mole-house-bg.jpg") center/cover no-repeat;
+
+  overflow: hidden;
+} */
+background: linear-gradient(
+      rgba(255, 255, 255, 0.6), 
+      rgba(255, 255, 255, 0.6)
+    ),
+    url("C:\Users\masum\Desktop\grasshawk\frontend\src\assets\mole-house-bg.jpg") no-repeat center center;
+
+  background-size: 100% 100%; /* fills full screen & keeps whole image visible */
+  overflow: hidden;
 }
+
+
+
+
 
 /* Decorative floating background dots */
 .hero::before {
