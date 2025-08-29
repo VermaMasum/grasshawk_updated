@@ -1,5 +1,5 @@
 /* About Section with Creative Color Palette and Animations */
-@import url("https://fonts.googleapis.comcss2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 .about-section {
   padding: 100px 20px;
@@ -9,19 +9,8 @@
   font-family: "Poppins", sans-serif;
 }
 
-.about-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 极速赛车开奖直播记录+开奖结果><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23FF0000" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-  opacity: 0.3;
-}
-
 .about-container {
-  max-width: 1000px;
+  max-width: 1100px; /* slightly wider */
   margin: 0 auto;
   position: relative;
   z-index: 2;
@@ -29,9 +18,9 @@
 }
 
 .about-container h2 {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   background: linear-gradient(135deg, var(--primary-red), #cc0000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -39,38 +28,47 @@
   text-transform: uppercase;
   letter-spacing: 3px;
   animation: fadeInUp 1s ease-out;
+  text-align: center;
 }
 
 .about-container h3 {
   font-size: 28px;
   font-weight: 600;
-  margin: 30px 0 20px 0;
+  margin: 35px 0 20px 0;
   color: var(--dark-gray);
   text-align: center;
   animation: fadeInUp 1.2s ease-out;
 }
 
-.about-container ul {
+.about-container ul,
+.about-container p {
   background-color: white;
-  padding: 30px;
+  padding: 40px; /* more breathing space */
   border-radius: 20px;
-  box-shadow: 0 10极速赛车开奖直播记录+开奖结果px 40px var(--shadow-gray);
-  margin: 20px 0;
-  list-style-type: none;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* softer shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: var(--dark-gray);
+  line-height: 1.9;
 }
 
-.about-container ul:hover {
+.about-container p {
+  text-align: justify;
+}
+
+.about-container ul:hover,
+.about-container p:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 50px var(--shadow-red);
+  box-shadow: 0 15px 40px var(--shadow-red);
 }
 
 .about-container li {
   font-size: 18px;
   color: var(--dark-gray);
-  line-height: 1.8;
-  margin-bottom: 10px;
-  padding-left: 20px;
+  line-height: 1.9;
+  margin-bottom: 12px;
+  padding-left: 25px;
   position: relative;
 }
 
@@ -80,24 +78,7 @@
   font-weight: bold;
   position: absolute;
   left: 0;
-}
-
-.about-container p {
-  text-align: justify;
-  font-size: 18px;
-  color: var(--dark-gray);
-  line-height: 1.8;
-  background-color: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px var(--shadow-gray);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 20px;
-}
-
-.about-container p:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px var(--shadow-red);
+  font-size: 22px;
 }
 
 /* Animations */
@@ -115,7 +96,7 @@
 @keyframes slideUp {
   from {
     transform: translateY(30px);
-  opacity: 0;
+    opacity: 0;
   }
   to {
     transform: translateY(0);
@@ -123,69 +104,17 @@
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Floating Animation for Background */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-/* Decorative Elements */
+/* Floating Decorative Elements */
 .about-section::after {
   content: "";
   position: absolute;
   top: 20%;
   right: 10%;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background: linear-gradient(135deg, var(--primary-red), #cc0000);
   border-radius: 50%;
-  opacity: 0.1;
+  opacity: 0.12;
   animation: float 6s ease-in-out infinite;
 }
 
@@ -194,15 +123,28 @@
   position: absolute;
   bottom: 10%;
   left: 5%;
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   background: linear-gradient(135deg, var(--dark-gray), var(--light-gray));
   border-radius: 50%;
-  opacity: 0.05;
+  opacity: 0.07;
   animation: float 8s ease-in-out infinite reverse;
 }
 
-/* Responsive Design */
+/* Floating Animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .about-section {
     padding: 60px 20px;
@@ -218,6 +160,7 @@
 
   .about-container p,
   .about-container ul {
-    padding: 20px;
+    padding: 25px;
+    font-size: 16px;
   }
 }

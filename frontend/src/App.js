@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/GlobalStyles.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import WelcomePage from "./components/WelcomePage";
 import Products from "./components/Products";
 import ProductPage from "./components/ProductPage";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./components/Cart";
 import Contact from "./components/Contact";
-import Checkout from "./components/Checkout";
 import Success from "./components/success";
 import Cancel from "./components/cancel";
 import About from "./components/About";
@@ -50,75 +50,53 @@ function App() {
 
   return (
     <Router>
-      <Navbar cartCount={cartItems.reduce((a, b) => a + b.quantity, 0)} />
-      <Routes>
-        {/* Home page with all sections */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Hero />
-              {/* <About /> */}
-              {/* <MoleTrapInstructions />
-              <Pricing />
-              <Products addToCart={addToCart} />
+      <div className="app-container">
+        <Navbar cartCount={cartItems.reduce((a, b) => a + b.quantity, 0)} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                {/* Additional components can be added here */}
+              </>
+            }
+          />
+          <Route path="/products" element={<Products addToCart={addToCart} />} />
+          <Route
+            path="/product-page"
+            element={
+              <ProductPage
+                addToCart={addToCart}
+                cartItems={cartItems}
+                removeFromCart={removeFromCart}
+                updateQuantity={updateQuantity}
+                clearCart={clearCart}
+              />
+            }
+          />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route
+            path="/cart"
+            element={
               <Cart
                 items={cartItems}
                 removeFromCart={removeFromCart}
                 updateQuantity={updateQuantity}
                 clearCart={clearCart}
-              /> */}
-              {/* <Contact /> */}
-            </>
-          }
-        />
-        {/* Other routes */}
-        <Route path="/products" element={<Products addToCart={addToCart} />} />
-        <Route
-          path="/product-page"
-          element={
-            <ProductPage
-              addToCart={addToCart}
-              cartItems={cartItems}
-              removeFromCart={removeFromCart}
-              updateQuantity={updateQuantity}
-              clearCart={clearCart}
-            />
-          }
-        />
-
-        {/* <Route
-          path="/Cart"
-          element={
-            <Cart
-              items={cartItems}
-              removeFromCart={removeFromCart}
-              updateQuantity={updateQuantity}
-              clearCart={clearCart}
-            />
-          }
-        /> */}
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route
-          path="/cart"
-          element={
-            <Cart
-              items={cartItems}
-              removeFromCart={removeFromCart}
-              updateQuantity={updateQuantity}
-              clearCart={clearCart}
-            />
-          }
-        />
-        <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/checkout" element={<Checkout />} />*/}
-        <Route path="/success" element={<Success />} />
-        <Route path="/cancel" element={<Cancel />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/instructions" element={<MoleTrapInstructions />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/welcome" element={<WelcomePage />} />
-      </Routes>
+              />
+            }
+          />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/cancel" element={<Cancel />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/instructions" element={<MoleTrapInstructions />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/welcome" element={<WelcomePage />} />
+        </Routes>
+        <Footer />
+      </div>
     </Router>
   );
 }

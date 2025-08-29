@@ -1,12 +1,80 @@
 /* Welcome Page with Creative Color Palette and Animations */
-/* .welcome-container {
+.welcome-container {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--off-white) 0%, #e8e9ea 100%);
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.welcome-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 20%
+    );
+  animation: subtleMovement 20s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes subtleMovement {
+  0% {
+    background-position: 0% 0%, 100% 100%;
+  }
+  100% {
+    background-position: 100% 100%, 0% 0%;
+  }
+}
+
+.welcome-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      45deg,
+      rgba(26, 42, 108, 0.3) 25%,
+      transparent 25%,
+      transparent 75%,
+      rgba(26, 42, 108, 0.3) 75%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(26, 42, 108, 0.3) 25%,
+      transparent 25%,
+      transparent 75%,
+      rgba(26, 42, 108, 0.3) 75%
+    );
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+  animation: backgroundMove 10s linear infinite;
+  z-index: 0;
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position: 0 0, 30px 30px;
+  }
+  100% {
+    background-position: 60px 60px, 90px 90px;
+  }
 }
 
 .prominent-tagline {
@@ -17,109 +85,19 @@
 }
 
 .welcome-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23FF0000" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
   opacity: 0.3;
 }
 
-.animated-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: var(--primary-red);
-  border-radius: 50%;
-  animation: float 15s infinite linear;
-  opacity: 0.5;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-.welcome-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 800px;
-  padding: 40px;
-  animation: fadeInUp 1.5s ease-out;
-} */
-/* Overlay to improve text visibility */
-.welcome-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-
-  /* Dark gradient overlay: top lighter, bottom darker */
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.35),   /* semi-transparent dark at top */
-    rgba(0, 0, 0, 0.55)    /* darker at bottom */
-  );
-
-  backdrop-filter: blur(8px); /* slight blur for smoothness */
-  z-index: 0;
-}
-
-/* .welcome-container {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* Background Image */
-  /* background: url("../assets/mole-house-bg.jpg") center/cover no-repeat; */
-/* } */
-
-/* Overlay to prevent background being too dark or too distracting */
-.welcome-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-
-  /* Gradient overlay - top lighter, bottom slightly darker */
-  background: linear-gradient(
-    rgb(255, 255, 255, 0.65),
-    /* bright top */ rgb(255, 255, 255, 0.5) /* slightly darker bottom */
-  );
-  /* 0.65,0.5 hTU  */
-  backdrop-filter: blur(25px); /* subtle blur */
-  z-index: 0;
+/* left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.3;
 } */
 
 /* Keep particles floating above background */
@@ -206,6 +184,30 @@
   font-size: 3.5rem;
   margin-bottom: 20px;
   font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+.main-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--primary-red), #cc0000);
+  border-radius: 2px;
+  animation: lineGrow 1s ease-out forwards;
+}
+
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
 }
 
 .grass-text {
@@ -214,6 +216,7 @@
   margin-bottom: 10px;
   color: var(--dark-gray);
   opacity: 0.9;
+  animation: fadeIn 1s ease-out;
 }
 
 .grasshawk-text {
@@ -221,7 +224,47 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate, textPop 1s ease-out;
+}
+
+.animated-text {
+  display: inline-block;
+  animation: textPop 1s ease-out;
+}
+
+@keyframes textPop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  color: var(--dark-gray);
+  opacity: 0.9;
+  text-align: center;
+}
+
+.animated-tagline {
+  animation: slideIn 1s ease forwards;
+}
+
+.tagline-part {
+  display: block;
+  animation: slideIn 1s ease forwards;
+}
+
+.tagline-part:nth-child(2) {
+  animation-delay: 0.5s;
 }
 
 @keyframes glow {
@@ -371,7 +414,9 @@
 
 .floating-mole,
 .floating-grass,
-.floating-flower {
+.floating-flower,
+.floating-sun,
+.floating-cloud {
   position: absolute;
   font-size: 2rem;
   animation: floatUp 6s ease-in-out infinite;
@@ -395,6 +440,53 @@
   top: 30%;
   right: 20%;
   animation-delay: 4s;
+}
+
+.floating-sun {
+  top: 10%;
+  right: 10%;
+  font-size: 3rem;
+  animation: floatUp 6s ease-in-out infinite, rotate 8s linear infinite;
+  animation-delay: 1s;
+  animation-duration: 8s;
+  color: #ffd700;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.floating-cloud {
+  top: 15%;
+  left: 20%;
+  font-size: 2.5rem;
+  animation: floatUp 6s ease-in-out infinite, floatSide 15s linear infinite;
+  animation-delay: 3s;
+  animation-duration: 10s, 15s;
+  color: #ffffff;
+}
+
+@keyframes floatSide {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(40px) translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateX(20px) translateY(10px) rotate(-5deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
 }
 
 @keyframes floatUp {

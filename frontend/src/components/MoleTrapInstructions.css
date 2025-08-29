@@ -55,7 +55,7 @@
 }
 
 .instruction-step p {
-  color: var(--light-gray);
+  /* color: var(--light-gray); */
   line-height: 1.7;
   margin-bottom: 15px;
 }
