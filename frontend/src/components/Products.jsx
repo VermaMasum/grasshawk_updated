@@ -119,11 +119,11 @@
 // import "./Products.css";
 // import MoleTrapInstructions from "./MoleTrapInstructions";
 // import moletrapImage from "../assets/moletrap.png";
-// import easySetupIcon from "../assets/easytosetup.png"; 
-// import petFriendlyIcon from "../assets/petfriendly.png"; 
-// import weatherResistantIcon from "../assets/weatherresistance.png"; 
-// import durableIcon from "../assets/durableandheavyduty.png"; 
-// import ecoFriendlyIcon from "../assets/reusableandecofriendly.png"; 
+// import easySetupIcon from "../assets/easytosetup.png";
+// import petFriendlyIcon from "../assets/petfriendly.png";
+// import weatherResistantIcon from "../assets/weatherresistance.png";
+// import durableIcon from "../assets/durableandheavyduty.png";
+// import ecoFriendlyIcon from "../assets/reusableandecofriendly.png";
 
 // const Products = ({ addToCart }) => {
 //   const productList = [
@@ -247,9 +247,10 @@ import ecoFriendlyIcon from "../assets/reusableandecofriendly.png";
 const Products = ({ addToCart }) => {
   const productList = [
     {
-      name: "Mole Trap Basic",
+      name: "Mole Trap",
       price: 799,
-      description: "One unit with manual guide",
+      description:
+        "Get rid of moles quickly and safely with the Grasshawk Mole Trap. Designed for efficiency, reliability, and eco-friendliness, this durable trap ensures effective mole control without harmful chemicals. Easy to set up and reusable, it’s the perfect solution for protecting your lawn and garden.",
     },
   ];
 

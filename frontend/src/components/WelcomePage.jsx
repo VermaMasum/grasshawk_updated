@@ -111,6 +111,11 @@ const WelcomePage = () => {
         ))}
       </div>
 
+      {/* Hero Image Section */}
+      <section className="hero-image-section">
+        <img src={moleTrapHeroImage} alt="Mole Trap Hero" className="hero-image" />
+      </section>
+
       {/* Main Content */}
       <div className={`welcome-content ${isVisible ? "visible" : ""}`}>
         <div className="logo-section">
