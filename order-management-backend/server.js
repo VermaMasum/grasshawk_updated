@@ -6,6 +6,8 @@ require('dotenv').config();
 
 const connectDB = require('./config/database');
 const orderRoutes = require('./routes/orderRoutes');
+const stripeRoutes = require('./routes/stripeRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -38,7 +40,8 @@ app.use(express.static('public'));
 
 // API Routes
 app.use('/api/orders', orderRoutes);
-
+app.use('/api/stripe', stripeRoutes);
+app.use('/api/cart', cartRoutes);
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({
