@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e10bfd24.css",
+    "main.js": "/static/js/main.d9a20d75.js",
+    "static/js/453.3458c6c1.chunk.js": "/static/js/453.3458c6c1.chunk.js",
+    "static/media/about_us_bg.png": "/static/media/about_us_bg.d945dcaa2e2463ce3ec5.png",
+    "static/media/mole-house-bg.jpg": "/static/media/mole-house-bg.ac219484fa18656e21d1.jpg",
+    "static/media/moletrap.png": "/static/media/moletrap.cc699324ff6636a1e013.png",
+    "static/media/logo.png": "/static/media/logo.87fbb8e07705a98d1b17.png",
+    "static/media/trap.png": "/static/media/trap.b4c20660693e0cf43df2.png",
+    "static/media/petfriendly.png": "/static/media/petfriendly.0185d288275190f8981c.png",
+    "static/media/easytosetup.png": "/static/media/easytosetup.ea0f6f367f22c2276358.png",
+    "static/media/reusableandecofriendly.png": "/static/media/reusableandecofriendly.89c8dffd010f8b5fc576.png",
+    "static/media/instruction-4.png": "/static/media/instruction-4.bb6acb5abbb4e62761f4.png",
+    "static/media/instruction-2.png": "/static/media/instruction-2.1db6e84cf1c3cafec448.png",
+    "static/media/instruction-3.png": "/static/media/instruction-3.2b54b595ba6f0f282960.png",
+    "static/media/mole-trap-hero.jpg": "/static/media/mole-trap-hero.85938ffe4026646b2c52.jpg",
+    "static/media/weatherresistance.png": "/static/media/weatherresistance.6632130f006c074109db.png",
+    "static/media/instruction-1.png": "/static/media/instruction-1.593117fdda1505a58ddf.png",
+    "index.html": "/index.html",
+    "main.e10bfd24.css.map": "/static/css/main.e10bfd24.css.map",
+    "main.d9a20d75.js.map": "/static/js/main.d9a20d75.js.map",
+    "453.3458c6c1.chunk.js.map": "/static/js/453.3458c6c1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e10bfd24.css",
+    "static/js/main.d9a20d75.js"
+  ]
+}
