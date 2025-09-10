@@ -1,74 +1,58 @@
 import React from "react";
 import "./About.css";
-import aboutUsBg from "../assets/about_us_bg.png";
+import aboutImage from "../assets/about_us_bg.png";
 
 const About = () => {
   return (
-    <>
-      <section className="about-section" id="about">
-        <div className="about-container">
-          <center>
-            <h2>About Grasshawk Canada</h2>
-          </center>
+    <section className="about-section">
+      <div className="about-hero">
+        <h2>🌿 About VIBGYOR Maple</h2>
+        <div className="hero-subtitle">
+          <p>Innovative backyard safety and garden care solutions for Canadian homes</p>
         </div>
-      </section>
-
-      <section className="about-image-section">
-        <div className="about-image-container">
-          <img src={aboutUsBg} alt="About Grasshawk Canada" className="about-full-image" />
+      </div>
+      
+      <div className="about-content">
+        <div className="featured-product">
+          <div className="featured-badge">Our Story</div>
+          <div className="product-rating">★★★★★</div>
+          
+          {/* About Image */}
+          <div className="about-image-container">
+            <img src={aboutImage} alt="VIBGYOR Maple - Canadian Backyard Solutions" className="about-main-image" />
+          </div>
+          
+          <h3>Our Mission</h3>
+          <p>
+            At VIBGYOR Maple, we are dedicated to creating innovative backyard safety and garden care solutions tailored for Canadian homes. Our mission is to help families enjoy their outdoor spaces with confidence — by combining safety, sustainability, and reliability in everything we build.
+          </p>
+          <p>
+            We design products that address real backyard challenges, from pest protection to garden preservation, without relying on harmful chemicals. Built with Canadian weather conditions in mind, VIBGYOR Maple solutions are durable, family-friendly, and environmentally responsible.
+          </p>
+          <div className="our-promise-featured">
+            <h4>Our Promise</h4>
+            <p>To protect and enhance Canadian backyards — naturally and sustainably.</p>
+          </div>
         </div>
-      </section>
-
-      <section className="about-text-section">
-        <div className="about-container">
-          <center>
-            <p>
-              At Grasshawk, we believe that a well-kept lawn is more than just a
-              patch of green—it's a reflection of care, pride, and the Canadian
-              spirit of stewardship. Our mission is simple: to help you protect
-              the spaces you've worked hard to grow.
-            </p>
-            <p>
-              We specialize in the Grass Hawk Mole Trap, a durable, pet-conscious,
-              and weather-resistant solution designed specifically for Canadian
-              environments. Whether you're dealing with mole damage in your
-              backyard or maintaining larger green spaces, our trap offers a safe,
-              effective, and eco-friendly way to restore balance to your
-              landscape.
-            </p>
-            <p>
-              <center>
-                <h3>What Sets Us Apart</h3>
-              </center>
-              <ul>
-                <li>
-                  Canadian-Ready Design: Built to perform in diverse soil and
-                  weather conditions across Canada
-                </li>
-                <li>
-                  Safe & Responsible: Designed to avoid harm to pets and
-                  non-target wildlife
-                </li>
-                <li>
-                  Simple Setup: Just four easy steps from detection to capture
-                </li>
-                <li>
-                  Reusable & Eco-Friendly: Heavy-duty materials that last season
-                  after season
-                </li>
-                <li>
-                  Local Support: Backed by responsive Canadian customer service
-                </li>
-              </ul>
-            </p>
-            <p>
-              We're proud to support Canadians in preserving the beauty and health
-              of their outdoor spaces. Grasshawk—You grow it, we protect it.
-            </p>
-          </center>
-        </div>
-      </section>
-    </>
+        <aside className="product-sidebar">
+          <div className="sidebar-product">
+            <h4>EcoSeed Pro</h4>
+            <p>Premium grass seed blend optimized for Canadian climates.</p>
+            <p className="coming-soon">Coming Soon</p>
+          </div>
+          <div className="sidebar-product">
+            <h4>WinterShield</h4>
+            <p>Winter protection system for year-round lawn health.</p>
+            <p className="coming-soon">Coming Soon</p>
+          </div>
+          <div className="sidebar-product">
+            <h4>NatureFeed</h4>
+            <p>Natural fertilizer blend to nourish your lawn.</p>
+            <p className="coming-soon">Coming Soon</p>
+          </div>
+        </aside>
+      </div>
+    </section>
   );
 };
 

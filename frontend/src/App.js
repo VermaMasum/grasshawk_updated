@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/GlobalStyles.css";
+import "./styles/BubbleAnimation.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WelcomePage from "./components/WelcomePage";
 import Products from "./components/Products";
+import ProductsBackend from "./components/ProductsBackend";
 import ProductPage from "./components/ProductPage";
+import ProductPageBackend from "./components/ProductPageBackend";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./components/Cart";
+import CartBackend from "./components/CartBackend";
+import CartEnhanced from "./components/CartEnhanced";
 import Contact from "./components/Contact";
 import Success from "./components/success";
 import Cancel from "./components/cancel";
@@ -15,9 +20,12 @@ import About from "./components/About";
 import MoleTrapInstructions from "./components/MoleTrapInstructions";
 import Pricing from "./components/Pricing";
 import Hero from "./components/Hero";
+import CertificateAndTrust from "./components/CertificateAndTrust";
+import Testimonials from "./components/Testimonials";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [language, setLanguage] = useState('en');
 
   const addToCart = (product) => {
     setCartItems((prev) => {
@@ -51,7 +59,17 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        <Navbar cartCount={cartItems.reduce((a, b) => a + b.quantity, 0)} />
+        <div className="bubble-animation">
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+          <div className="bubble"></div>
+        </div>
+        <Navbar 
+          language={language} 
+          setLanguage={setLanguage}
+        />
         <Routes>
           <Route
             path="/"
@@ -62,7 +80,7 @@ function App() {
               </>
             }
           />
-          <Route path="/products" element={<Products addToCart={addToCart} />} />
+          <Route path="/products" element={<ProductsBackend />} />
           <Route
             path="/product-page"
             element={
@@ -74,6 +92,10 @@ function App() {
                 clearCart={clearCart}
               />
             }
+          />
+          <Route
+            path="/product-page-backend"
+            element={<ProductPageBackend />}
           />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route
@@ -87,6 +109,10 @@ function App() {
               />
             }
           />
+          <Route
+            path="/cart-backend"
+            element={<CartEnhanced />}
+          />
           <Route path="/contact" element={<Contact />} />
           <Route path="/success" element={<Success />} />
           <Route path="/cancel" element={<Cancel />} />
@@ -94,6 +120,8 @@ function App() {
           <Route path="/instructions" element={<MoleTrapInstructions />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/certificate-trust" element={<CertificateAndTrust />} />
+          <Route path="/testimonials" element={<Testimonials />} />
         </Routes>
         <Footer />
       </div>

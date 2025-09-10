@@ -250,3 +250,220 @@
 .checkout-form button:hover {
   background-color: #b30000;
 }
+
+/* Enhanced Empty Cart Styles */
+.empty-cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+}
+
+.empty-cart-illustration {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.empty-cart-icon {
+  margin-bottom: 30px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.cart-svg {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.empty-cart-content {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.empty-cart-title {
+  color: #1a1a2e;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #cc0000, #ff4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.empty-cart-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.count-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #cc0000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.count-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.empty-cart-message {
+  color: #6c757d;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.empty-cart-actions {
+  margin-top: 30px;
+}
+
+.browse-products-btn {
+  background: linear-gradient(135deg, #cc0000, #ff4444);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(204, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.browse-products-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(204, 0, 0, 0.4);
+  background: linear-gradient(135deg, #a00000, #e60000);
+}
+
+.browse-products-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Enhanced Payment Options */
+.payment-option-label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-option-label:hover {
+  border-color: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(204, 0, 0, 0.1);
+}
+
+.payment-option input[type="radio"]:checked + .payment-option-label {
+  border-color: #cc0000;
+  background: linear-gradient(135deg, #fff5f5, #ffe6e6);
+  box-shadow: 0 8px 25px rgba(204, 0, 0, 0.15);
+}
+
+.payment-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.payment-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.payment-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #cc0000;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cod-badge {
+  background: #28a745;
+}
+
+.payment-text {
+  flex: 1;
+}
+
+.payment-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 5px;
+}
+
+.payment-subtitle {
+  color: #6c757d;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.payment-features {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.feature-tag {
+  background: rgba(204, 0, 0, 0.1);
+  color: #cc0000;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(204, 0, 0, 0.2);
+}
+
+.stripe-option .feature-tag {
+  background: rgba(204, 0, 0, 0.1);
+  color: #cc0000;
+  border-color: rgba(204, 0, 0, 0.2);
+}
+
+.cod-option .feature-tag {
+  background: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+  border-color: rgba(40, 167, 69, 0.2);
+}

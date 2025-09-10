@@ -1,4 +1,4 @@
-/* Hero Section with Clean Style */
+/* Modern Creative Hero Section */
 .hero {
   height: 100vh;
   padding: 0 20px;
@@ -8,147 +8,340 @@
   text-align: center;
   position: relative;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.6), 
-      rgba(255, 255, 255, 0.6)
+      135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(248, 249, 250, 0.8) 50%,
+      rgba(255, 255, 255, 0.9) 100%
     ),
     url("../assets/mole-house-bg.jpg") no-repeat center center;
-  background-size: 100% 100%; /* fills full screen & keeps whole image visible */
+  background-size: cover;
   overflow: hidden;
 }
 
-
-
-
-
-/* Decorative floating background dots */
-.hero::before {
-  content: "";
+.hero-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23008000" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-  opacity: 0.3;
-  z-index: 0;
+  z-index: 1;
+}
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #cc0000, #ff6b6b);
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #4a4a4a, #1a1a2e);
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.shape-4 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #ffc107, #fd7e14);
+  top: 40%;
+  right: 30%;
+  animation-delay: 6s;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(204, 0, 0, 0.05) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    circle at 70% 80%,
+    rgba(74, 74, 74, 0.05) 0%,
+    transparent 50%
+  );
 }
 
 /* Hero Content */
 .hero-content {
-  max-width: 800px;
+  max-width: 900px;
   position: relative;
   z-index: 2;
-  animation: fadeInUp 1s ease-out;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
 }
 
-.hero-content h2 {
-  font-size: 48px;
-  font-weight: 700;
+.hero-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(204, 0, 0, 0.1);
+  border: 2px solid rgba(204, 0, 0, 0.2);
+  border-radius: 50px;
+  padding: 8px 20px;
+  margin-bottom: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #cc0000;
+  backdrop-filter: blur(10px);
+  animation: slideInDown 0.8s ease-out 0.2s both;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
   margin-bottom: 20px;
-  background: linear-gradient(135deg, #840101, #690101);
+  line-height: 1.1;
+  letter-spacing: -2px;
+}
+
+.title-with-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.vibgyor-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.maple-leaf {
+  transition: transform 0.3s ease;
+}
+
+.maple-leaf:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.title-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideInUp 0.8s ease-out forwards;
+  color: #1a1a2e;
+  animation-delay: 0.4s;
+}
+
+.title-line .highlight {
+  background: linear-gradient(135deg, #cc0000, #ff6b6b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: 2px;
 }
 
-.hero-content p {
-  font-size: 25px;
-  color: var(--dark-gray);
+.hero-subtitle {
+  font-size: 1.4rem;
+  color: #4a4a4a;
   margin-bottom: 30px;
   line-height: 1.6;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.8s both;
 }
 
-/* Hero Button */
-.hero-btn {
-  background: linear-gradient(135deg, #802400, #ec0707);
-  color: white;
-  padding: 14px 28px;
-  font-weight: 600;
-  border-radius: 50px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(128, 0, 0, 0.3);
+.tagline-container {
+  margin: 40px 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: left 0.5s ease;
-}
-
-.hero-btn:hover::before {
-  left: 100%;
-}
-
-.hero-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(128, 0, 0, 0.4);
-}
-
-/* Decorative floating shapes */
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 20%;
-  right: 10%;
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(135deg, green, darkgreen);
-  border-radius: 50%;
-  opacity: 0.1;
-  animation: float 6s ease-in-out infinite;
-}
-
-.hero .floating-shape {
-  position: absolute;
-  bottom: 15%;
-  left: 8%;
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(135deg, var(--dark-gray), var(--light-gray));
-  border-radius: 50%;
-  opacity: 0.05;
-  animation: float 8s ease-in-out infinite reverse;
-}
-
-/* Tagline styling */
 .tagline {
-  font-size: 2.5rem;
-  margin: 30px 0;
-  font-weight: 700;
-  color: var(--primary-red);
-  letter-spacing: 1px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #cc0000;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.tagline.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .tagline-part {
   display: block;
-  animation: slideIn 1s ease forwards;
-  font-size: 2rem;
+  animation: textGlow 2s ease-in-out infinite alternate;
 }
 
-.tagline-part:nth-child(2) {
-  animation-delay: 0.5s;
-  color: #802400;
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 1rem;
   font-weight: 600;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+  justify-content: center;
+}
+
+.hero-btn.primary {
+  background: linear-gradient(135deg, #cc0000, #ff6b6b);
+  color: white;
+  box-shadow: 0 8px 25px rgba(204, 0, 0, 0.3);
+}
+
+.hero-btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(204, 0, 0, 0.4);
+}
+
+.hero-btn.secondary {
+  background: transparent;
+  color: #1a1a2e;
+  border: 2px solid #1a1a2e;
+}
+
+.hero-btn.secondary:hover {
+  background: #1a1a2e;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.hero-btn:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 1.2s; }
+.stat-item:nth-child(2) { animation-delay: 1.4s; }
+.stat-item:nth-child(3) { animation-delay: 1.6s; }
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #cc0000;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #4a4a4a;
+  font-size: 0.8rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s both;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom, #cc0000, transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
 }
 
 /* Animations */
-@keyframes fadeInUp {
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -159,44 +352,88 @@
   }
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes slideIn {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateX(-50px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+  }
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 0 0 5px rgba(204, 0, 0, 0.3);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(204, 0, 0, 0.6);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero-content h2 {
-    font-size: 36px;
+  .hero-title {
+    font-size: 2.5rem;
   }
 
-  .hero-content p {
-    font-size: 18px;
+  .hero-subtitle {
+    font-size: 1.1rem;
   }
 
   .tagline {
+    font-size: 1.4rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-stats {
+    gap: 40px;
+  }
+
+  .stat-number {
     font-size: 2rem;
   }
 
-  .tagline-part {
-    font-size: 1.5rem;
+  .floating-shape {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+  }
+
+  .hero-stats {
+    gap: 30px;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
   }
 }

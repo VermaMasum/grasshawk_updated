@@ -1,88 +1,124 @@
-// models/order.js
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
-  items: {
-    type: Array,
-    required: true,
+const orderItemSchema = new mongoose.Schema({
+  productId: {
+    type: String,
+    required: true
   },
-  amount: {
+  name: {
+    type: String,
+    required: true
+  },
+  price: {
     type: Number,
-    required: true,
+    required: true
   },
-  email: {
+  quantity: {
+    type: Number,
+    required: true
+  },
+  image: {
     type: String,
-    required: true,
-  },
-  paymentIntentId: {
-    type: String,
-    required: true,
-  },
-  created: {
-    type: Date,
-    default: Date.now,
-  },
+    default: ''
+  }
 });
 
-module.exports = mongoose.model("Order", orderSchema);
+const orderSchema = new mongoose.Schema({
+  orderNumber: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  sessionId: {
+    type: String,
+    required: true
+  },
+  items: [orderItemSchema],
+  customerDetails: {
+    name: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    address: {
+      type: String,
+      required: true
+    },
+    city: {
+      type: String,
+      required: true
+    },
+    postalCode: {
+      type: String,
+      required: true
+    },
+    country: {
+      type: String,
+      default: 'Canada'
+    }
+  },
+  pricing: {
+    subtotal: {
+      type: Number,
+      required: true
+    },
+    tax: {
+      type: Number,
+      required: true
+    },
+    shipping: {
+      type: Number,
+      required: true
+    },
+    total: {
+      type: Number,
+      required: true
+    }
+  },
+  payment: {
+    stripeSessionId: {
+      type: String,
+      default: ''
+    },
+    paymentStatus: {
+      type: String,
+      enum: ['pending', 'paid', 'failed', 'refunded'],
+      default: 'pending'
+    },
+    paymentDate: {
+      type: Date
+    }
+  },
+  status: {
+    type: String,
+    enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled'],
+    default: 'pending'
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-///////////////second but error free version of server.js/////////////
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
-// const cors = require("cors");
-// const Order = require("./models/Order.js"); // Adjust path if needed
+// Update the updatedAt field before saving
+orderSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
 
-// const app = express();
-// app.use(cors());
-// app.use(bodyParser.json());
+// Generate order number
+orderSchema.pre('save', function(next) {
+  if (!this.orderNumber) {
+    this.orderNumber = 'ORD-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
+  }
+  next();
+});
 
-// // Connect to MongoDB
-// mongoose.connect("mongodb://127.0.0.1:27017/grasshawk", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// // Test route
-// app.get("/", (req, res) => {
-//   res.send("API is working");
-// });
-
-// // Create order (after payment)
-// app.post("/api/orders", async (req, res) => {
-//   try {
-//     const { items, amount, email, paymentIntentId } = req.body;
-//     const order = new Order({
-//       items,
-//       amount,
-//       email,
-//       paymentIntentId,
-//     });
-//     await order.save();
-//     res.status(201).json({ message: "Order saved successfully" });
-//   } catch (error) {
-//     console.error("Error saving order:", error);
-//     res.status(500).json({ message: "Failed to save order" });
-//   }
-// });
-
-// const PORT = 5000;
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
-
-/////////working first version of Order.js model/////////
-// const mongoose = require("mongoose");
-
-// const orderSchema = new mongoose.Schema({
-//   items: Array,
-//   amount: Number,
-//   email: String,
-//   paymentIntentId: String,
-//   created: {
-//     type: Date,
-//     default: Date.now,
-//   },
-// });
-
-// module.exports = mongoose.model("Order", orderSchema);
+module.exports = mongoose.model('Order', orderSchema);

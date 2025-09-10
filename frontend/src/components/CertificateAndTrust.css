@@ -1,0 +1,152 @@
+:root {
+  --primary-red: #cc0000;
+  --dark-gray: #1a1a2e;
+  --off-white: #ffffff; /* Changed to white to match other pages */
+  --shadow-light: rgba(204, 0, 0, 0.1);
+  --shadow-medium: rgba(204, 0, 0, 0.2);
+  --shadow-strong: rgba(204, 0, 0, 0.3);
+}
+
+.certifications-trust-section {
+  background-color: var(--off-white);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.certifications-trust-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--dark-gray);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: var(--dark-gray);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.certifications-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.cert-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px var(--shadow-light);
+  padding: 24px 20px;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px var(--shadow-strong);
+}
+
+.cert-card h3 {
+  margin-bottom: 12px;
+  color: var(--dark-gray);
+}
+
+.cert-card p {
+  color: var(--dark-gray);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Icons */
+.icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px auto;
+  background-color: #ffd6dc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-red);
+  font-size: 24px;
+}
+
+/* Specific icons can be replaced with SVG or font icons */
+.shield-icon::before {
+  content: "🛡️";
+}
+
+.leaf-icon::before {
+  content: "🍃";
+}
+
+.ribbon-icon::before {
+  content: "🎗️";
+}
+
+.location-icon::before {
+  content: "📍";
+}
+
+.quality-assurance-section {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quality-assurance-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--dark-gray);
+}
+
+.quality-assurance-section p {
+  font-size: 1rem;
+  color: var(--dark-gray);
+  line-height: 1.6;
+}
+
+.registered-design-section {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  padding: 24px 20px;
+  background: var(--off-white);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px var(--shadow-light);
+  text-align: center;
+}
+
+.registered-design-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.registered-design-logo {
+  width: 120px;
+  height: 120px;
+  background-color: #ffd6dc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px; /* Reduced font size */
+  color: var(--primary-red);
+  font-weight: bold;
+  box-shadow: 0 4px 14px var(--shadow-light);
+}
+
+.registered-design-card p {
+  font-size: 1rem;
+  color: var(--dark-gray);
+  max-width: 600px;
+  line-height: 1.5;
+}

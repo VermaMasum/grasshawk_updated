@@ -1,347 +1,391 @@
 const express = require("express");
 const Stripe = require("stripe");
 const cors = require("cors");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
 
-// Stripe secret key from environment
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+// Stripe secret key (you can add your own key here)
+// For testing, we'll use a placeholder and handle the error gracefully
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || "sk_test_your_stripe_secret_key_here";
+const stripe = STRIPE_SECRET_KEY.startsWith("sk_test_") && STRIPE_SECRET_KEY !== "sk_test_your_stripe_secret_key_here" 
+  ? Stripe(STRIPE_SECRET_KEY) 
+  : null;
 
-app.use(cors());
-app.use(express.json());
+// MongoDB connection
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://grasshawk.dxdbpyi.mongodb.net/grasshawk";
+mongoose
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-app.post("/create-checkout-session", async (req, res) => {
+// CORS configuration
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
+
+// Body parser middleware
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Import models
+const User = require('./models/User');
+const Cart = require('./models/Cart');
+const Order = require('./models/Order');
+
+// API Routes
+// Get cart by session ID
+app.get('/api/cart/:sessionId', async (req, res) => {
   try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "Test Product",
-            },
-            unit_amount: 5000, // amount in cents ($50)
-          },
-          quantity: 1,
-        },
-      ],
-      mode: "payment",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+    let cart = await Cart.findOne({ sessionId: req.params.sessionId });
+    
+    if (!cart) {
+      cart = new Cart({
+        sessionId: req.params.sessionId,
+        items: [],
+        total: 0
+      });
+      await cart.save();
+    }
+    
+    res.json({
+      items: cart.items,
+      total: cart.total
     });
-
-    res.json({ id: session.id });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error('Error fetching cart:', error);
+    res.status(500).json({ error: 'Failed to fetch cart' });
   }
 });
 
-app.listen(4242, () =>
-  console.log("🚀 Server running on http://localhost:4242")
-);
+// Add item to cart
+app.post('/api/cart/:sessionId/add', async (req, res) => {
+  try {
+    const { productId, name, quantity, price, image } = req.body;
+    
+    if (!productId || !name || !quantity || !price) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing required fields'
+      });
+    }
 
-///////////////////////////////////////////////////
-// require("dotenv").config();
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const cors = require("cors");
-// const Stripe = require("stripe");
-// const Order = require("./models/Order");
+    let cart = await Cart.findOne({ sessionId: req.params.sessionId });
+    
+    if (!cart) {
+      cart = new Cart({
+        sessionId: req.params.sessionId,
+        items: [],
+        total: 0
+      });
+    }
 
-// const app = express();
-// const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+    const existingItem = cart.items.find(item => item.productId === productId);
 
-// // Middleware
-// app.use(cors());
-// app.use(express.json());
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      cart.items.push({ productId, name, quantity, price, image });
+    }
 
-// // MongoDB connection
-// mongoose
-//   .connect(process.env.MONGODB_URI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("✅ MongoDB Connected"))
-//   .catch((err) => console.error("❌ MongoDB connection error:", err));
+    await cart.save();
 
-// // Route: Create Payment Intent
-// app.post("/api/create-payment-intent", async (req, res) => {
-//   try {
-//     const { items, email } = req.body;
+    res.json({ 
+      message: "Item added to cart",
+      cart: {
+        items: cart.items,
+        total: cart.total
+      }
+    });
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    res.status(500).json({ error: 'Failed to add item to cart' });
+  }
+});
 
-//     // Calculate amount (example: ₹ items.length * 100)
-//     const amount =
-//       items.reduce((total, item) => total + item.price * item.quantity, 0) *
-//       100;
+// Create order
+app.post('/api/orders/create', async (req, res) => {
+  try {
+    const { sessionId, items, customerDetails, pricing, payment } = req.body;
 
-//     const paymentIntent = await stripe.paymentIntents.create({
-//       amount,
-//       currency: "inr",
-//       receipt_email: email,
-//       metadata: { integration_check: "accept_a_payment" },
-//     });
+    if (!sessionId || !items || !customerDetails || !pricing) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing required order data'
+      });
+    }
 
-//     res.status(200).send({
-//       clientSecret: paymentIntent.client_secret,
-//       amount,
-//     });
-//   } catch (err) {
-//     console.error("Error creating payment intent:", err);
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+    // Create new order
+    const order = new Order({
+      sessionId,
+      items,
+      customerDetails,
+      pricing,
+      payment: payment || { paymentMethod: 'cod', paymentStatus: 'pending' },
+      status: 'pending'
+    });
 
-// // Route: Save Order after successful payment
-// app.post("/api/orders", async (req, res) => {
-//   try {
-//     const { items, amount, email, paymentIntentId } = req.body;
+    await order.save();
 
-//     const order = new Order({
-//       items,
-//       amount,
-//       email,
-//       paymentIntentId,
-//     });
+    // Clear the cart after order is created
+    await Cart.findOneAndDelete({ sessionId });
 
-//     await order.save();
-//     res.status(201).json({ message: "Order saved successfully", order });
-//   } catch (err) {
-//     console.error("Error saving order:", err);
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+    res.status(201).json({
+      success: true,
+      message: 'Order created successfully',
+      order: {
+        orderNumber: order.orderNumber,
+        total: order.pricing.total,
+        status: order.status
+      }
+    });
+  } catch (error) {
+    console.error('Error creating order:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to create order',
+      error: error.message
+    });
+  }
+});
 
-// app.get("/api/orders", async (req, res) => {
-//   try {
-//     const orders = await Order.find();
-//     res.status(200).json(orders);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Error fetching orders" });
-//   }
-// });
+// Create Stripe checkout session
+app.post('/api/stripe/create-checkout-session', async (req, res) => {
+  try {
+    const { sessionId } = req.body;
 
-// // Start server
-// const PORT = process.env.PORT || 4242;
-// app.listen(PORT, () => {
-//   console.log(`🚀 Server running on http://localhost:${PORT}`);
-// });
+    if (!sessionId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Session ID is required'
+      });
+    }
 
-/////////seconmd but got error
+    // Check if Stripe is properly configured
+    if (!stripe) {
+      return res.status(400).json({
+        success: false,
+        message: 'Stripe is not configured. Please add a valid Stripe secret key to the environment variables.',
+        error: 'STRIPE_SECRET_KEY not set or invalid'
+      });
+    }
 
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const dotenv = require("dotenv");
-// const cors = require("cors");
-// const bodyParser = require("body-parser");
-// const Order = require("./models/Order");
+    // Get cart items from database
+    const cart = await Cart.findOne({ sessionId });
+    if (!cart || !cart.items || cart.items.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Cart is empty'
+      });
+    }
 
-// dotenv.config();
+    const lineItems = cart.items.map(item => ({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+          description: item.description || '',
+        },
+        unit_amount: Math.round((item.price || 0) * 100),
+      },
+      quantity: item.quantity || 1,
+    }));
 
-// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-// const app = express();
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      mode: 'payment',
+      success_url: 'http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:3000/cancel',
+      metadata: {
+        cart: JSON.stringify(cart.items),
+        sessionId: sessionId
+      }
+    });
 
-// app.use(cors());
-// app.use(bodyParser.json()); // parse JSON
-// app.use(bodyParser.raw({ type: "application/json" })); // needed for webhook
+    res.json({
+      success: true,
+      url: session.url,
+      sessionId: session.id
+    });
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to create checkout session',
+      error: error.message
+    });
+  }
+});
 
-// // MongoDB connection
-// mongoose
-//   .connect(process.env.MONGODB_URI)
-//   .then(() => console.log("✅ MongoDB connected"))
-//   .catch((err) => console.error("❌ MongoDB error:", err));
+// Authentication Routes
+// Register user
+app.post('/api/auth/register', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-// // Create checkout session
-// app.post("/create-checkout-session", async (req, res) => {
-//   const { items } = req.body;
-//   if (!items || !Array.isArray(items)) {
-//     return res.status(400).json({ error: "Items array is required" });
-//   }
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: 'User already exists with this email'
+      });
+    }
 
-//   const lineItems = items.map((item) => ({
-//     price_data: {
-//       currency: "usd",
-//       product_data: { name: item.name },
-//       unit_amount: item.price * 100,
-//     },
-//     quantity: item.quantity,
-//   }));
+    // Create new user
+    const newUser = new User({
+      name,
+      email,
+      password // In production, hash this password
+    });
 
-//   try {
-//     const session = await stripe.checkout.sessions.create({
-//       payment_method_types: ["card"],
-//       line_items: lineItems,
-//       mode: "payment",
-//       success_url: process.env.SUCCESS_URL,
-//       cancel_url: process.env.CANCEL_URL,
-//       metadata: { cart: JSON.stringify(items) },
-//     });
+    await newUser.save();
 
-//     res.json({ url: session.url });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
+    // Generate a simple token (in production, use JWT)
+    const token = `token_${newUser._id}_${Date.now()}`;
 
-// // Stripe webhook (needs raw body parser)
-// app.post(
-//   "/webhook",
-//   bodyParser.raw({ type: "application/json" }),
-//   async (req, res) => {
-//     const sig = req.headers["stripe-signature"];
+    res.status(201).json({
+      token: token,
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email
+      }
+    });
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error during registration',
+      error: error.message
+    });
+  }
+});
 
-//     let event;
-//     try {
-//       event = stripe.webhooks.constructEvent(
-//         req.body,
-//         sig,
-//         process.env.STRIPE_WEBHOOK_SECRET
-//       );
-//     } catch (err) {
-//       console.log(`❌ Webhook error: ${err.message}`);
-//       return res.status(400).send(`Webhook Error: ${err.message}`);
-//     }
+// Login user
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-//     if (event.type === "checkout.session.completed") {
-//       const session = event.data.object;
-//       const cart = JSON.parse(session.metadata.cart);
+    // Find user
+    const user = await User.findOne({ email, password });
+    
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid email or password'
+      });
+    }
 
-//       const order = new Order({
-//         items: cart,
-//         amount: session.amount_total / 100, // matches schema
-//         email: session.customer_email, // matches schema
-//         paymentIntentId: session.payment_intent,
-//       });
+    // Generate a simple token (in production, use JWT)
+    const token = `token_${user._id}_${Date.now()}`;
 
-//       await order.save();
-//       console.log("✅ Order saved to MongoDB");
-//     }
+    res.json({
+      token: token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error during login',
+      error: error.message
+    });
+  }
+});
 
-//     res.json({ received: true });
-//   }
-// );
+// Get current user
+app.get('/api/auth/me', (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({
+        success: false,
+        message: 'No token provided'
+      });
+    }
 
-// // ✅ Manual API to create orders (for Postman testing)
-// app.post("/api/orders", async (req, res) => {
-//   try {
-//     const { items, amount, email, paymentIntentId } = req.body;
-//     const order = new Order({ items, amount, email, paymentIntentId });
-//     await order.save();
-//     res.status(201).json({ message: "Order saved successfully" });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
+    const token = authHeader.split(' ')[1];
+    const userId = parseInt(token.split('_')[1]);
+    
+    const user = users.find(u => u.id === userId);
+    
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid token'
+      });
+    }
 
-// // ✅ Get all orders
-// app.get("/api/orders", async (req, res) => {
-//   try {
-//     const orders = await Order.find().sort({ created: -1 });
-//     res.json(orders);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
+    res.json({
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error('Get user error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message
+    });
+  }
+});
 
-// app.listen(process.env.PORT, () =>
-//   console.log(`🚀 Server running on port ${process.env.PORT}`)
-// );
+// Logout user
+app.post('/api/auth/logout', (req, res) => {
+  res.json({
+    message: 'Logged out successfully'
+  });
+});
 
-///////////////////working first version////////////////////
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'success',
+    message: 'Backend is running'
+  });
+});
 
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const dotenv = require("dotenv");
-// const cors = require("cors");
-// const Order = require("./models/Order");
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Welcome to VIBGYOR Maple Backend API',
+    version: '1.0.0',
+    endpoints: {
+      auth: '/api/auth/*',
+      cart: '/api/cart/*',
+      stripe: '/api/stripe/*',
+      health: '/health'
+    }
+  });
+});
 
-// // Load env variables before anything else
-// dotenv.config();
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found`
+  });
+});
 
-// // Initialize Stripe after loading env variables
-// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
-// const app = express();
-
-// // Middleware
-// app.use(cors());
-// app.use(express.json());
-
-// // MongoDB connection
-// mongoose
-//   .connect(process.env.MONGODB_URI)
-//   .then(() => console.log("✅ MongoDB connected"))
-//   .catch((err) => console.error("❌ MongoDB error:", err));
-
-// // Create checkout session
-// app.post("/create-checkout-session", async (req, res) => {
-//   const { items } = req.body;
-
-//   const lineItems = items.map((item) => ({
-//     price_data: {
-//       currency: "usd",
-//       product_data: { name: item.name },
-//       unit_amount: item.price * 100,
-//     },
-//     quantity: item.quantity,
-//   }));
-
-//   try {
-//     const session = await stripe.checkout.sessions.create({
-//       payment_method_types: ["card"],
-//       line_items: lineItems,
-//       mode: "payment",
-//       success_url: process.env.SUCCESS_URL,
-//       cancel_url: process.env.CANCEL_URL,
-//       metadata: { cart: JSON.stringify(items) },
-//     });
-
-//     res.json({ url: session.url });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-
-// // Stripe webhook
-// app.post(
-//   "/webhook",
-//   express.raw({ type: "application/json" }),
-//   async (req, res) => {
-//     const sig = req.headers["stripe-signature"];
-
-//     let event;
-//     try {
-//       event = stripe.webhooks.constructEvent(
-//         req.body,
-//         sig,
-//         process.env.STRIPE_WEBHOOK_SECRET
-//       );
-//     } catch (err) {
-//       console.log(`❌ Webhook error: ${err.message}`);
-//       return res.status(400).send(`Webhook Error: ${err.message}`);
-//     }
-
-//     if (event.type === "checkout.session.completed") {
-//       const session = event.data.object;
-//       const cart = JSON.parse(session.metadata.cart);
-
-//       const order = new Order({
-//         items: cart,
-//         paymentIntentId: session.payment_intent,
-//         totalAmount: session.amount_total / 100,
-//         customerEmail: session.customer_email,
-//       });
-
-//       await order.save();
-//       console.log("✅ Order saved to MongoDB");
-//     }
-
-//     res.json({ received: true });
-//   }
-// );
-
-// app.listen(process.env.PORT, () =>
-//   console.log(`🚀 Server running on port ${process.env.PORT}`)
-// );
+// Start server
+const PORT = process.env.PORT || 4242;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📋 Health check: http://localhost:${PORT}/health`);
+  console.log(`📖 API docs: http://localhost:${PORT}`);
+});
