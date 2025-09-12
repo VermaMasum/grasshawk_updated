@@ -80,7 +80,7 @@ function App() {
               </>
             }
           />
-          <Route path="/products" element={<ProductsBackend />} />
+          <Route path="/products" element={<Products addToCart={addToCart} />} />
           <Route
             path="/product-page"
             element={
