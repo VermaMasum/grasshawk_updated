@@ -2,15 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 import moleHouseBg from "../assets/mole-house-bg.jpg";
-import moleTrapHero from "../assets/mole-trap-hero.jpg";
+import moleHouseBg2 from "../assets/mole-house-bg-2.jpg";
 
 const Hero = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Array of background images for the slider
+  const backgroundImages = [moleHouseBg, moleHouseBg2];
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  // Auto-slide functionality
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prevSlide) => 
+        prevSlide === backgroundImages.length - 1 ? 0 : prevSlide + 1
+      );
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(slideInterval);
+  }, [backgroundImages.length]);
 
   return (
     <section className="hero" id="home">
@@ -20,7 +35,7 @@ const Hero = () => {
           <div 
             className="hero-bg-image"
             style={{
-              backgroundImage: `url(${moleHouseBg})`
+              backgroundImage: `url(${backgroundImages[currentSlide]})`
             }}
           />
           <div className="hero-overlay"></div>
@@ -42,6 +57,18 @@ const Hero = () => {
               </button>
             </div>
           </div>
+        </div>
+        
+        {/* Slider Navigation Dots */}
+        <div className="slider-dots">
+          {backgroundImages.map((_, index) => (
+            <button
+              key={index}
+              className={`slider-dot ${index === currentSlide ? 'active' : ''}`}
+              onClick={() => setCurrentSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
       
