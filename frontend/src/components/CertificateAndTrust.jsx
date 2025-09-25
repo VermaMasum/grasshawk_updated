@@ -1,6 +1,7 @@
 import React from "react";
 import "./CertificateAndTrust.css";
 import logoVibgyor from "../assets/logo_vibgyor.png";
+import canadaGovLogo from "../assets/canada_gov_logo.jpg";
 
 const CertificateAndTrust = () => {
   return (
@@ -34,7 +35,7 @@ const CertificateAndTrust = () => {
         </div>
         <div className="cert-card">
           <div className="icon location-icon">
-            <img src={logoVibgyor} alt="VIBGYOR Maple Logo" className="canada-logo" />
+            <img src={canadaGovLogo} alt="Canada Government Logo" className="canada-logo" />
           </div>
           <h3>Canadian Made</h3>
           <p>Proudly manufactured in Canada for Canadians</p>
@@ -49,7 +50,7 @@ const CertificateAndTrust = () => {
       <section className="registered-design-section">
         <div className="registered-design-card">
           <div className="registered-design-logo">
-            <img src={logoVibgyor} alt="VIBGYOR Maple Logo" className="canada-gov-logo" />
+            <img src={canadaGovLogo} alt="Canada Government Logo" className="canada-gov-logo" />
           </div>
           <p>
             Our mole trap is registered industrial design at Canadian intellectual property office, Canada ensuring originality, innovation and trusted quality. Built for durability and efficiency, it delivers safe, eco friendly and reliable mole control.
