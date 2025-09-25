@@ -210,6 +210,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LanguageToggle from "./LanguageToggle";
 import logo from "../assets/logo.png";
+import logoVibgyor from "../assets/logo_vibgyor.png";
 import "./Navbar.css";
 
 // Simple SVG icons
@@ -610,15 +611,7 @@ const Navbar = ({ language, setLanguage }) => {
         <Link to="/" className="navbar-logo">
           <div className="navbar-logo-container">
             <div className="navbar-logo-icon">
-              <svg width="40" height="40" viewBox="0 0 40 40" className="navbar-maple-leaf">
-                <defs>
-                  <filter id="navbar-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="1" dy="1" stdDeviation="1" floodColor="#888" floodOpacity="0.3"/>
-                  </filter>
-                </defs>
-                <path d="M20 3 L23 8 L28 6 L26 12 L32 13 L28 18 L30 22 L23 20 L20 28 L17 20 L10 22 L12 18 L8 13 L14 12 L12 6 L17 8 Z" 
-                      fill="black" stroke="red" strokeWidth="1" filter="url(#navbar-shadow)"/>
-              </svg>
+              <img src={logoVibgyor} alt="VIBGYOR Maple Logo" className="navbar-logo-image" />
             </div>
             <span className="navbar-logo-text">VIBGYOR MAPLE</span>
           </div>

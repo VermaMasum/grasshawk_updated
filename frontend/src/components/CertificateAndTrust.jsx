@@ -1,5 +1,6 @@
 import React from "react";
 import "./CertificateAndTrust.css";
+import logoVibgyor from "../assets/logo_vibgyor.png";
 
 const CertificateAndTrust = () => {
   return (
@@ -33,11 +34,7 @@ const CertificateAndTrust = () => {
         </div>
         <div className="cert-card">
           <div className="icon location-icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" className="canada-logo">
-              <rect width="40" height="40" fill="#ff0000"/>
-              <rect x="8" y="8" width="24" height="24" fill="white"/>
-              <path d="M20 10 L22 16 L28 16 L23 20 L25 26 L20 22 L15 26 L17 20 L12 16 L18 16 Z" fill="#ff0000"/>
-            </svg>
+            <img src={logoVibgyor} alt="VIBGYOR Maple Logo" className="canada-logo" />
           </div>
           <h3>Canadian Made</h3>
           <p>Proudly manufactured in Canada for Canadians</p>
@@ -52,12 +49,7 @@ const CertificateAndTrust = () => {
       <section className="registered-design-section">
         <div className="registered-design-card">
           <div className="registered-design-logo">
-            <svg width="80" height="80" viewBox="0 0 80 80" className="canada-gov-logo">
-              <rect width="80" height="80" fill="#ff0000" rx="8"/>
-              <rect x="16" y="16" width="48" height="48" fill="white" rx="4"/>
-              <path d="M40 20 L44 32 L56 32 L46 40 L50 52 L40 44 L30 52 L34 40 L24 32 L36 32 Z" fill="#ff0000"/>
-              <text x="40" y="70" textAnchor="middle" fontSize="8" fill="white" fontWeight="bold">GOVERNMENT OF CANADA</text>
-            </svg>
+            <img src={logoVibgyor} alt="VIBGYOR Maple Logo" className="canada-gov-logo" />
           </div>
           <p>
             Our mole trap is registered industrial design at Canadian intellectual property office, Canada ensuring originality, innovation and trusted quality. Built for durability and efficiency, it delivers safe, eco friendly and reliable mole control.

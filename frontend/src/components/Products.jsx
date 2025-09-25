@@ -398,13 +398,6 @@ const Products = ({ addToCart }) => {
 
   return (
     <section className="product-section" id="product">
-      <div className="bubble-animation">
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-      </div>
       <div className="product-container">
         <h2>Our Products</h2>
 

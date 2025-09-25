@@ -14,11 +14,13 @@
   --shadow-red: rgba(204, 0, 0, 0.3);
 }
 
-section {
-  display: block;
+.product-container {
+  position: relative;
+  z-index: 3;
   width: 100%;
-  padding: 40px 20px;
-  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 h2,
@@ -26,15 +28,22 @@ h3 {
   text-align: center;
   margin-bottom: 40px;
   color: #ff0a0a;
+  position: relative;
+  z-index: 1001; /* Higher than navbar z-index */
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* ================== Product Section ================== */
 .product-section {
   background: linear-gradient(135deg, var(--off-white) 0%, #e8e9ea 100%);
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
+  padding: 100px 20px 60px 20px; /* Added top padding to account for navbar */
 }
 
 
@@ -401,11 +410,35 @@ h3 {
 /* ================== Product Cards Grid ================== */
 .product-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 30px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto 60px;
   padding: 0 20px;
+  position: relative;
+  z-index: 4;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .product-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 15px;
+  }
+  
+  .product-section {
+    padding: 40px 15px;
+  }
+  
+  h2, h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .product-card {
+    min-height: 350px;
+  }
 }
 
 .product-card {
@@ -417,6 +450,8 @@ h3 {
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
+  z-index: 5;
+  min-height: 400px;
 }
 
 .product-card:hover {
@@ -520,7 +555,7 @@ h3 {
   width: 100vw !important;
   height: 100vh !important;
   background: white !important;
-  z-index: 9999 !important;
+  z-index: 10000 !important;
   overflow-y: auto !important;
   margin: 0 !important;
   padding: 0 !important;

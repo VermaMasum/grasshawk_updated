@@ -42,10 +42,11 @@
   justify-content: center;
   width: 45px;
   height: 45px;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background: #ffffff;
   border-radius: 12px;
-  border: 2px solid rgba(204, 0, 0, 0.1);
+  border: 2px solid rgba(204, 0, 0, 0.2);
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-logo:hover .navbar-logo-icon {
@@ -64,6 +65,11 @@
 .navbar-logo-image {
   height: 40px;
   width: auto;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover .navbar-logo-image {
+  transform: scale(1.05);
 }
 
 .navbar-logo-text {

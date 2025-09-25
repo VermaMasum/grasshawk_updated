@@ -94,6 +94,20 @@
   content: "📍";
 }
 
+/* Logo styling for canada-logo */
+.canada-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Logo styling for canada-gov-logo */
+.canada-gov-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
 .quality-assurance-section {
   max-width: 800px;
   margin: 0 auto;
