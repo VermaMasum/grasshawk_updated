@@ -55,11 +55,13 @@
 .cert-card h3 {
   margin-bottom: 12px;
   color: var(--dark-gray);
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .cert-card p {
   color: var(--dark-gray);
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
@@ -163,4 +165,143 @@
   color: var(--dark-gray);
   max-width: 600px;
   line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .certifications-trust-section {
+    padding: 50px 16px;
+  }
+
+  .certifications-cards {
+    gap: 24px;
+  }
+
+  .cert-card {
+    width: 200px;
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .certifications-trust-section {
+    padding: 40px 16px;
+  }
+
+  .certifications-trust-section h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+  }
+
+  .certifications-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .cert-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 24px 20px;
+  }
+
+  .cert-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .cert-card p {
+    font-size: 0.9rem;
+  }
+
+  .quality-assurance-section {
+    padding: 20px 16px;
+  }
+
+  .quality-assurance-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .registered-design-section {
+    padding: 20px 16px;
+    margin: 0 auto 40px;
+  }
+
+  .registered-design-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .canada-gov-logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .certifications-trust-section {
+    padding: 30px 12px;
+  }
+
+  .certifications-trust-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .certifications-cards {
+    gap: 16px;
+  }
+
+  .cert-card {
+    padding: 20px 16px;
+    min-height: 200px;
+  }
+
+  .cert-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .cert-card p {
+    font-size: 0.85rem;
+  }
+
+  .quality-assurance-section {
+    padding: 16px 12px;
+  }
+
+  .quality-assurance-section h2 {
+    font-size: 1.4rem;
+  }
+
+  .quality-assurance-section p {
+    font-size: 0.9rem;
+  }
+
+  .registered-design-section {
+    padding: 16px 12px;
+    margin: 0 auto 30px;
+  }
+
+  .registered-design-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .canada-gov-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .registered-design-card p {
+    font-size: 0.9rem;
+  }
 }
