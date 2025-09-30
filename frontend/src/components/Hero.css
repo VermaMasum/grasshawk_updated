@@ -180,6 +180,9 @@
 .features-section {
   padding: 80px 0;
   background: #ffffff;
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
 }
 
 .container {
@@ -195,12 +198,14 @@
   color: #1a202c;
   margin-bottom: 60px;
   letter-spacing: -0.01em;
+  position: relative;
+  z-index: 2;
 }
 
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  gap: 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -208,10 +213,10 @@
 .feature-card {
   text-align: center;
   padding: 30px 25px;
-  border-radius: 0;
+  border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   border: 2px solid #e2e8f0;
-  border-right: none;
+  border-right: 2px solid #e2e8f0;
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
@@ -219,14 +224,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 10px;
 }
 
 .feature-card:first-child {
-  border-radius: 20px 0 0 20px;
+  border-radius: 16px;
 }
 
 .feature-card:last-child {
-  border-radius: 0 20px 20px 0;
+  border-radius: 16px;
   border-right: 2px solid #e2e8f0;
 }
 
@@ -417,6 +423,7 @@
   .hero-container {
     height: 60vh;
     min-height: 500px;
+    padding-top: 80px;
   }
   
   .hero-content {
@@ -454,21 +461,30 @@
   
   .section-title {
     font-size: 2.2rem;
+    margin-bottom: 40px;
+    text-align: center;
   }
   
   .features-section {
-    padding: 60px 0;
+    padding: 80px 0 60px;
+    margin-top: 40px;
   }
   
   .features-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+    max-width: 100%;
+    margin: 0 auto;
   }
 
   .feature-card {
     border-radius: 20px;
     border-right: 2px solid #e2e8f0;
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .cta-content h3 {
@@ -497,6 +513,7 @@
   .hero-container {
     height: 50vh;
     min-height: 400px;
+    padding-top: 70px;
   }
   
   .hero-content {
@@ -535,10 +552,13 @@
   
   .section-title {
     font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-align: center;
   }
   
   .features-section {
-    padding: 40px 0;
+    padding: 60px 0 40px;
+    margin-top: 30px;
   }
   
   .cta-content h3 {
@@ -552,6 +572,9 @@
   .features-grid {
     grid-template-columns: 1fr;
     gap: 16px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
   }
   
   .feature-card {
@@ -559,6 +582,10 @@
     border-radius: 16px;
     border-right: 2px solid #e2e8f0;
     margin-bottom: 16px;
+    width: 100%;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .feature-card:first-child {

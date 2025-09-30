@@ -183,10 +183,10 @@ h3 {
 .features-grid {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 0 5px;
+  justify-content: space-between;
+  gap: 10px;
+  overflow: visible;
+  padding: 0 20px;
   width: 100%;
   min-width: 100%;
 }
@@ -195,20 +195,20 @@ h3 {
   background: #fff !important;
   border-radius: 50% !important;
   box-shadow: 0 4px 16px var(--shadow-light);
-  padding: 20px 10px !important;
-  width: 120px !important;
-  height: 120px !important;
-  min-width: 120px !important;
-  min-height: 120px !important;
-  max-width: 120px !important;
-  max-height: 120px !important;
+  padding: 20px 15px !important;
+  width: 160px !important;
+  height: 160px !important;
+  min-width: 160px !important;
+  min-height: 160px !important;
+  max-width: 160px !important;
+  max-height: 160px !important;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .feature-card:hover {
@@ -223,42 +223,51 @@ h3 {
 }
 
 .feature-card p {
-  color: var(--dark-gray);
-  font-size: 10px;
-  font-weight: 500;
-  white-space: nowrap;
-  text-align: center;
-  line-height: 1.1;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100px;
+  color: #2d3748 !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 5px !important;
+  word-wrap: break-word !important;
+  hyphens: none !important;
+  max-width: 120px !important;
+  display: block !important;
+  min-height: 24px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  white-space: normal !important;
 }
 
-/* Force single line layout and circular shape - override all conflicting styles */
+/* Force single line layout and compact shape - override all conflicting styles */
 .features-section .features-grid {
   display: flex !important;
   flex-wrap: nowrap !important;
   flex-direction: row !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  overflow: visible !important;
+  padding: 0 20px !important;
 }
 
 .features-section .feature-card {
-  flex-shrink: 0 !important;
-  flex-grow: 0 !important;
-  flex-basis: auto !important;
+  flex: 0 0 auto !important;
   border-radius: 50% !important;
-  width: 120px !important;
-  height: 120px !important;
-  min-width: 120px !important;
-  min-height: 120px !important;
-  max-width: 120px !important;
-  max-height: 120px !important;
+  width: 160px !important;
+  height: 160px !important;
+  min-width: 160px !important;
+  min-height: 160px !important;
+  max-width: 160px !important;
+  max-height: 160px !important;
   background: #fff !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   border: none !important;
-  padding: 20px 10px !important;
+  padding: 20px 15px !important;
   text-align: center !important;
   position: relative !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  justify-content: center !important;
 }
 
 .features-section .feature-card::before {
@@ -272,29 +281,167 @@ h3 {
   margin: 0 !important;
 }
 
+/* Ultra-specific override to force circular shape */
+div.features-section div.features-grid div.feature-card {
+  border-radius: 50% !important;
+  width: 160px !important;
+  height: 160px !important;
+  min-width: 160px !important;
+  min-height: 160px !important;
+  max-width: 160px !important;
+  max-height: 160px !important;
+  background: #fff !important;
+  overflow: visible !important;
+  border: none !important;
+  padding: 20px 15px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+}
+
+/* Override any conflicting styles from other CSS files */
+.feature-card,
+.features-section .feature-card,
+.features-grid .feature-card {
+  border-radius: 50% !important;
+  width: 160px !important;
+  height: 160px !important;
+  min-width: 160px !important;
+  min-height: 160px !important;
+  max-width: 160px !important;
+  max-height: 160px !important;
+  background: #fff !important;
+  overflow: visible !important;
+  border: none !important;
+  padding: 20px 15px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  position: relative !important;
+  flex: 0 0 auto !important;
+}
+
+/* Force circular shape with maximum specificity */
+.features-section .features-grid .feature-card {
+  border-radius: 50% !important;
+  width: 160px !important;
+  height: 160px !important;
+  min-width: 160px !important;
+  min-height: 160px !important;
+  max-width: 160px !important;
+  max-height: 160px !important;
+  background: #fff !important;
+  overflow: visible !important;
+  border: none !important;
+  padding: 20px 15px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  position: relative !important;
+  flex: 0 0 auto !important;
+}
+
+/* Additional mobile-specific overrides */
+@media (max-width: 768px) {
+  .features-section .feature-card {
+    border-radius: 50% !important;
+    width: 120px !important;
+    height: 120px !important;
+    min-width: 120px !important;
+    min-height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-section .feature-card {
+    border-radius: 50% !important;
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+  }
+}
+
 /* Responsive adjustments for features */
 @media (max-width: 768px) {
-  .features-grid {
-    gap: 4px;
-    padding: 0 2px;
+  .features-section .features-grid {
+    gap: 12px;
+    padding: 0 15px;
+    justify-content: space-between;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
-  .feature-card {
-    width: 100px;
-    height: 100px;
-    min-width: 100px;
-    min-height: 100px;
-    padding: 15px 8px;
+  .features-section .feature-card {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    min-height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+    padding: 15px 10px;
+    flex-shrink: 0;
+    border-radius: 50%;
   }
   
-  .feature-card img {
+  .features-section .feature-card img {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 8px;
+  }
+  
+  .features-section .feature-card p {
+    font-size: 10px;
+    max-width: 85px;
+    line-height: 1.2;
+    min-height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-section .features-grid {
+    gap: 10px;
+    padding: 0 10px;
+  }
+  
+  .features-section .feature-card {
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
+    min-height: 85px;
+    max-width: 85px;
+    max-height: 85px;
+    padding: 12px 6px;
+    border-radius: 10px;
+  }
+  
+  .features-section .feature-card img {
     width: 30px;
     height: 30px;
+    margin-bottom: 6px;
   }
   
-  .feature-card p {
+  .features-section .feature-card p {
     font-size: 9px;
-    max-width: 80px;
+    max-width: 70px;
+    min-height: 20px;
   }
 }
 

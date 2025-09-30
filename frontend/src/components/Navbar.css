@@ -131,27 +131,89 @@
   cursor: pointer;
   display: none;
   padding: 8px;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.mobile-menu-toggle:hover {
+  background-color: #f8f9fa;
 }
 
 .mobile-menu-toggle:hover {
   color: #cc0000;
 }
 
+/* Hamburger Menu Icon */
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  position: relative;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #333333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger-icon:hover .hamburger-line {
+  background-color: #cc0000;
+}
+
+/* Hamburger Animation */
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 .mobile-menu {
   display: none;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: absolute;
+  position: fixed;
   top: 60px;
   right: 0;
   width: 100%;
   max-width: 300px;
   border-radius: 0 0 8px 8px;
   z-index: 1000;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .mobile-menu.active {
+  display: block;
+}
+
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.mobile-menu-backdrop.active {
   display: block;
 }
 
@@ -159,6 +221,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
+  gap: 0;
 }
 
 .mobile-nav-link {
@@ -169,6 +232,8 @@
   padding: 12px 0;
   border-bottom: 1px solid #eee;
   transition: background-color 0.3s ease, color 0.3s ease;
+  display: block;
+  width: 100%;
 }
 
 .mobile-nav-link:last-child {
@@ -186,6 +251,56 @@
   margin-top: 15px;
   display: flex;
   justify-content: center;
+}
+
+/* Mobile Authentication Buttons */
+.mobile-auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+}
+
+.mobile-auth-btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mobile-login-btn {
+  background: #ffffff;
+  color: #333333;
+  border: 2px solid #e0e0e0;
+}
+
+.mobile-login-btn:hover {
+  background: #f8f9fa;
+  border-color: #cc0000;
+  color: #cc0000;
+}
+
+.mobile-register-btn {
+  background: linear-gradient(135deg, #cc0000, #ff4444);
+  color: #ffffff;
+  border: 2px solid transparent;
+}
+
+.mobile-register-btn:hover {
+  background: linear-gradient(135deg, #b30000, #e63939);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3);
 }
 
 /* Authentication Styles */
@@ -846,6 +961,8 @@
   .navbar-container {
     padding: 0 20px;
     height: 60px;
+    position: relative;
+    z-index: 1001;
   }
 
   .navbar-nav {
@@ -853,7 +970,9 @@
   }
 
   .mobile-menu-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .profile-menu-container {
@@ -877,12 +996,33 @@
   .navbar-logo-text {
     font-size: 1.1rem;
   }
+
+  .mobile-menu {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .mobile-auth-buttons {
+    position: sticky;
+    bottom: 0;
+    background: #ffffff;
+    border-top: 2px solid #f0f0f0;
+  }
 }
 
 @media (max-width: 480px) {
   .navbar-container {
     padding: 0 16px;
     height: 55px;
+    position: relative;
+    z-index: 1001;
   }
 
   .navbar-logo-container {
@@ -899,12 +1039,37 @@
   }
 
   .mobile-menu-toggle {
-    padding: 8px;
+    padding: 6px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .hamburger-icon {
+    width: 20px;
+    height: 16px;
+  }
+
+  .hamburger-line {
+    height: 2px;
   }
 
   .modal-content {
     width: 98%;
     margin: 10px;
+  }
+
+  .mobile-menu {
+    top: 55px;
+    max-height: calc(100vh - 55px);
+  }
+
+  .mobile-auth-buttons {
+    padding: 12px 16px;
+  }
+
+  .mobile-auth-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
   }
 }
 

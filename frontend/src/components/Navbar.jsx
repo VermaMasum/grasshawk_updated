@@ -741,8 +741,12 @@ const Navbar = ({ language, setLanguage }) => {
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <button onClick={toggleMenu} className="mobile-menu-toggle">
-          {menuVisible ? <XIcon /> : <MenuIcon />}
+        <button onClick={toggleMenu} className={`mobile-menu-toggle ${menuVisible ? "active" : ""}`}>
+          <div className="hamburger-icon">
+            <div className="hamburger-line"></div>
+            <div className="hamburger-line"></div>
+            <div className="hamburger-line"></div>
+          </div>
         </button>
       </div>
 
