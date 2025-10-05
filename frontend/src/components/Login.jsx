@@ -1,114 +1,210 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import './Login.css';
 
 const Login = ({ onClose, onSwitchToRegister }) => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const { login } = useAuth();
+  console.log('Login component rendered!');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-    setError(''); // Clear error when user types
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    const result = await login(formData.email, formData.password);
-    
-    if (result.success) {
-      onClose();
-    } else {
-      setError(result.message);
-    }
-    
-    setLoading(false);
+    console.log('Login attempt:', { email, password });
+    onClose();
   };
 
   return (
-    <div className="auth-modal">
-      <div className="auth-modal-content">
-        <div className="auth-header">
-          <h2>Welcome Back</h2>
-          <p>Sign in to your VIBGYOR Maple account</p>
-          <button className="close-btn" onClick={onClose}>×</button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="auth-form">
-          {error && <div className="error-message">{error}</div>}
-          
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="Enter your email"
-            />
+    <>
+      {/* Overlay */}
+      <div 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          zIndex: 99999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+        onClick={onClose}
+      >
+        {/* Modal Content */}
+        <div 
+          style={{
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '12px',
+            width: '400px',
+            maxWidth: '90vw',
+            maxHeight: '90vh',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+            position: 'relative',
+            zIndex: 100000
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '25px',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '15px'
+          }}>
+            <h2 style={{ 
+              margin: 0, 
+              color: '#333', 
+              fontSize: '24px',
+              fontWeight: 'bold'
+            }}>
+              Sign In
+            </h2>
+            <button 
+              onClick={onClose}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '28px',
+                cursor: 'pointer',
+                color: '#999',
+                padding: '5px',
+                lineHeight: 1
+              }}
+            >
+              ×
+            </button>
           </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="password-input">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
+          
+          {/* Form */}
+          <form onSubmit={handleSubmit}>
+            {/* Email Field */}
+            <div style={{ 
+              marginBottom: '20px',
+              display: 'block'
+            }}>
+              <label style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: '#333',
+                fontWeight: '600',
+                fontSize: '14px'
+              }}>
+                Email Address
+              </label>
+              <input 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Enter your email address"
+                style={{ 
+                  width: '100%',
+                  padding: '12px 16px',
+                  border: '2px solid #ddd',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  boxSizing: 'border-box',
+                  backgroundColor: '#fff',
+                  transition: 'border-color 0.3s'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#007bff'}
+                onBlur={(e) => e.target.style.borderColor = '#ddd'}
+              />
+            </div>
+            
+            {/* Password Field */}
+            <div style={{ 
+              marginBottom: '25px',
+              display: 'block'
+            }}>
+              <label style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: '#333',
+                fontWeight: '600',
+                fontSize: '14px'
+              }}>
+                Password
+              </label>
+              <input 
+                type="password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Enter your password"
+                style={{ 
+                  width: '100%',
+                  padding: '12px 16px',
+                  border: '2px solid #ddd',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  boxSizing: 'border-box',
+                  backgroundColor: '#fff',
+                  transition: 'border-color 0.3s'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#007bff'}
+                onBlur={(e) => e.target.style.borderColor = '#ddd'}
               />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
             </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="auth-submit-btn"
-          >
-            {loading ? 'Signing In...' : 'Sign In'}
-          </button>
-        </form>
-
-        <div className="auth-footer">
-          <p>
-            Don't have an account?{' '}
-            <button
-              type="button"
-              className="auth-switch-btn"
-              onClick={onSwitchToRegister}
+            
+            {/* Submit Button */}
+            <button 
+              type="submit"
+              style={{ 
+                width: '100%',
+                padding: '14px',
+                backgroundColor: '#007bff',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s',
+                marginBottom: '20px'
+              }}
+              onMouseOver={(e) => e.target.style.backgroundColor = '#0056b3'}
+              onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}
             >
-              Sign Up
+              Sign In
             </button>
-          </p>
+          </form>
+          
+          {/* Footer */}
+          <div style={{ 
+            textAlign: 'center',
+            borderTop: '1px solid #eee',
+            paddingTop: '20px'
+          }}>
+            <p style={{ 
+              margin: 0, 
+              color: '#666',
+              fontSize: '14px'
+            }}>
+              Don't have an account?{' '}
+              <button 
+                onClick={onSwitchToRegister}
+                style={{ 
+                  background: 'none', 
+                  border: 'none', 
+                  color: '#007bff', 
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  fontSize: '14px',
+                  fontWeight: '600'
+                }}
+              >
+                Sign Up
+              </button>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default Login;
-

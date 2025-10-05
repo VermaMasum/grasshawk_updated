@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './EnhancedContact.css';
 
 const EnhancedContact = () => {
   const [formData, setFormData] = useState({
@@ -30,17 +31,38 @@ const EnhancedContact = () => {
     }, 2000);
   };
 
+  console.log('EnhancedContact component rendering'); // Debug log
+
   return (
-    <section className="contact-section section-enhanced" id="contact">
-      <div className="container">
-        <div className="contact-content scroll-reveal">
+    <section className="contact-section section-enhanced" id="contact" style={{
+      padding: '80px 0',
+      background: '#ffffff',
+      position: 'relative',
+      zIndex: 1,
+      minHeight: '100vh',
+      display: 'block'
+    }}>
+      <div className="container" style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 20px'
+      }}>
+        <div className="contact-content scroll-reveal" style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
           <h2 className="heading-secondary text-center">Get In Touch</h2>
           <p className="text-center text-large" style={{ marginBottom: '3rem' }}>
             We'd love to hear from you. Whether you have a question about our products, 
             pricing, or anything else, our team is ready to answer all your questions.
           </p>
 
-          <div className="contact-grid">
+          <div className="contact-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '3rem',
+            margin: '2rem 0'
+          }}>
             {/* Contact Information */}
             <div className="contact-info">
               <h3 className="heading-tertiary">Contact Information</h3>
@@ -105,7 +127,12 @@ const EnhancedContact = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="contact-form">
+            <div className="contact-form" style={{
+              background: '#ffffff',
+              padding: '2rem',
+              borderRadius: '16px',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+            }}>
               <h3 className="heading-tertiary">Send Us a Message</h3>
               <form onSubmit={handleSubmit} className="form-container">
                 <div className="form-group">
@@ -216,164 +243,6 @@ const EnhancedContact = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        .contact-content {
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        .contact-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
-          margin: 2rem 0;
-        }
-
-        .contact-info {
-          background: var(--background-secondary);
-          padding: 2rem;
-          border-radius: 16px;
-        }
-
-        .info-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 1rem;
-          margin-bottom: 2rem;
-        }
-
-        .info-icon {
-          font-size: 1.5rem;
-          min-width: 30px;
-        }
-
-        .info-item h4 {
-          margin-bottom: 0.5rem;
-          color: var(--text-primary);
-        }
-
-        .info-item a {
-          color: var(--primary-color);
-          text-decoration: none;
-        }
-
-        .info-item a:hover {
-          text-decoration: underline;
-        }
-
-        .social-links {
-          margin-top: 2rem;
-        }
-
-        .social-icons {
-          display: flex;
-          gap: 1rem;
-          margin-top: 1rem;
-        }
-
-        .social-link {
-          padding: 0.5rem 1rem;
-          background: var(--primary-color);
-          color: white;
-          text-decoration: none;
-          border-radius: 8px;
-          transition: all var(--transition-normal);
-        }
-
-        .social-link:hover {
-          background: var(--primary-dark);
-          transform: translateY(-2px);
-        }
-
-        .contact-form {
-          background: var(--background-primary);
-          padding: 2rem;
-          border-radius: 16px;
-          box-shadow: var(--shadow-md);
-        }
-
-        .form-container {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
-        .form-group {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .form-group label {
-          margin-bottom: 0.5rem;
-          font-weight: 500;
-          color: var(--text-primary);
-        }
-
-        .form-input,
-        .form-textarea {
-          padding: 12px;
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          font-size: 1rem;
-          transition: border-color var(--transition-normal);
-        }
-
-        .form-input:focus,
-        .form-textarea:focus {
-          outline: none;
-          border-color: var(--primary-color);
-          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .form-textarea {
-          resize: vertical;
-          min-height: 120px;
-        }
-
-        .submit-message {
-          padding: 1rem;
-          background: var(--secondary-color);
-          color: white;
-          border-radius: 8px;
-          text-align: center;
-          margin-top: 1rem;
-        }
-
-        .info-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-          margin-top: 3rem;
-        }
-
-        .info-card {
-          padding: 1.5rem;
-          text-align: center;
-        }
-
-        .info-card h4 {
-          margin-bottom: 1rem;
-          color: var(--text-primary);
-        }
-
-        .info-card a {
-          display: block;
-          color: var(--primary-color);
-          text-decoration: none;
-          margin: 0.25rem 0;
-        }
-
-        @media (max-width: 768px) {
-          .contact-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-
-          .info-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </section>
   );
 };

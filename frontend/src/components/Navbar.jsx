@@ -209,6 +209,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LanguageToggle from "./LanguageToggle";
+import Login from "./Login";
+import Register from "./Register";
+import { useCart } from "../contexts/CartContext";
 import logo from "../assets/logo.png";
 import logoVibgyor from "../assets/logo_vibgyor.png";
 import "./Navbar.css";
@@ -241,172 +244,11 @@ const XIcon = () => (
   </svg>
 );
 
-// Login Form Component
-const LoginForm = ({ onLogin, onClose, onSwitchToRegister }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    console.log('Login form submitted with:', { email, password });
-    const result = await onLogin(email, password);
-    console.log('Login result:', result);
-    
-    if (!result.success) {
-      setError(result.message);
-    }
-    
-    setLoading(false);
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="auth-form">
-      <div className="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      {error && <div className="error-message">{error}</div>}
-      <button type="submit" disabled={loading} className="submit-btn">
-        {loading ? 'Logging in...' : 'Login'}
-      </button>
-      <p className="toggle-link">
-        Don't have an account?{' '}
-        <button type="button" onClick={onSwitchToRegister} className="link-btn">
-          Register here
-        </button>
-      </p>
-    </form>
-  );
-};
-
-// Register Form Component
-const RegisterForm = ({ onRegister, onClose, onSwitchToLogin }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters');
-      return;
-    }
-
-    setLoading(true);
-
-    const result = await onRegister({
-      name: formData.name,
-      email: formData.email,
-      password: formData.password
-    });
-    
-    if (!result.success) {
-      setError(result.message);
-    }
-    
-    setLoading(false);
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="auth-form">
-      <div className="form-group">
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      {error && <div className="error-message">{error}</div>}
-      <button type="submit" disabled={loading} className="submit-btn">
-        {loading ? 'Registering...' : 'Register'}
-      </button>
-      <p className="toggle-link">
-        Already have an account?{' '}
-        <button type="button" onClick={onSwitchToLogin} className="link-btn">
-          Login here
-        </button>
-      </p>
-    </form>
-  );
-};
 
 const Navbar = ({ language, setLanguage }) => {
-  const [cartCount, setCartCount] = useState(() => {
-    // Load cart count from localStorage
-    return parseInt(localStorage.getItem('cartCount') || '0');
-  });
+  const { cartCount } = useCart();
   const [menuVisible, setMenuVisible] = useState(false);
+  
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
@@ -414,6 +256,10 @@ const Navbar = ({ language, setLanguage }) => {
   useEffect(() => {
     console.log('Login modal state changed:', showLoginModal);
   }, [showLoginModal]);
+
+  useEffect(() => {
+    console.log('Register modal state changed:', showRegisterModal);
+  }, [showRegisterModal]);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showProductsDropdown, setShowProductsDropdown] = useState(false);
   const [user, setUser] = useState(() => {
@@ -478,16 +324,16 @@ const Navbar = ({ language, setLanguage }) => {
       const data = await response.json();
       console.log('Login response data:', data);
 
-      if (response.ok && data.token && data.user) {
+      if (response.ok && data.success && data.data) {
         // Store in localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user', JSON.stringify(data.data.user));
         
-        setUser(data.user);
+        setUser(data.data.user);
         setIsLoggedIn(true);
         setShowLoginModal(false);
-        console.log('Login successful, user set:', data.user);
-        return { success: true, message: 'Login successful!' };
+        console.log('Login successful, user set:', data.data.user);
+        return { success: true, message: data.message || 'Login successful!' };
       } else {
         console.log('Login failed:', data.message);
         return { success: false, message: data.message || 'Login failed' };
@@ -510,15 +356,15 @@ const Navbar = ({ language, setLanguage }) => {
 
       const data = await response.json();
 
-      if (response.ok && data.token && data.user) {
+      if (response.ok && data.success && data.data) {
         // Store in localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user', JSON.stringify(data.data.user));
         
-        setUser(data.user);
+        setUser(data.data.user);
         setIsLoggedIn(true);
         setShowRegisterModal(false);
-        return { success: true, message: 'Registration successful!' };
+        return { success: true, message: data.message || 'Registration successful!' };
       } else {
         return { success: false, message: data.message || 'Registration failed' };
       }
@@ -553,27 +399,47 @@ const Navbar = ({ language, setLanguage }) => {
   // Check if user is logged in on component mount
   React.useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      // Verify token with backend
-      fetch('http://localhost:4242/api/auth/me', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          setUser(data.data.user);
-          setIsLoggedIn(true);
-        } else {
+    const storedUser = localStorage.getItem('user');
+    
+    if (token && storedUser) {
+      try {
+        const user = JSON.parse(storedUser);
+        setUser(user);
+        setIsLoggedIn(true);
+        
+        // Verify token with backend
+        fetch('http://localhost:4242/api/auth/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success && data.data) {
+            setUser(data.data.user);
+            setIsLoggedIn(true);
+          } else {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            setUser(null);
+            setIsLoggedIn(false);
+          }
+        })
+        .catch(error => {
+          console.error('Auth check failed:', error);
           localStorage.removeItem('token');
-        }
-      })
-      .catch(error => {
-        console.error('Auth check failed:', error);
+          localStorage.removeItem('user');
+          setUser(null);
+          setIsLoggedIn(false);
+        });
+      } catch (error) {
+        console.error('Error parsing stored user:', error);
         localStorage.removeItem('token');
-      });
+        localStorage.removeItem('user');
+        setUser(null);
+        setIsLoggedIn(false);
+      }
     }
   }, []);
 
@@ -652,7 +518,7 @@ const Navbar = ({ language, setLanguage }) => {
           ))}
           
           {/* Cart Icon */}
-          <Link to="/cart-backend" className="navbar-cart">
+          <Link to="/cart-backend" className="navbar-cart" title={`Cart (${cartCount} items)`}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="9" cy="21" r="1"></circle>
               <circle cx="20" cy="21" r="1"></circle>
@@ -849,52 +715,24 @@ const Navbar = ({ language, setLanguage }) => {
 
       {/* Login Modal */}
       {showLoginModal && (
-        <div className="modal-overlay" onClick={() => setShowLoginModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>Login</h2>
-              <button 
-                className="modal-close" 
-                onClick={() => setShowLoginModal(false)}
-              >
-                ×
-              </button>
-            </div>
-            <LoginForm 
-              onLogin={handleLogin}
-              onClose={() => setShowLoginModal(false)}
-              onSwitchToRegister={() => {
-                setShowLoginModal(false);
-                setShowRegisterModal(true);
-              }}
-            />
-          </div>
-        </div>
+        <Login 
+          onClose={() => setShowLoginModal(false)}
+          onSwitchToRegister={() => {
+            setShowLoginModal(false);
+            setShowRegisterModal(true);
+          }}
+        />
       )}
 
       {/* Register Modal */}
       {showRegisterModal && (
-        <div className="modal-overlay" onClick={() => setShowRegisterModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>Register</h2>
-              <button 
-                className="modal-close" 
-                onClick={() => setShowRegisterModal(false)}
-              >
-                ×
-              </button>
-            </div>
-            <RegisterForm 
-              onRegister={handleRegister}
-              onClose={() => setShowRegisterModal(false)}
-              onSwitchToLogin={() => {
-                setShowRegisterModal(false);
-                setShowLoginModal(true);
-              }}
-            />
-          </div>
-        </div>
+        <Register 
+          onClose={() => setShowRegisterModal(false)}
+          onSwitchToLogin={() => {
+            setShowRegisterModal(false);
+            setShowLoginModal(true);
+          }}
+        />
       )}
     </header>
   );

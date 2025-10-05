@@ -193,7 +193,7 @@ h3 {
 
 .feature-card {
   background: #fff !important;
-  border-radius: 50% !important;
+  border-radius: 0px !important;
   box-shadow: 0 4px 16px var(--shadow-light);
   padding: 20px 15px !important;
   width: 160px !important;
@@ -253,7 +253,7 @@ h3 {
 
 .features-section .feature-card {
   flex: 0 0 auto !important;
-  border-radius: 50% !important;
+  border-radius: 0px !important;
   width: 160px !important;
   height: 160px !important;
   min-width: 160px !important;
@@ -276,14 +276,14 @@ h3 {
 
 .features-section .feature-card:first-child,
 .features-section .feature-card:last-child {
-  border-radius: 50% !important;
+  border-radius: 0px !important;
   border: none !important;
   margin: 0 !important;
 }
 
 /* Ultra-specific override to force circular shape */
 div.features-section div.features-grid div.feature-card {
-  border-radius: 50% !important;
+  border-radius: 0px !important;
   width: 160px !important;
   height: 160px !important;
   min-width: 160px !important;
@@ -306,7 +306,7 @@ div.features-section div.features-grid div.feature-card {
 .feature-card,
 .features-section .feature-card,
 .features-grid .feature-card {
-  border-radius: 50% !important;
+  border-radius: 0px !important;
   width: 160px !important;
   height: 160px !important;
   min-width: 160px !important;
@@ -329,7 +329,7 @@ div.features-section div.features-grid div.feature-card {
 
 /* Force circular shape with maximum specificity */
 .features-section .features-grid .feature-card {
-  border-radius: 50% !important;
+  border-radius: 0px !important;
   width: 160px !important;
   height: 160px !important;
   min-width: 160px !important;
@@ -353,7 +353,7 @@ div.features-section div.features-grid div.feature-card {
 /* Additional mobile-specific overrides */
 @media (max-width: 768px) {
   .features-section .feature-card {
-    border-radius: 50% !important;
+    border-radius: 0px !important;
     width: 120px !important;
     height: 120px !important;
     min-width: 120px !important;
@@ -367,7 +367,7 @@ div.features-section div.features-grid div.feature-card {
 
 @media (max-width: 480px) {
   .features-section .feature-card {
-    border-radius: 50% !important;
+    border-radius: 0px !important;
     width: 100px !important;
     height: 100px !important;
     min-width: 100px !important;
@@ -398,7 +398,7 @@ div.features-section div.features-grid div.feature-card {
     max-height: 120px;
     padding: 15px 10px;
     flex-shrink: 0;
-    border-radius: 50%;
+    border-radius: 0px;
   }
   
   .features-section .feature-card img {
@@ -830,7 +830,7 @@ div.features-section div.features-grid div.feature-card {
   border: none !important;
   width: 50px !important;
   height: 50px !important;
-  border-radius: 50% !important;
+  border-radius: 0px !important;
   font-size: 28px !important;
   font-weight: bold !important;
   cursor: pointer !important;

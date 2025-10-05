@@ -89,7 +89,7 @@ const EnhancedAbout = () => {
         </div>
       </div>
       
-      <style jsx>{`
+      <style>{`
         .about-content {
           max-width: 1000px;
           margin: 0 auto;

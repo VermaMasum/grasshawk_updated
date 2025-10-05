@@ -73,11 +73,61 @@ const Hero = () => {
       </div>
       
       {/* Features Section */}
-      <div className="features-section">
-        <div className="container">
-          <h2 className="section-title">Why Choose VIBGYOR Maple</h2>
-          <div className="features-grid">
-            <div className="feature-card">
+      <div className="features-section" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        textAlign: 'center',
+        margin: '0 auto',
+        padding: '40px 0'
+      }}>
+        <div className="container" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          maxWidth: '100%',
+          margin: '0 auto',
+          padding: '0',
+          textAlign: 'center'
+        }}>
+          <h2 className="section-title" style={{
+            textAlign: 'center',
+            width: '100%',
+            margin: '0 auto 3rem auto',
+            display: 'block'
+          }}>Why Choose VIBGYOR Maple</h2>
+          <div className="features-grid" style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            width: '100%',
+            maxWidth: '100%',
+            margin: '0 auto',
+            padding: '0 20px',
+            gap: '40px',
+            textAlign: 'center'
+          }}>
+            <div className="feature-card" style={{
+              borderRadius: '0px',
+              width: '250px',
+              height: '250px',
+              minWidth: '250px',
+              maxWidth: '250px',
+              minHeight: '250px',
+              maxHeight: '250px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              padding: '20px',
+              overflow: 'hidden'
+            }}>
               <div className="feature-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M9 12l2 2 4-4"/>
@@ -85,10 +135,24 @@ const Hero = () => {
                   <path d="M7 19h10"/>
                 </svg>
               </div>
-              <h3>Quality Assured</h3>
-              <p>Rigorous testing ensures our products meet the highest standards for durability and effectiveness.</p>
+              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>Quality Assured</h3>
             </div>
-            <div className="feature-card">
+            <div className="feature-card" style={{
+              borderRadius: '0px',
+              width: '250px',
+              height: '250px',
+              minWidth: '250px',
+              maxWidth: '250px',
+              minHeight: '250px',
+              maxHeight: '250px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              padding: '20px',
+              overflow: 'hidden'
+            }}>
               <div className="feature-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -96,17 +160,30 @@ const Hero = () => {
                   <path d="M2 12l10 5 10-5"/>
                 </svg>
               </div>
-              <h3>Innovation First</h3>
-              <p>Cutting-edge technology combined with proven methods to deliver superior results.</p>
+              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>Innovation First</h3>
         </div>
-            <div className="feature-card">
+            <div className="feature-card" style={{
+              borderRadius: '0px',
+              width: '250px',
+              height: '250px',
+              minWidth: '250px',
+              maxWidth: '250px',
+              minHeight: '250px',
+              maxHeight: '250px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              padding: '20px',
+              overflow: 'hidden'
+            }}>
               <div className="feature-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
               </div>
-              <h3>Canadian Built</h3>
-              <p>Designed specifically for Canadian weather conditions and environmental standards.</p>
+              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>Canadian Built</h3>
             </div>
           </div>
         </div>

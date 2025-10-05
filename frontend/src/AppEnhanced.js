@@ -147,7 +147,7 @@ function App() {
         </Routes>
       </div>
       
-      <style jsx>{`
+      <style>{`
         .app-container {
           min-height: 100vh;
           background: var(--background-primary);

@@ -598,7 +598,7 @@ const CartEnhanced = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .cart-content {
           display: grid;
           grid-template-columns: 1fr;

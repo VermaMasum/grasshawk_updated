@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 import "./styles/GlobalStyles.css";
 import "./styles/BubbleAnimation.css";
 import Navbar from "./components/Navbar";
@@ -57,8 +58,9 @@ function App() {
   const clearCart = () => setCartItems([]);
 
   return (
-    <Router>
-      <div className="app-container">
+    <AuthProvider>
+      <Router>
+        <div className="app-container">
         <div className="bubble-animation">
           <div className="bubble"></div>
           <div className="bubble"></div>
@@ -124,8 +126,9 @@ function App() {
           <Route path="/testimonials" element={<Testimonials />} />
         </Routes>
         <Footer />
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

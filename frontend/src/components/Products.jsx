@@ -236,6 +236,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
 import "./Products.css";
 import MoleTrapInstructions from "./MoleTrapInstructions";
 import moletrapImage from "../assets/moletrap.png";
@@ -248,6 +249,7 @@ import durableIcon from "../assets/durableandheavyduty.png";
 import ecoFriendlyIcon from "../assets/reusableandecofriendly.png";
 
 const Products = ({ addToCart }) => {
+  const { addToCart: addToCartContext } = useCart();
   const [searchParams] = useSearchParams();
   const [selectedProduct, setSelectedProduct] = useState('grasshawk');
   const [loading, setLoading] = useState(false);
@@ -265,8 +267,6 @@ const Products = ({ addToCart }) => {
 
   // Add to cart function that connects to backend
   const addToCartBackend = async (product) => {
-    console.log('Adding to cart:', product);
-    
     if (!product || !product.available) {
       setMessage('This product is coming soon!');
       setTimeout(() => setMessage(''), 3000);
@@ -277,56 +277,19 @@ const Products = ({ addToCart }) => {
       setLoading(true);
       setMessage('');
 
-      // Get or create session ID
-      let sessionId = localStorage.getItem('cartSessionId');
-      if (!sessionId) {
-        sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
-        localStorage.setItem('cartSessionId', sessionId);
-      }
-
-      const cartData = {
-        productId: product.name.toLowerCase().replace(/\s+/g, '-'),
+      // Use the cart context to add item
+      const result = await addToCartContext({
+        id: product.name.toLowerCase().replace(/\s+/g, '-'),
         name: product.name,
         price: product.price,
-        quantity: 1,
         image: '/api/placeholder/300/200'
-      };
-      
-      console.log('Sending cart data:', cartData);
-      console.log('Session ID:', sessionId);
-      
-      const response = await fetch(`http://localhost:4242/api/cart/${sessionId}/add`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cartData),
       });
 
-      console.log('Response status:', response.status);
-      
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Cart response:', result);
-        const items = result.cart.items || [];
-        
-        // Store cart data in localStorage
-        localStorage.setItem('cartItems', JSON.stringify(items));
-        localStorage.setItem('cartCount', items.length.toString());
-        
-        console.log('Stored in localStorage:', { items, count: items.length });
-        
+      if (result.success) {
         setMessage('Product added to cart successfully!');
         setTimeout(() => setMessage(''), 3000);
-        
-        // Trigger a custom event to update navbar cart count
-        window.dispatchEvent(new CustomEvent('cartUpdated', { 
-          detail: { count: items.length, items: items } 
-        }));
       } else {
-        const errorText = await response.text();
-        console.error('Cart API error:', response.status, errorText);
-        setMessage('Failed to add product to cart');
+        setMessage(result.message || 'Failed to add product to cart');
         setTimeout(() => setMessage(''), 3000);
       }
     } catch (error) {
@@ -522,23 +485,63 @@ const Products = ({ addToCart }) => {
                 <div className="features-section">
                   <h3>Features</h3>
                   <div className="features-grid">
-                    <div className="feature-card">
+                    <div className="feature-card" style={{
+                      borderRadius: '0px',
+                      width: '200px',
+                      height: '200px',
+                      minWidth: '200px',
+                      maxWidth: '200px',
+                      minHeight: '200px',
+                      maxHeight: '200px'
+                    }}>
                       <img src={easySetupIcon} alt="Easy to set up" />
                       <p>Easy to set up</p>
                     </div>
-                    <div className="feature-card">
+                    <div className="feature-card" style={{
+                      borderRadius: '0px',
+                      width: '200px',
+                      height: '200px',
+                      minWidth: '200px',
+                      maxWidth: '200px',
+                      minHeight: '200px',
+                      maxHeight: '200px'
+                    }}>
                       <img src={petFriendlyIcon} alt="Pet friendly" />
                       <p>Pet friendly</p>
                     </div>
-                    <div className="feature-card">
+                    <div className="feature-card" style={{
+                      borderRadius: '0px',
+                      width: '200px',
+                      height: '200px',
+                      minWidth: '200px',
+                      maxWidth: '200px',
+                      minHeight: '200px',
+                      maxHeight: '200px'
+                    }}>
                       <img src={weatherResistantIcon} alt="Weather resistant" />
                       <p>Weather resistant</p>
                     </div>
-                    <div className="feature-card">
+                    <div className="feature-card" style={{
+                      borderRadius: '0px',
+                      width: '200px',
+                      height: '200px',
+                      minWidth: '200px',
+                      maxWidth: '200px',
+                      minHeight: '200px',
+                      maxHeight: '200px'
+                    }}>
                       <img src={durableIcon} alt="Durable and heavy duty" />
                       <p>Durable and heavy duty</p>
                     </div>
-                    <div className="feature-card">
+                    <div className="feature-card" style={{
+                      borderRadius: '0px',
+                      width: '200px',
+                      height: '200px',
+                      minWidth: '200px',
+                      maxWidth: '200px',
+                      minHeight: '200px',
+                      maxHeight: '200px'
+                    }}>
                       <img src={ecoFriendlyIcon} alt="Reusable and eco-friendly" />
                       <p>Reusable and eco-friendly</p>
                     </div>

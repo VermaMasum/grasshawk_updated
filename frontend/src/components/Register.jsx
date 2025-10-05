@@ -1,268 +1,247 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import './Login.css';
 
 const Register = ({ onClose, onSwitchToLogin }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    address: {
-      street: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      country: 'Canada'
-    }
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const { register } = useAuth();
+  console.log('Register component rendered!');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    
-    if (name.startsWith('address.')) {
-      const addressField = name.split('.')[1];
-      setFormData({
-        ...formData,
-        address: {
-          ...formData.address,
-          [addressField]: value
-        }
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value
-      });
-    }
-    setError(''); // Clear error when user types
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    // Validation
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
-      setLoading(false);
-      return;
-    }
-
-    const result = await register(formData);
-    
-    if (result.success) {
-      onClose();
-    } else {
-      setError(result.message);
-    }
-    
-    setLoading(false);
+    console.log('Register attempt:', { name, email, password });
+    onClose();
   };
 
   return (
-    <div className="auth-modal">
-      <div className="auth-modal-content">
-        <div className="auth-header">
-          <h2>Create Account</h2>
-          <p>Join VIBGYOR Maple today</p>
-          <button className="close-btn" onClick={onClose}>×</button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="auth-form">
-          {error && <div className="error-message">{error}</div>}
-          
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="Enter your full name"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="Enter your email"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="phone">Phone Number (Optional)</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="password-input">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                placeholder="Create a password (min 6 characters)"
-              />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <div className="password-input">
-              <input
-                type={showConfirmPassword ? 'text' : 'password'}
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                placeholder="Confirm your password"
-              />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              >
-                {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
-            </div>
-          </div>
-
-          <div className="address-section">
-            <h3>Address (Optional)</h3>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="street">Street Address</label>
-                <input
-                  type="text"
-                  id="street"
-                  name="address.street"
-                  value={formData.address.street}
-                  onChange={handleChange}
-                  placeholder="Street address"
-                />
-              </div>
-            </div>
-            
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="city">City</label>
-                <input
-                  type="text"
-                  id="city"
-                  name="address.city"
-                  value={formData.address.city}
-                  onChange={handleChange}
-                  placeholder="City"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="state">Province/State</label>
-                <input
-                  type="text"
-                  id="state"
-                  name="address.state"
-                  value={formData.address.state}
-                  onChange={handleChange}
-                  placeholder="Province/State"
-                />
-              </div>
-            </div>
-            
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="zipCode">Postal Code</label>
-                <input
-                  type="text"
-                  id="zipCode"
-                  name="address.zipCode"
-                  value={formData.address.zipCode}
-                  onChange={handleChange}
-                  placeholder="Postal code"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="country">Country</label>
-                <select
-                  id="country"
-                  name="address.country"
-                  value={formData.address.country}
-                  onChange={handleChange}
-                >
-                  <option value="Canada">Canada</option>
-                  <option value="United States">United States</option>
-                  <option value="United Kingdom">United Kingdom</option>
-                  <option value="Australia">Australia</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="auth-submit-btn"
-          >
-            {loading ? 'Creating Account...' : 'Create Account'}
-          </button>
-        </form>
-
-        <div className="auth-footer">
-          <p>
-            Already have an account?{' '}
-            <button
-              type="button"
-              className="auth-switch-btn"
-              onClick={onSwitchToLogin}
+    <>
+      {/* Overlay */}
+      <div 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          zIndex: 99999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+        onClick={onClose}
+      >
+        {/* Modal Content */}
+        <div 
+          style={{
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '12px',
+            width: '400px',
+            maxWidth: '90vw',
+            maxHeight: '90vh',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+            position: 'relative',
+            zIndex: 100000,
+            overflowY: 'auto'
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '25px',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '15px'
+          }}>
+            <h2 style={{ 
+              margin: 0, 
+              color: '#333', 
+              fontSize: '24px',
+              fontWeight: 'bold'
+            }}>
+              Sign Up
+            </h2>
+            <button 
+              onClick={onClose}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '28px',
+                cursor: 'pointer',
+                color: '#999',
+                padding: '5px',
+                lineHeight: 1
+              }}
             >
-              Sign In
+              ×
             </button>
-          </p>
+          </div>
+          
+          {/* Form */}
+          <form onSubmit={handleSubmit}>
+            {/* Name Field */}
+            <div style={{ 
+              marginBottom: '20px',
+              display: 'block'
+            }}>
+              <label style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: '#333',
+                fontWeight: '600',
+                fontSize: '14px'
+              }}>
+                Full Name
+              </label>
+              <input 
+                type="text" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Enter your full name"
+                style={{ 
+                  width: '100%',
+                  padding: '12px 16px',
+                  border: '2px solid #ddd',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  boxSizing: 'border-box',
+                  backgroundColor: '#fff',
+                  transition: 'border-color 0.3s'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#007bff'}
+                onBlur={(e) => e.target.style.borderColor = '#ddd'}
+              />
+            </div>
+
+            {/* Email Field */}
+            <div style={{ 
+              marginBottom: '20px',
+              display: 'block'
+            }}>
+              <label style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: '#333',
+                fontWeight: '600',
+                fontSize: '14px'
+              }}>
+                Email Address
+              </label>
+              <input 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Enter your email address"
+                style={{ 
+                  width: '100%',
+                  padding: '12px 16px',
+                  border: '2px solid #ddd',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  boxSizing: 'border-box',
+                  backgroundColor: '#fff',
+                  transition: 'border-color 0.3s'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#007bff'}
+                onBlur={(e) => e.target.style.borderColor = '#ddd'}
+              />
+            </div>
+            
+            {/* Password Field */}
+            <div style={{ 
+              marginBottom: '25px',
+              display: 'block'
+            }}>
+              <label style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: '#333',
+                fontWeight: '600',
+                fontSize: '14px'
+              }}>
+                Password
+              </label>
+              <input 
+                type="password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Enter your password"
+                style={{ 
+                  width: '100%',
+                  padding: '12px 16px',
+                  border: '2px solid #ddd',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  boxSizing: 'border-box',
+                  backgroundColor: '#fff',
+                  transition: 'border-color 0.3s'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#007bff'}
+                onBlur={(e) => e.target.style.borderColor = '#ddd'}
+              />
+            </div>
+            
+            {/* Submit Button */}
+            <button 
+              type="submit"
+              style={{ 
+                width: '100%',
+                padding: '14px',
+                backgroundColor: '#28a745',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s',
+                marginBottom: '20px'
+              }}
+              onMouseOver={(e) => e.target.style.backgroundColor = '#218838'}
+              onMouseOut={(e) => e.target.style.backgroundColor = '#28a745'}
+            >
+              Sign Up
+            </button>
+          </form>
+          
+          {/* Footer */}
+          <div style={{ 
+            textAlign: 'center',
+            borderTop: '1px solid #eee',
+            paddingTop: '20px'
+          }}>
+            <p style={{ 
+              margin: 0, 
+              color: '#666',
+              fontSize: '14px'
+            }}>
+              Already have an account?{' '}
+              <button 
+                onClick={onSwitchToLogin}
+                style={{ 
+                  background: 'none', 
+                  border: 'none', 
+                  color: '#007bff', 
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  fontSize: '14px',
+                  fontWeight: '600'
+                }}
+              >
+                Sign In
+              </button>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default Register;
-
