@@ -9,6 +9,7 @@
   --off-white: #f8f9fa;
   --shadow-gray: rgba(0, 0, 0, 0.1);
   --shadow-red: rgba(231, 76, 60, 0.15);
+  --navbar-height: 70px; /* Navbar height for consistent spacing */
 }
 
 /* Global Section Styling - Same as Contact Section */
@@ -360,6 +361,10 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  body {
+    padding-top: 60px; /* Smaller navbar height for mobile */
+  }
+  
   .global-section {
     padding: 60px 20px;
   }
@@ -382,6 +387,12 @@
   .global-btn {
     padding: 14px 28px;
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 55px; /* Even smaller navbar height for small mobile */
   }
 }
 
@@ -436,6 +447,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  padding-top: var(--navbar-height, 70px); /* Add navbar height to body padding */
 }
 
 /* App Container */

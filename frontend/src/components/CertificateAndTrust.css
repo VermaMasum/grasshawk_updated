@@ -5,12 +5,14 @@
   --shadow-light: rgba(204, 0, 0, 0.1);
   --shadow-medium: rgba(204, 0, 0, 0.2);
   --shadow-strong: rgba(204, 0, 0, 0.3);
+  --navbar-height: 70px; /* Navbar height for consistent spacing */
 }
 
 .certifications-trust-section {
   background-color: var(--off-white);
   padding: 60px 20px;
   text-align: center;
+  margin-top: 0;
 }
 
 .certifications-trust-section h1 {
