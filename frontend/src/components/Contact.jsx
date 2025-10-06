@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { translations } from '../utils/translations';
 
-const Contact = () => {
+const Contact = ({ language = 'en' }) => {
+  const t = translations[language] || translations.en;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,7 +26,7 @@ const Contact = () => {
     
     // Simulate form submission
     setTimeout(() => {
-      setSubmitMessage('Thank you for your message! We\'ll get back to you soon.');
+      setSubmitMessage(t.contact.success);
       setFormData({ name: '', email: '', subject: '', message: '' });
       setIsSubmitting(false);
     }, 2000);
@@ -47,7 +49,7 @@ const Contact = () => {
         textAlign: 'center',
         marginBottom: '2rem'
       }}>
-        Contact Us
+        {t.contact.title}
       </h1>
       
       <p style={{
@@ -58,8 +60,7 @@ const Contact = () => {
         maxWidth: '600px',
         margin: '0 auto 3rem auto'
       }}>
-        We'd love to hear from you. Whether you have a question about our products, 
-        pricing, or anything else, our team is ready to answer all your questions.
+        {t.contact.subtitle}
       </p>
 
       <div style={{
@@ -81,11 +82,11 @@ const Contact = () => {
             color: '#1a202c',
             marginBottom: '1rem'
           }}>
-            Contact Information
+            {t.contact.info.title}
           </h3>
           
           <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>📍 Our Location</h4>
+            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>📍 {t.contact.info.ourLocation}</h4>
             <p style={{ color: '#4a5568', margin: '0' }}>
               Grass Hawk Technologies<br />
               1234 Innovation Drive<br />
@@ -94,18 +95,18 @@ const Contact = () => {
           </div>
 
           <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>📞 Phone Numbers</h4>
+            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>📞 {t.contact.info.phoneNumbers}</h4>
             <p style={{ color: '#4a5568', margin: '0' }}>
-              Sales: <a href="tel:+1-800-GRASS-01" style={{ color: '#2563eb' }}>+1 (800) GRASS-01</a><br />
-              Support: <a href="tel:+1-800-GRASS-02" style={{ color: '#2563eb' }}>+1 (800) GRASS-02</a>
+              {t.contact.info.sales}: <a href="tel:+1-800-GRASS-01" style={{ color: '#2563eb' }}>+1 (800) GRASS-01</a><br />
+              {t.contact.info.support}: <a href="tel:+1-800-GRASS-02" style={{ color: '#2563eb' }}>+1 (800) GRASS-02</a>
             </p>
           </div>
 
           <div>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>✉️ Email Addresses</h4>
+            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>✉️ {t.contact.info.emailAddresses}</h4>
             <p style={{ color: '#4a5568', margin: '0' }}>
-              General: <a href="mailto:info@grasshawk.com" style={{ color: '#2563eb' }}>info@grasshawk.com</a><br />
-              Sales: <a href="mailto:sales@grasshawk.com" style={{ color: '#2563eb' }}>sales@grasshawk.com</a>
+              {t.contact.info.general}: <a href="mailto:info@grasshawk.com" style={{ color: '#2563eb' }}>info@grasshawk.com</a><br />
+              {t.contact.info.sales}: <a href="mailto:sales@grasshawk.com" style={{ color: '#2563eb' }}>sales@grasshawk.com</a>
             </p>
           </div>
         </div>
@@ -123,7 +124,7 @@ const Contact = () => {
             color: '#1a202c',
             marginBottom: '1rem'
           }}>
-            Send Us a Message
+            {t.contact.form.title}
           </h3>
           
           <form onSubmit={handleSubmit} style={{
@@ -138,7 +139,7 @@ const Contact = () => {
                 fontWeight: '500',
                 color: '#1a202c'
               }}>
-                Full Name *
+                {t.contact.form.name} *
               </label>
               <input
                 type="text"
@@ -146,7 +147,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                placeholder="Your full name"
+                placeholder={t.contact.form.namePlaceholder}
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -165,7 +166,7 @@ const Contact = () => {
                 fontWeight: '500',
                 color: '#1a202c'
               }}>
-                Email Address *
+                {t.contact.form.email} *
               </label>
               <input
                 type="email"
@@ -173,7 +174,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder="your.email@example.com"
+                placeholder={t.contact.form.emailPlaceholder}
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -192,7 +193,7 @@ const Contact = () => {
                 fontWeight: '500',
                 color: '#1a202c'
               }}>
-                Subject *
+                {t.contact.form.subject} *
               </label>
               <input
                 type="text"
@@ -200,7 +201,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                placeholder="How can we help you?"
+                placeholder={t.contact.form.subjectPlaceholder}
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -219,7 +220,7 @@ const Contact = () => {
                 fontWeight: '500',
                 color: '#1a202c'
               }}>
-                Message *
+                {t.contact.form.message} *
               </label>
           <textarea
             name="message"
@@ -227,7 +228,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
             rows="5"
-                placeholder="Tell us more about your inquiry..."
+                placeholder={t.contact.form.messagePlaceholder}
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -257,7 +258,7 @@ const Contact = () => {
                 transition: 'background-color 0.3s'
               }}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? t.contact.form.sending : t.contact.form.submit}
             </button>
 
             {submitMessage && (

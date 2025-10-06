@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { translations } from "../utils/translations";
 import "./Hero.css";
 import moleHouseBg from "../assets/mole-house-bg.jpg";
 import moleHouseBg2 from "../assets/mole-house-bg-2.jpg";
 
-const Hero = () => {
+const Hero = ({ language = 'en' }) => {
+  const t = translations[language] || translations.en;
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -43,17 +45,17 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Professional Backyard Solutions
+              {t.hero.title}
             </h1>
             <p className="hero-subtitle">
-              Innovative pest control and garden protection systems designed for Canadian homeowners who demand reliability and effectiveness.
+              {t.hero.subtitle}
             </p>
             <div className="hero-actions">
               <button className="btn-primary" onClick={() => navigate('/products')}>
-                View Products
+                {t.hero.viewProducts}
               </button>
               <button className="btn-secondary" onClick={() => navigate('/about')}>
-                Learn More
+                {t.hero.learnMore}
               </button>
             </div>
           </div>
@@ -99,7 +101,7 @@ const Hero = () => {
             width: '100%',
             margin: '0 auto 3rem auto',
             display: 'block'
-          }}>Why Choose VIBGYOR Maple</h2>
+          }}>{t.hero.whyChoose}</h2>
           <div className="features-grid" style={{
             display: 'flex',
             justifyContent: 'center',
@@ -135,7 +137,7 @@ const Hero = () => {
                   <path d="M7 19h10"/>
                 </svg>
               </div>
-              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>Quality Assured</h3>
+              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>{t.hero.qualityAssured}</h3>
             </div>
             <div className="feature-card" style={{
               borderRadius: '0px',
@@ -160,7 +162,7 @@ const Hero = () => {
                   <path d="M2 12l10 5 10-5"/>
                 </svg>
               </div>
-              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>Innovation First</h3>
+              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>{t.hero.innovationFirst}</h3>
         </div>
             <div className="feature-card" style={{
               borderRadius: '0px',
@@ -183,7 +185,7 @@ const Hero = () => {
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
               </div>
-              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>Canadian Built</h3>
+              <h3 style={{ margin: '15px 0', fontSize: '18px', fontWeight: 'bold' }}>{t.hero.canadianBuilt}</h3>
             </div>
           </div>
         </div>
@@ -193,10 +195,10 @@ const Hero = () => {
       <div className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h3>Ready to Protect Your Backyard?</h3>
-            <p>Discover our range of professional-grade solutions designed for Canadian homeowners.</p>
+            <h3>{t.hero.readyToProtect}</h3>
+            <p>{t.hero.readyToProtectDesc}</p>
             <button className="cta-button" onClick={() => navigate('/products')}>
-              View Our Products
+              {t.hero.viewProducts}
             </button>
           </div>
         </div>
@@ -208,19 +210,19 @@ const Hero = () => {
           <div className="stats-grid">
             <div className="stat-item">
               <div className="stat-number">500+</div>
-              <div className="stat-label">Satisfied Customers</div>
+              <div className="stat-label">{t.hero.stats.satisfiedCustomers}</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">15+</div>
-              <div className="stat-label">Years Experience</div>
+              <div className="stat-label">{t.hero.stats.yearsExperience}</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">99%</div>
-              <div className="stat-label">Success Rate</div>
+              <div className="stat-label">{t.hero.stats.successRate}</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">24/7</div>
-              <div className="stat-label">Customer Support</div>
+              <div className="stat-label">{t.hero.stats.customerSupport}</div>
             </div>
           </div>
         </div>

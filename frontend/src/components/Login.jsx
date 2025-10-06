@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { translations } from '../utils/translations';
 
-const Login = ({ onClose, onSwitchToRegister }) => {
+const Login = ({ onClose, onSwitchToRegister, language = 'en' }) => {
+  const t = translations[language] || translations.en;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -54,7 +56,7 @@ const Login = ({ onClose, onSwitchToRegister }) => {
               fontSize: '18px',
               fontWeight: 'bold'
             }}>
-              Sign In
+              {t.auth.signIn}
             </h2>
             <button 
               onClick={onClose}
@@ -86,14 +88,14 @@ const Login = ({ onClose, onSwitchToRegister }) => {
                 fontWeight: '600',
                 fontSize: '13px'
               }}>
-                Email Address
+                {t.auth.email}
               </label>
               <input 
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Enter your email address"
+                placeholder={t.auth.emailPlaceholder}
                 style={{ 
                   width: '100%',
                   padding: '10px 12px',
@@ -121,14 +123,14 @@ const Login = ({ onClose, onSwitchToRegister }) => {
                 fontWeight: '600',
                 fontSize: '13px'
               }}>
-                Password
+                {t.auth.password}
               </label>
               <input 
                 type="password" 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Enter your password"
+                placeholder={t.auth.passwordPlaceholder}
                 style={{ 
                   width: '100%',
                   padding: '10px 12px',
@@ -163,7 +165,7 @@ const Login = ({ onClose, onSwitchToRegister }) => {
               onMouseOver={(e) => e.target.style.backgroundColor = '#0056b3'}
               onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}
             >
-              Sign In
+              {t.auth.signIn}
             </button>
           </form>
           
@@ -178,7 +180,7 @@ const Login = ({ onClose, onSwitchToRegister }) => {
               color: '#666',
               fontSize: '14px'
             }}>
-              Don't have an account?{' '}
+              {t.auth.noAccount}{' '}
               <button 
                 onClick={onSwitchToRegister}
                 style={{ 
@@ -191,7 +193,7 @@ const Login = ({ onClose, onSwitchToRegister }) => {
                   fontWeight: '600'
                 }}
               >
-                Sign Up
+                {t.auth.signUp}
               </button>
             </p>
           </div>

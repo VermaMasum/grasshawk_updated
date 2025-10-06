@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { translations } from "../utils/translations";
 import "./About.css";
 import aboutImage from "../assets/about_us_bg.png";
 
-const About = () => {
+const About = ({ language = 'en' }) => {
+  const t = translations[language] || translations.en;
   const navigate = useNavigate();
 
   return (
@@ -11,7 +13,7 @@ const About = () => {
       {/* Hero Section */}
       <div className="about-hero">
         <div className="hero-content">
-          <h1>About VIBGYOR Maple</h1>
+          <h1>{t.about.title}</h1>
         </div>
       </div>
       
@@ -28,10 +30,10 @@ const About = () => {
                     <path d="M2 12l10 5 10-5"/>
                   </svg>
           </div>
-          <h3>Our Mission</h3>
+          <h3>{t.about.mission.title}</h3>
               </div>
               <p>
-                At VIBGYOR Maple, we are dedicated to creating innovative backyard safety and garden care solutions tailored for Canadian homes. Our mission is to help families enjoy their outdoor spaces with confidence by combining safety, sustainability, and reliability in everything we build.
+                {t.about.mission.description}
               </p>
             </div>
             <div className="mission-card">
@@ -42,10 +44,10 @@ const About = () => {
                     <circle cx="12" cy="12" r="3"/>
                   </svg>
                 </div>
-                <h3>Our Vision</h3>
+                <h3>{t.about.vision.title}</h3>
               </div>
           <p>
-            We design products that address real backyard challenges, from pest protection to garden preservation, without relying on harmful chemicals. Built with Canadian weather conditions in mind, VIBGYOR Maple solutions are durable, family-friendly, and environmentally responsible.
+            {t.about.vision.description}
           </p>
             </div>
           </div>
@@ -57,25 +59,25 @@ const About = () => {
         <div className="container">
           <div className="story-content">
             <div className="story-text">
-              <h2>Our Story</h2>
+              <h2>{t.about.story.title}</h2>
               <p>
-                Founded with a commitment to excellence and innovation, VIBGYOR Maple has been at the forefront of backyard protection technology for over a decade. Our journey began with a simple observation: Canadian homeowners needed reliable, weather-resistant solutions for their outdoor spaces.
+                {t.about.story.paragraph1}
               </p>
               <p>
-                Today, we combine advanced engineering with sustainable practices to deliver products that not only protect your investment but also contribute to a healthier environment. Our research and development team continuously works to improve our offerings, ensuring they meet the evolving needs of modern homeowners.
+                {t.about.story.paragraph2}
               </p>
               <div className="story-stats">
                 <div className="story-stat">
                   <div className="stat-number">15+</div>
-                  <div className="stat-label">Years in Business</div>
+                  <div className="stat-label">{t.about.story.yearsInBusiness}</div>
                 </div>
                 <div className="story-stat">
                   <div className="stat-number">10,000+</div>
-                  <div className="stat-label">Products Sold</div>
+                  <div className="stat-label">{t.about.story.productsSold}</div>
                 </div>
                 <div className="story-stat">
                   <div className="stat-number">98%</div>
-                  <div className="stat-label">Customer Satisfaction</div>
+                  <div className="stat-label">{t.about.story.customerSatisfaction}</div>
                 </div>
               </div>
             </div>
@@ -89,7 +91,7 @@ const About = () => {
       {/* Values Section */}
       <div className="values-section">
         <div className="container">
-          <h2 className="section-title">Our Core Values</h2>
+          <h2 className="section-title">{t.about.values.title}</h2>
           <div className="values-grid">
             <div className="value-card">
               <div className="value-icon">
@@ -98,8 +100,8 @@ const About = () => {
                   <path d="M21 12c.552 0 1-.448 1-1V8c0-.552-.448-1-1-1h-2.5l-1.5-3h-8l-1.5 3H3c-.552 0-1 .448-1 1v3c0 .552.448 1 1 1"/>
                 </svg>
               </div>
-              <h4>Quality</h4>
-              <p>Every product undergoes rigorous testing to ensure it meets our high standards for durability and effectiveness.</p>
+              <h4>{t.about.values.quality}</h4>
+              <p>{t.about.values.qualityDesc}</p>
             </div>
             <div className="value-card">
               <div className="value-icon">
@@ -107,8 +109,8 @@ const About = () => {
                   <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
                 </svg>
               </div>
-              <h4>Innovation</h4>
-              <p>We continuously invest in research and development to bring cutting-edge solutions to the market.</p>
+              <h4>{t.about.values.innovation}</h4>
+              <p>{t.about.values.innovationDesc}</p>
             </div>
             <div className="value-card">
               <div className="value-icon">
@@ -116,8 +118,8 @@ const About = () => {
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 </svg>
               </div>
-              <h4>Trust</h4>
-              <p>Built on transparency and reliability, we maintain long-term relationships with our customers and partners.</p>
+              <h4>{t.about.values.trust}</h4>
+              <p>{t.about.values.trustDesc}</p>
             </div>
             <div className="value-card">
               <div className="value-icon">
@@ -127,8 +129,8 @@ const About = () => {
                   <path d="M2 12l10 5 10-5"/>
                 </svg>
               </div>
-              <h4>Sustainability</h4>
-              <p>We are committed to environmentally responsible practices and sustainable product development.</p>
+              <h4>{t.about.values.sustainability}</h4>
+              <p>{t.about.values.sustainabilityDesc}</p>
             </div>
           </div>
         </div>
@@ -138,10 +140,10 @@ const About = () => {
       <div className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h3>Ready to Protect Your Backyard?</h3>
-            <p>Discover our range of professional-grade solutions designed for Canadian homeowners.</p>
+            <h3>{t.about.cta.title}</h3>
+            <p>{t.about.cta.description}</p>
             <button className="cta-button" onClick={() => navigate('/products')}>
-              View Our Products
+              {t.about.cta.button}
             </button>
           </div>
         </div>

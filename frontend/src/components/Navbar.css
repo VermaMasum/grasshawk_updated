@@ -15,7 +15,7 @@
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 1.875rem);
+  padding: 0 clamp(0.75rem, 3vw, 1.5rem); /* Reduced padding */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -93,20 +93,22 @@
 .navbar-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px; /* Reduced gap to accommodate longer French text */
+  flex-wrap: nowrap;
 }
 
 .navbar-link {
   color: #333333;
   text-decoration: none;
   font-weight: 600;
-  font-size: clamp(0.85rem, 2vw, 1rem);
-  padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 20px);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem); /* Slightly smaller to fit longer text */
+  padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 16px); /* Reduced padding */
   border-radius: 25px;
   transition: all 0.3s ease;
   position: relative;
   background: transparent;
   border: 2px solid transparent;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .navbar-link:hover,

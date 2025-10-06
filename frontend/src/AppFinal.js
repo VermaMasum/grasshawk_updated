@@ -17,6 +17,7 @@ import Cancel from "./components/cancel";
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
 import CertificateAndTrust from "./components/CertificateAndTrust";
+import { translations } from "./utils/translations";
 import "./styles/EnhancedStyles.css";
 import "./styles/ResponsiveLayout.css";
 import "./styles/AppFinalStyles.css";
@@ -47,6 +48,7 @@ const useScrollReveal = () => {
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [language, setLanguage] = useState('en'); // Language state: 'en' or 'fr'
 
   console.log('AppFinal component loaded');
 
@@ -108,14 +110,18 @@ function App() {
       <CartProvider>
         <Router>
         <div className="app-container">
-          <Navbar cartCount={cartItems.reduce((a, b) => a + b.quantity, 0)} />
+          <Navbar 
+            cartCount={cartItems.reduce((a, b) => a + b.quantity, 0)} 
+            language={language}
+            setLanguage={setLanguage}
+          />
           <Routes>
           <Route
             path="/"
             element={
               <div className="main-content">
-                <Hero />
-                <Footer />
+                <Hero language={language} />
+                <Footer language={language} />
               </div>
             }
           />
@@ -123,38 +129,38 @@ function App() {
           <Route path="/cancel" element={<Cancel />} />
           <Route path="/contact" element={
             <div>
-              <Contact />
-              <Footer />
+              <Contact language={language} />
+              <Footer language={language} />
             </div>
           } />
           <Route path="/about" element={
             <div>
-              <About />
-              <Footer />
+              <About language={language} />
+              <Footer language={language} />
             </div>
           } />
           <Route path="/products" element={
             <div>
-              <Products addToCart={addToCart} />
-              <Footer />
+              <Products addToCart={addToCart} language={language} />
+              <Footer language={language} />
             </div>
           } />
           <Route path="/pricing" element={
             <div>
-              <Pricing />
-              <Footer />
+              <Pricing language={language} />
+              <Footer language={language} />
             </div>
           } />
           <Route path="/testimonials" element={
             <div>
-              <Testimonials />
-              <Footer />
+              <Testimonials language={language} />
+              <Footer language={language} />
             </div>
           } />
           <Route path="/certificate-trust" element={
             <div>
-              <CertificateAndTrust />
-              <Footer />
+              <CertificateAndTrust language={language} />
+              <Footer language={language} />
             </div>
           } />
         </Routes>

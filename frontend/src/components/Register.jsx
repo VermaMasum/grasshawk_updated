@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { translations } from '../utils/translations';
 
-const Register = ({ onClose, onSwitchToLogin }) => {
+const Register = ({ onClose, onSwitchToLogin, language = 'en' }) => {
+  const t = translations[language] || translations.en;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,7 +57,7 @@ const Register = ({ onClose, onSwitchToLogin }) => {
               fontSize: '18px',
               fontWeight: 'bold'
             }}>
-              Sign Up
+              {t.auth.signUp}
             </h2>
             <button 
               onClick={onClose}
@@ -87,14 +89,14 @@ const Register = ({ onClose, onSwitchToLogin }) => {
                 fontWeight: '600',
                 fontSize: '13px'
               }}>
-                Full Name
+                {t.auth.fullName}
               </label>
               <input 
                 type="text" 
                 value={name} 
                 onChange={(e) => setName(e.target.value)}
                 required
-                placeholder="Enter your full name"
+                placeholder={t.auth.fullNamePlaceholder}
                 style={{ 
                   width: '100%',
                   padding: '10px 12px',
@@ -122,14 +124,14 @@ const Register = ({ onClose, onSwitchToLogin }) => {
                 fontWeight: '600',
                 fontSize: '13px'
               }}>
-                Email Address
+                {t.auth.email}
               </label>
               <input 
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Enter your email address"
+                placeholder={t.auth.emailPlaceholder}
                 style={{ 
                   width: '100%',
                   padding: '10px 12px',
@@ -157,14 +159,14 @@ const Register = ({ onClose, onSwitchToLogin }) => {
                 fontWeight: '600',
                 fontSize: '13px'
               }}>
-                Password
+                {t.auth.password}
               </label>
               <input 
                 type="password" 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Enter your password"
+                placeholder={t.auth.passwordPlaceholder}
                 style={{ 
                   width: '100%',
                   padding: '10px 12px',
@@ -199,7 +201,7 @@ const Register = ({ onClose, onSwitchToLogin }) => {
               onMouseOver={(e) => e.target.style.backgroundColor = '#218838'}
               onMouseOut={(e) => e.target.style.backgroundColor = '#28a745'}
             >
-              Sign Up
+              {t.auth.signUp}
             </button>
           </form>
           
@@ -214,7 +216,7 @@ const Register = ({ onClose, onSwitchToLogin }) => {
               color: '#666',
               fontSize: '14px'
             }}>
-              Already have an account?{' '}
+              {t.auth.hasAccount}{' '}
               <button 
                 onClick={onSwitchToLogin}
                 style={{ 
@@ -227,7 +229,7 @@ const Register = ({ onClose, onSwitchToLogin }) => {
                   fontWeight: '600'
                 }}
               >
-                Sign In
+                {t.auth.signIn}
               </button>
             </p>
           </div>

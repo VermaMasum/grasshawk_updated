@@ -237,6 +237,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
+import { translations } from "../utils/translations";
 import "./Products.css";
 import MoleTrapInstructions from "./MoleTrapInstructions";
 import moletrapImage from "../assets/moletrap.png";
@@ -248,7 +249,8 @@ import weatherResistantIcon from "../assets/weatherresistance.png";
 import durableIcon from "../assets/durableandheavyduty.png";
 import ecoFriendlyIcon from "../assets/reusableandecofriendly.png";
 
-const Products = ({ addToCart }) => {
+const Products = ({ addToCart, language = 'en' }) => {
+  const t = translations[language] || translations.en;
   const { addToCart: addToCartContext } = useCart();
   const [searchParams] = useSearchParams();
   const [selectedProduct, setSelectedProduct] = useState('grasshawk');
@@ -268,7 +270,7 @@ const Products = ({ addToCart }) => {
   // Add to cart function that connects to backend
   const addToCartBackend = async (product) => {
     if (!product || !product.available) {
-      setMessage('This product is coming soon!');
+      setMessage(t.products.comingSoon);
       setTimeout(() => setMessage(''), 3000);
       return;
     }
@@ -286,15 +288,15 @@ const Products = ({ addToCart }) => {
       });
 
       if (result.success) {
-        setMessage('Product added to cart successfully!');
+        setMessage(t.products.addedToCart);
         setTimeout(() => setMessage(''), 3000);
       } else {
-        setMessage(result.message || 'Failed to add product to cart');
+        setMessage(result.message || t.products.errorAddingToCart);
         setTimeout(() => setMessage(''), 3000);
       }
     } catch (error) {
       console.error('Error adding to cart:', error);
-      setMessage('Error adding to cart. Please try again.');
+      setMessage(t.products.errorAddingToCart);
       setTimeout(() => setMessage(''), 3000);
     } finally {
       setLoading(false);
@@ -303,40 +305,36 @@ const Products = ({ addToCart }) => {
   
   const productList = {
     grasshawk: {
-      name: "Grasshawk Mole Trap",
+      name: t.products.grasshawk.name,
       price: 799,
-      description:
-        "Get rid of moles quickly and safely with the Grasshawk Mole Trap. Designed for efficiency, reliability, and eco-friendliness, this durable trap ensures effective mole control without harmful chemicals. Easy to set up and reusable, it's the perfect solution for protecting your lawn and garden.",
+      description: t.products.grasshawk.description,
       available: true,
       company: "VIBGYOR Maple",
       productLine: "Grasshawk Series",
       image: moletrapImage
     },
     ecoseed: {
-      name: "EcoSeed Pro",
+      name: t.products.ecoseed.name,
       price: 0,
-      description:
-        "Premium grass seed blend optimized for Canadian climates. Coming soon with advanced seed technology.",
+      description: t.products.ecoseed.description,
       available: false,
       company: "VIBGYOR Maple",
       productLine: "EcoSeed Series",
       image: trapImage
     },
     wintershield: {
-      name: "WinterShield",
+      name: t.products.wintershield.name,
       price: 0,
-      description:
-        "Advanced winter protection for your garden. Coming soon with innovative cold-weather solutions.",
+      description: t.products.wintershield.description,
       available: false,
       company: "VIBGYOR Maple",
       productLine: "WinterShield Series",
       image: moleTrapHeroImage
     },
     naturefeed: {
-      name: "NatureFeed",
+      name: t.products.naturefeed.name,
       price: 0,
-      description:
-        "Natural plant nutrition system. Coming soon with eco-friendly feeding solutions.",
+      description: t.products.naturefeed.description,
       available: false,
       company: "VIBGYOR Maple",
       productLine: "NatureFeed Series",
@@ -362,7 +360,7 @@ const Products = ({ addToCart }) => {
   return (
     <section className="product-section" id="product">
       <div className="product-container">
-        <h2>Our Products</h2>
+        <h2>{t.products.title}</h2>
 
         {/* ==== Product Cards Grid ==== */}
         <div className="product-cards-grid">
@@ -386,11 +384,11 @@ const Products = ({ addToCart }) => {
                   {product.available ? (
                     <span className="price">${product.price}</span>
                   ) : (
-                    <span className="coming-soon">Coming Soon</span>
+                    <span className="coming-soon">{t.products.comingSoon}</span>
                   )}
                 </div>
                 <button className="know-more-btn">
-                  Know More
+                  {t.products.viewDetails}
                 </button>
               </div>
             </div>
@@ -409,7 +407,7 @@ const Products = ({ addToCart }) => {
             
             <div className="fullscreen-content">
               <div className="fullscreen-header">
-                <h2>Our Product: {modalProduct.name}</h2>
+                <h2>{t.products.ourProduct}: {modalProduct.name}</h2>
               </div>
 
                 {/* ==== Product Row (Image + Info) ==== */}
@@ -455,14 +453,14 @@ const Products = ({ addToCart }) => {
                             disabled={loading}
                             className="add-to-cart-btn"
                           >
-                            {loading ? 'Adding...' : 'Add to Cart'}
+                            {loading ? t.products.adding || 'Adding...' : t.products.addToCart}
                           </button>
                         </>
                       ) : (
                         <>
-                          <p className="coming-soon-price">Coming Soon</p>
+                          <p className="coming-soon-price">{t.products.comingSoon}</p>
                           <button disabled className="coming-soon-btn">
-                            Coming Soon
+                            {t.products.comingSoon}
                           </button>
                         </>
                       )}
@@ -483,7 +481,7 @@ const Products = ({ addToCart }) => {
 
                 {/* ==== Features Section ==== */}
                 <div className="features-section">
-                  <h3>Features</h3>
+                  <h3>{t.products.features}</h3>
                   <div className="features-grid">
                     <div className="feature-card" style={{
                       borderRadius: '0px',
@@ -494,8 +492,8 @@ const Products = ({ addToCart }) => {
                       minHeight: '200px',
                       maxHeight: '200px'
                     }}>
-                      <img src={easySetupIcon} alt="Easy to set up" />
-                      <p>Easy to set up</p>
+                      <img src={easySetupIcon} alt={t.products.easyToSetUp} />
+                      <p>{t.products.easyToSetUp}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
@@ -506,8 +504,8 @@ const Products = ({ addToCart }) => {
                       minHeight: '200px',
                       maxHeight: '200px'
                     }}>
-                      <img src={petFriendlyIcon} alt="Pet friendly" />
-                      <p>Pet friendly</p>
+                      <img src={petFriendlyIcon} alt={t.products.petFriendly} />
+                      <p>{t.products.petFriendly}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
@@ -518,8 +516,8 @@ const Products = ({ addToCart }) => {
                       minHeight: '200px',
                       maxHeight: '200px'
                     }}>
-                      <img src={weatherResistantIcon} alt="Weather resistant" />
-                      <p>Weather resistant</p>
+                      <img src={weatherResistantIcon} alt={t.products.weatherResistant} />
+                      <p>{t.products.weatherResistant}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
@@ -530,8 +528,8 @@ const Products = ({ addToCart }) => {
                       minHeight: '200px',
                       maxHeight: '200px'
                     }}>
-                      <img src={durableIcon} alt="Durable and heavy duty" />
-                      <p>Durable and heavy duty</p>
+                      <img src={durableIcon} alt={t.products.durableAndHeavyDuty} />
+                      <p>{t.products.durableAndHeavyDuty}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
@@ -542,15 +540,15 @@ const Products = ({ addToCart }) => {
                       minHeight: '200px',
                       maxHeight: '200px'
                     }}>
-                      <img src={ecoFriendlyIcon} alt="Reusable and eco-friendly" />
-                      <p>Reusable and eco-friendly</p>
+                      <img src={ecoFriendlyIcon} alt={t.products.reusableAndEcoFriendly} />
+                      <p>{t.products.reusableAndEcoFriendly}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* ==== Customer Reviews Section ==== */}
                 <div className="reviews-section">
-                  <h3>Customer Reviews</h3>
+                  <h3>{t.products.reviews}</h3>
                   <div className="reviews-grid">
                     <div className="review-card">
                       <div className="review-header">

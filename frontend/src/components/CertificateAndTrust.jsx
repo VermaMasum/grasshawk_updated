@@ -1,9 +1,11 @@
 import React from "react";
+import { translations } from "../utils/translations";
 import "./CertificateAndTrust.css";
 import logoVibgyor from "../assets/logo_vibgyor.png";
 import canadaGovLogo from "../assets/canada_gov_logo.jpg";
 
-const CertificateAndTrust = () => {
+const CertificateAndTrust = ({ language = 'en' }) => {
+  const t = translations[language] || translations.en;
   return (
     <section className="certifications-trust-section">
       <div className="bubble-animation">
@@ -13,38 +15,38 @@ const CertificateAndTrust = () => {
         <div className="bubble"></div>
         <div className="bubble"></div>
       </div>
-      <h1>Certifications & Trust</h1>
+      <h1>{t.certificate.title}</h1>
       <p className="subtitle">
-        Your peace of mind is our priority. We maintain the highest standards of quality, safety, and environmental responsibility.
+        {t.certificate.subtitle}
       </p>
       <div className="certifications-cards">
         <div className="cert-card">
           <div className="icon shield-icon"></div>
-          <h3>Health Canada Approved</h3>
-          <p>All products meet strict Canadian safety standards</p>
+          <h3>{t.certificate.cards.healthCanada.title}</h3>
+          <p>{t.certificate.cards.healthCanada.description}</p>
         </div>
         <div className="cert-card">
           <div className="icon leaf-icon"></div>
-          <h3>EcoLogo Certified</h3>
-          <p>Verified environmental choice for reduced impact</p>
+          <h3>{t.certificate.cards.ecoLogo.title}</h3>
+          <p>{t.certificate.cards.ecoLogo.description}</p>
         </div>
         <div className="cert-card">
           <div className="icon ribbon-icon"></div>
-          <h3>ISO 14001</h3>
-          <p>Environmental management system certification</p>
+          <h3>{t.certificate.cards.iso.title}</h3>
+          <p>{t.certificate.cards.iso.description}</p>
         </div>
         <div className="cert-card">
           <div className="icon location-icon">
             <img src={canadaGovLogo} alt="Canada Government Logo" className="canada-logo" />
           </div>
-          <h3>Canadian Made</h3>
-          <p>Proudly manufactured in Canada for Canadians</p>
+          <h3>{t.certificate.cards.canadianMade.title}</h3>
+          <p>{t.certificate.cards.canadianMade.description}</p>
         </div>
       </div>
       <section className="quality-assurance-section">
-        <h2>Quality & Reliability Assurance</h2>
+        <h2>{t.certificate.qualityAssurance.title}</h2>
         <p>
-          Every Vibgyor Maple product undergoes rigorous testing and quality control processes. We're committed to delivering solutions that not only meet but exceed Canadian environmental and safety standards.
+          {t.certificate.qualityAssurance.description}
         </p>
       </section>
       <section className="registered-design-section">
@@ -53,7 +55,7 @@ const CertificateAndTrust = () => {
             <img src={canadaGovLogo} alt="Canada Government Logo" className="canada-gov-logo" />
           </div>
           <p>
-            Our mole trap is registered industrial design at Canadian intellectual property office, Canada ensuring originality, innovation and trusted quality. Built for durability and efficiency, it delivers safe, eco friendly and reliable mole control.
+            {t.certificate.registeredDesign.description}
           </p>
         </div>
       </section>

@@ -272,34 +272,37 @@ const Navbar = ({ language, setLanguage }) => {
     return !!localStorage.getItem('token');
   });
 
+  // Import translations at the top of the file if not already imported
+  const t = require('../utils/translations').translations[language] || require('../utils/translations').translations.en;
+  
   const navItems = [
-    { id: 1, label: language === "fr" ? "Accueil" : "Home", route: "/" },
-    { id: 2, label: language === "fr" ? "À propos" : "About", route: "/about" },
+    { id: 1, label: t.nav.home, route: "/" },
+    { id: 2, label: t.nav.about, route: "/about" },
     {
       id: 3,
-      label: language === "fr" ? "Produits ▾" : "Products ▾",
+      label: `${t.nav.products} ▾`,
       route: "/products",
       hasDropdown: true,
       dropdownItems: [
-        { label: "Grasshawk Mole Trap", route: "/products?product=grasshawk" },
-        { label: "EcoSeed Pro", route: "/products?product=ecoseed" },
-        { label: "WinterShield", route: "/products?product=wintershield" },
-        { label: "NatureFeed", route: "/products?product=naturefeed" }
+        { label: t.productsDropdown.grasshawk, route: "/products?product=grasshawk" },
+        { label: t.productsDropdown.ecoseed, route: "/products?product=ecoseed" },
+        { label: t.productsDropdown.wintershield, route: "/products?product=wintershield" },
+        { label: t.productsDropdown.naturefeed, route: "/products?product=naturefeed" }
       ]
     },
     {
       id: 4,
-      label: language === "fr" ? "Certificats et Confiance" : "Certificate and Trust",
+      label: t.nav.certificateTrust,
       route: "/certificate-trust",
     },
     {
       id: 5,
-      label: language === "fr" ? "Témoignages" : "Testimonials",
+      label: t.nav.testimonials,
       route: "/testimonials",
     },
     {
       id: 6,
-      label: language === "fr" ? "Contact" : "Contact",
+      label: t.nav.contact,
       route: "/contact",
     },
   ];
@@ -518,7 +521,7 @@ const Navbar = ({ language, setLanguage }) => {
           ))}
           
           {/* Cart Icon */}
-          <Link to="/cart-backend" className="navbar-cart" title={`Cart (${cartCount} items)`}>
+          <Link to="/cart-backend" className="navbar-cart" title={`${t.nav.cart} (${cartCount} ${cartCount === 1 ? 'item' : 'items'})`}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="9" cy="21" r="1"></circle>
               <circle cx="20" cy="21" r="1"></circle>
@@ -560,7 +563,7 @@ const Navbar = ({ language, setLanguage }) => {
                         <polyline points="16,17 21,12 16,7"></polyline>
                         <line x1="21" y1="12" x2="9" y2="12"></line>
                       </svg>
-                      Logout
+                      {t.nav.logout}
                     </button>
                   </>
                 ) : (
@@ -578,7 +581,7 @@ const Navbar = ({ language, setLanguage }) => {
                         <polyline points="10,17 15,12 10,7"></polyline>
                         <line x1="15" y1="12" x2="3" y2="12"></line>
                       </svg>
-                      Login
+                      {t.nav.login}
                     </button>
                     <button 
                       onClick={() => {
@@ -593,7 +596,7 @@ const Navbar = ({ language, setLanguage }) => {
                         <line x1="20" y1="8" x2="20" y2="14"></line>
                         <line x1="23" y1="11" x2="17" y2="11"></line>
                       </svg>
-                      Register
+                      {t.nav.register}
                     </button>
                   </>
                 )}
@@ -641,7 +644,7 @@ const Navbar = ({ language, setLanguage }) => {
               <circle cx="20" cy="21" r="1"></circle>
               <path d="m1 1 4 4 13 0 3 8-13 0"></path>
             </svg>
-            Cart {cartCount > 0 && `(${cartCount})`}
+            {t.nav.cart} {cartCount > 0 && `(${cartCount})`}
           </Link>
 
           {/* Mobile Profile Section */}
@@ -669,8 +672,8 @@ const Navbar = ({ language, setLanguage }) => {
                     <polyline points="16,17 21,12 16,7"></polyline>
                     <line x1="21" y1="12" x2="9" y2="12"></line>
                   </svg>
-                  Logout
-                </button>
+                      {t.nav.logout}
+                    </button>
               </>
             ) : (
               <>
@@ -686,7 +689,7 @@ const Navbar = ({ language, setLanguage }) => {
                     <polyline points="10,17 15,12 10,7"></polyline>
                     <line x1="15" y1="12" x2="3" y2="12"></line>
                   </svg>
-                  Login
+                  {t.nav.login}
                 </button>
                 <button 
                   onClick={() => {
@@ -701,7 +704,7 @@ const Navbar = ({ language, setLanguage }) => {
                     <line x1="20" y1="8" x2="20" y2="14"></line>
                     <line x1="23" y1="11" x2="17" y2="11"></line>
                   </svg>
-                  Register
+                  {t.nav.register}
                 </button>
               </>
             )}
@@ -721,6 +724,7 @@ const Navbar = ({ language, setLanguage }) => {
             setShowLoginModal(false);
             setShowRegisterModal(true);
           }}
+          language={language}
         />
       )}
 
@@ -732,6 +736,7 @@ const Navbar = ({ language, setLanguage }) => {
             setShowRegisterModal(false);
             setShowLoginModal(true);
           }}
+          language={language}
         />
       )}
     </header>
