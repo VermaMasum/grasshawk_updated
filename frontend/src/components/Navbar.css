@@ -748,6 +748,35 @@
   overflow-y: auto;
 }
 
+/* Enhanced Modal Backdrop for Login/Register */
+.modal-backdrop-enhanced {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 10000 !important;
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+  isolation: isolate;
+}
+
+/* Modal Container Top-Right - Very Compact */
+.modal-container-centered {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 280px;
+  max-width: 80vw;
+  max-height: calc(100vh - 20px);
+  background-color: transparent;
+  z-index: 10001 !important;
+  isolation: isolate;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

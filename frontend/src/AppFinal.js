@@ -6,8 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import EnhancedAbout from "./components/EnhancedAbout";
-import EnhancedContact from "./components/EnhancedContact";
-import SimpleContact from "./components/SimpleContact";
+import Contact from "./components/Contact";
 import Products from "./components/Products";
 import ProductDetails from "./components/ProductDetails";
 import Pricing from "./components/Pricing";
@@ -124,7 +123,7 @@ function App() {
           <Route path="/cancel" element={<Cancel />} />
           <Route path="/contact" element={
             <div>
-              <SimpleContact />
+              <Contact />
               <Footer />
             </div>
           } />

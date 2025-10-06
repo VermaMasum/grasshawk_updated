@@ -14,34 +14,28 @@ const Login = ({ onClose, onSwitchToRegister }) => {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Solid backdrop to block content behind */}
       <div 
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          zIndex: 99999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
+        className="modal-backdrop-enhanced"
         onClick={onClose}
-      >
+      />
+      {/* Modal container - centered */}
+      <div className="modal-container-centered">
         {/* Modal Content */}
         <div 
           style={{
             backgroundColor: 'white',
-            padding: '30px',
-            borderRadius: '12px',
-            width: '400px',
-            maxWidth: '90vw',
-            maxHeight: '90vh',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+            padding: '16px',
+            borderRadius: '8px',
+            width: '100%',
+            maxHeight: '60vh',
+            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.3)',
             position: 'relative',
-            zIndex: 100000
+            zIndex: 10001,
+            overflow: 'auto',
+            border: '1px solid #e5e7eb',
+            isolation: 'isolate',
+            backdropFilter: 'blur(10px)'
           }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -50,14 +44,14 @@ const Login = ({ onClose, onSwitchToRegister }) => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            marginBottom: '25px',
+            marginBottom: '16px',
             borderBottom: '1px solid #eee',
-            paddingBottom: '15px'
+            paddingBottom: '10px'
           }}>
             <h2 style={{ 
               margin: 0, 
               color: '#333', 
-              fontSize: '24px',
+              fontSize: '18px',
               fontWeight: 'bold'
             }}>
               Sign In
@@ -82,15 +76,15 @@ const Login = ({ onClose, onSwitchToRegister }) => {
           <form onSubmit={handleSubmit}>
             {/* Email Field */}
             <div style={{ 
-              marginBottom: '20px',
+              marginBottom: '12px',
               display: 'block'
             }}>
               <label style={{
                 display: 'block',
-                marginBottom: '8px',
+                marginBottom: '6px',
                 color: '#333',
                 fontWeight: '600',
-                fontSize: '14px'
+                fontSize: '13px'
               }}>
                 Email Address
               </label>
@@ -102,10 +96,10 @@ const Login = ({ onClose, onSwitchToRegister }) => {
                 placeholder="Enter your email address"
                 style={{ 
                   width: '100%',
-                  padding: '12px 16px',
+                  padding: '10px 12px',
                   border: '2px solid #ddd',
-                  borderRadius: '8px',
-                  fontSize: '16px',
+                  borderRadius: '6px',
+                  fontSize: '14px',
                   boxSizing: 'border-box',
                   backgroundColor: '#fff',
                   transition: 'border-color 0.3s'
@@ -117,15 +111,15 @@ const Login = ({ onClose, onSwitchToRegister }) => {
             
             {/* Password Field */}
             <div style={{ 
-              marginBottom: '25px',
+              marginBottom: '16px',
               display: 'block'
             }}>
               <label style={{
                 display: 'block',
-                marginBottom: '8px',
+                marginBottom: '6px',
                 color: '#333',
                 fontWeight: '600',
-                fontSize: '14px'
+                fontSize: '13px'
               }}>
                 Password
               </label>
@@ -137,10 +131,10 @@ const Login = ({ onClose, onSwitchToRegister }) => {
                 placeholder="Enter your password"
                 style={{ 
                   width: '100%',
-                  padding: '12px 16px',
+                  padding: '10px 12px',
                   border: '2px solid #ddd',
-                  borderRadius: '8px',
-                  fontSize: '16px',
+                  borderRadius: '6px',
+                  fontSize: '14px',
                   boxSizing: 'border-box',
                   backgroundColor: '#fff',
                   transition: 'border-color 0.3s'
@@ -155,16 +149,16 @@ const Login = ({ onClose, onSwitchToRegister }) => {
               type="submit"
               style={{ 
                 width: '100%',
-                padding: '14px',
+                padding: '12px',
                 backgroundColor: '#007bff',
                 color: 'white',
                 border: 'none',
-                borderRadius: '8px',
-                fontSize: '16px',
+                borderRadius: '6px',
+                fontSize: '14px',
                 fontWeight: '600',
                 cursor: 'pointer',
                 transition: 'background-color 0.3s',
-                marginBottom: '20px'
+                marginBottom: '12px'
               }}
               onMouseOver={(e) => e.target.style.backgroundColor = '#0056b3'}
               onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}

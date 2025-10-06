@@ -26,29 +26,31 @@ const SimpleContact = () => {
 
   return (
     <div style={{
-      padding: '80px 20px',
+      padding: 'clamp(40px, 8vw, 80px) clamp(1rem, 4vw, 2rem)',
       background: '#ffffff',
       minHeight: '100vh',
       maxWidth: '1200px',
       margin: '0 auto'
     }}>
       <h1 style={{
-        fontSize: '2.5rem',
+        fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
         fontWeight: '700',
         color: '#1a202c',
         textAlign: 'center',
-        marginBottom: '2rem'
+        marginBottom: 'clamp(1rem, 3vw, 2rem)',
+        lineHeight: '1.2'
       }}>
         Contact Us
       </h1>
       
       <p style={{
-        fontSize: '1.1rem',
+        fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
         color: '#4a5568',
         textAlign: 'center',
-        marginBottom: '3rem',
+        marginBottom: 'clamp(1.5rem, 4vw, 3rem)',
         maxWidth: '600px',
-        margin: '0 auto 3rem auto'
+        margin: '0 auto clamp(1.5rem, 4vw, 3rem) auto',
+        lineHeight: '1.6'
       }}>
         We'd love to hear from you. Whether you have a question about our products, 
         pricing, or anything else, our team is ready to answer all your questions.
@@ -56,48 +58,95 @@ const SimpleContact = () => {
 
       <div style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '3rem',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: 'clamp(1.5rem, 4vw, 3rem)',
         maxWidth: '1000px',
         margin: '0 auto'
       }}>
         {/* Contact Information */}
         <div style={{
           background: '#f8fafc',
-          padding: '2rem',
-          borderRadius: '16px'
+          padding: 'clamp(1.5rem, 4vw, 2rem)',
+          borderRadius: 'clamp(12px, 3vw, 16px)'
         }}>
           <h3 style={{
-            fontSize: '1.5rem',
+            fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
             fontWeight: '600',
             color: '#1a202c',
-            marginBottom: '1rem'
+            marginBottom: 'clamp(0.5rem, 2vw, 1rem)',
+            lineHeight: '1.3'
           }}>
             Contact Information
           </h3>
           
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>Our Location</h4>
-            <p style={{ color: '#4a5568', margin: '0' }}>
+          <div style={{ marginBottom: 'clamp(1rem, 3vw, 1.5rem)' }}>
+            <h4 style={{ 
+              marginBottom: 'clamp(0.25rem, 1vw, 0.5rem)', 
+              color: '#1a202c',
+              fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
+              fontWeight: '600'
+            }}>Our Location</h4>
+            <p style={{ 
+              color: '#4a5568', 
+              margin: '0',
+              fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+              lineHeight: '1.5'
+            }}>
               Grass Hawk Technologies<br />
               1234 Innovation Drive<br />
               Agricultural Park, CA 90210
             </p>
           </div>
 
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>Phone Numbers</h4>
-            <p style={{ color: '#4a5568', margin: '0' }}>
-              Sales: <a href="tel:+1-800-GRASS-01" style={{ color: '#2563eb' }}>+1 (800) GRASS-01</a><br />
-              Support: <a href="tel:+1-800-GRASS-02" style={{ color: '#2563eb' }}>+1 (800) GRASS-02</a>
+          <div style={{ marginBottom: 'clamp(1rem, 3vw, 1.5rem)' }}>
+            <h4 style={{ 
+              marginBottom: 'clamp(0.25rem, 1vw, 0.5rem)', 
+              color: '#1a202c',
+              fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
+              fontWeight: '600'
+            }}>Phone Numbers</h4>
+            <p style={{ 
+              color: '#4a5568', 
+              margin: '0',
+              fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+              lineHeight: '1.5'
+            }}>
+              Sales: <a href="tel:+1-800-GRASS-01" style={{ 
+                color: '#2563eb',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                wordBreak: 'break-all'
+              }}>+1 (800) GRASS-01</a><br />
+              Support: <a href="tel:+1-800-GRASS-02" style={{ 
+                color: '#2563eb',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                wordBreak: 'break-all'
+              }}>+1 (800) GRASS-02</a>
             </p>
           </div>
 
           <div>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>Email Addresses</h4>
-            <p style={{ color: '#4a5568', margin: '0' }}>
-              General: <a href="mailto:info@grasshawk.com" style={{ color: '#2563eb' }}>info@grasshawk.com</a><br />
-              Sales: <a href="mailto:sales@grasshawk.com" style={{ color: '#2563eb' }}>sales@grasshawk.com</a>
+            <h4 style={{ 
+              marginBottom: 'clamp(0.25rem, 1vw, 0.5rem)', 
+              color: '#1a202c',
+              fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
+              fontWeight: '600'
+            }}>Email Addresses</h4>
+            <p style={{ 
+              color: '#4a5568', 
+              margin: '0',
+              fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+              lineHeight: '1.5'
+            }}>
+              General: <a href="mailto:info@grasshawk.com" style={{ 
+                color: '#2563eb',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                wordBreak: 'break-all'
+              }}>info@grasshawk.com</a><br />
+              Sales: <a href="mailto:sales@grasshawk.com" style={{ 
+                color: '#2563eb',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                wordBreak: 'break-all'
+              }}>sales@grasshawk.com</a>
             </p>
           </div>
         </div>
@@ -105,15 +154,16 @@ const SimpleContact = () => {
         {/* Contact Form */}
         <div style={{
           background: '#ffffff',
-          padding: '2rem',
-          borderRadius: '16px',
+          padding: 'clamp(1.5rem, 4vw, 2rem)',
+          borderRadius: 'clamp(12px, 3vw, 16px)',
           boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
         }}>
           <h3 style={{
-            fontSize: '1.5rem',
+            fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
             fontWeight: '600',
             color: '#1a202c',
-            marginBottom: '1rem'
+            marginBottom: 'clamp(0.5rem, 2vw, 1rem)',
+            lineHeight: '1.3'
           }}>
             Send Us a Message
           </h3>
@@ -121,14 +171,15 @@ const SimpleContact = () => {
           <form onSubmit={handleSubmit} style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.5rem'
+            gap: 'clamp(1rem, 3vw, 1.5rem)'
           }}>
             <div>
               <label style={{
                 display: 'block',
-                marginBottom: '0.5rem',
+                marginBottom: 'clamp(0.25rem, 1vw, 0.5rem)',
                 fontWeight: '500',
-                color: '#1a202c'
+                color: '#1a202c',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)'
               }}>
                 Full Name *
               </label>
@@ -141,11 +192,12 @@ const SimpleContact = () => {
                 placeholder="Your full name"
                 style={{
                   width: '100%',
-                  padding: '12px',
+                  padding: 'clamp(10px, 2.5vw, 12px)',
                   border: '1px solid #d1d5db',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
-                  boxSizing: 'border-box'
+                  borderRadius: 'clamp(6px, 1.5vw, 8px)',
+                  fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                  boxSizing: 'border-box',
+                  minHeight: '44px'
                 }}
               />
             </div>
@@ -153,9 +205,10 @@ const SimpleContact = () => {
             <div>
               <label style={{
                 display: 'block',
-                marginBottom: '0.5rem',
+                marginBottom: 'clamp(0.25rem, 1vw, 0.5rem)',
                 fontWeight: '500',
-                color: '#1a202c'
+                color: '#1a202c',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)'
               }}>
                 Email Address *
               </label>
@@ -168,11 +221,12 @@ const SimpleContact = () => {
                 placeholder="your.email@example.com"
                 style={{
                   width: '100%',
-                  padding: '12px',
+                  padding: 'clamp(10px, 2.5vw, 12px)',
                   border: '1px solid #d1d5db',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
-                  boxSizing: 'border-box'
+                  borderRadius: 'clamp(6px, 1.5vw, 8px)',
+                  fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                  boxSizing: 'border-box',
+                  minHeight: '44px'
                 }}
               />
             </div>
@@ -180,9 +234,10 @@ const SimpleContact = () => {
             <div>
               <label style={{
                 display: 'block',
-                marginBottom: '0.5rem',
+                marginBottom: 'clamp(0.25rem, 1vw, 0.5rem)',
                 fontWeight: '500',
-                color: '#1a202c'
+                color: '#1a202c',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)'
               }}>
                 Subject *
               </label>
@@ -195,11 +250,12 @@ const SimpleContact = () => {
                 placeholder="How can we help you?"
                 style={{
                   width: '100%',
-                  padding: '12px',
+                  padding: 'clamp(10px, 2.5vw, 12px)',
                   border: '1px solid #d1d5db',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
-                  boxSizing: 'border-box'
+                  borderRadius: 'clamp(6px, 1.5vw, 8px)',
+                  fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                  boxSizing: 'border-box',
+                  minHeight: '44px'
                 }}
               />
             </div>
@@ -207,9 +263,10 @@ const SimpleContact = () => {
             <div>
               <label style={{
                 display: 'block',
-                marginBottom: '0.5rem',
+                marginBottom: 'clamp(0.25rem, 1vw, 0.5rem)',
                 fontWeight: '500',
-                color: '#1a202c'
+                color: '#1a202c',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)'
               }}>
                 Message *
               </label>
@@ -222,12 +279,12 @@ const SimpleContact = () => {
                 placeholder="Tell us more about your inquiry..."
                 style={{
                   width: '100%',
-                  padding: '12px',
+                  padding: 'clamp(10px, 2.5vw, 12px)',
                   border: '1px solid #d1d5db',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
+                  borderRadius: 'clamp(6px, 1.5vw, 8px)',
+                  fontSize: 'clamp(0.9rem, 2vw, 1rem)',
                   resize: 'vertical',
-                  minHeight: '120px',
+                  minHeight: 'clamp(100px, 20vw, 120px)',
                   boxSizing: 'border-box'
                 }}
               />
@@ -237,15 +294,16 @@ const SimpleContact = () => {
               type="submit"
               style={{
                 width: '100%',
-                padding: '12px 24px',
+                padding: 'clamp(10px, 2.5vw, 12px) clamp(20px, 4vw, 24px)',
                 backgroundColor: '#2563eb',
                 color: 'white',
                 border: 'none',
-                borderRadius: '8px',
-                fontSize: '1rem',
+                borderRadius: 'clamp(6px, 1.5vw, 8px)',
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
                 fontWeight: '500',
                 cursor: 'pointer',
-                transition: 'background-color 0.3s'
+                transition: 'background-color 0.3s',
+                minHeight: '44px'
               }}
               onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
               onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
