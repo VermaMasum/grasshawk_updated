@@ -11,6 +11,7 @@ import ProductsBackend from "./components/ProductsBackend";
 import ProductPage from "./components/ProductPage";
 import ProductPageBackend from "./components/ProductPageBackend";
 import ProductDetails from "./components/ProductDetails";
+import ProductDetailsPage from "./components/ProductDetailsPage";
 import Cart from "./components/Cart";
 import CartBackend from "./components/CartBackend";
 import CartEnhanced from "./components/CartEnhanced";
@@ -82,7 +83,7 @@ function App() {
               </>
             }
           />
-          <Route path="/products" element={<Products addToCart={addToCart} />} />
+          <Route path="/products" element={<ProductDetailsPage language={language} />} />
           <Route
             path="/product-page"
             element={

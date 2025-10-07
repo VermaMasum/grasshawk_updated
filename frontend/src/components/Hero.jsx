@@ -213,10 +213,6 @@ const Hero = ({ language = 'en' }) => {
               <div className="stat-label">{t.hero.stats.satisfiedCustomers}</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">15+</div>
-              <div className="stat-label">{t.hero.stats.yearsExperience}</div>
-            </div>
-            <div className="stat-item">
               <div className="stat-number">99%</div>
               <div className="stat-label">{t.hero.stats.successRate}</div>
             </div>

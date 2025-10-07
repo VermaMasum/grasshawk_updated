@@ -306,7 +306,7 @@ const Products = ({ addToCart, language = 'en' }) => {
   const productList = {
     grasshawk: {
       name: t.products.grasshawk.name,
-      price: 799,
+      price: 20,
       description: t.products.grasshawk.description,
       available: true,
       company: "VIBGYOR Maple",
@@ -481,67 +481,67 @@ const Products = ({ addToCart, language = 'en' }) => {
 
                 {/* ==== Features Section ==== */}
                 <div className="features-section">
-                  <h3>{t.products.features}</h3>
+                  <h3 style={{ fontSize: '2rem', marginBottom: '2rem' }}>{t.products.features}</h3>
                   <div className="features-grid">
                     <div className="feature-card" style={{
                       borderRadius: '0px',
-                      width: '200px',
-                      height: '200px',
-                      minWidth: '200px',
-                      maxWidth: '200px',
-                      minHeight: '200px',
-                      maxHeight: '200px'
+                      width: '250px',
+                      height: '250px',
+                      minWidth: '250px',
+                      maxWidth: '250px',
+                      minHeight: '250px',
+                      maxHeight: '250px'
                     }}>
-                      <img src={easySetupIcon} alt={t.products.easyToSetUp} />
-                      <p>{t.products.easyToSetUp}</p>
+                      <img src={easySetupIcon} alt={t.products.easyToSetUp} style={{ width: '120px', height: '120px' }} />
+                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.easyToSetUp}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
-                      width: '200px',
-                      height: '200px',
-                      minWidth: '200px',
-                      maxWidth: '200px',
-                      minHeight: '200px',
-                      maxHeight: '200px'
+                      width: '250px',
+                      height: '250px',
+                      minWidth: '250px',
+                      maxWidth: '250px',
+                      minHeight: '250px',
+                      maxHeight: '250px'
                     }}>
-                      <img src={petFriendlyIcon} alt={t.products.petFriendly} />
-                      <p>{t.products.petFriendly}</p>
+                      <img src={petFriendlyIcon} alt={t.products.petFriendly} style={{ width: '120px', height: '120px' }} />
+                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.petFriendly}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
-                      width: '200px',
-                      height: '200px',
-                      minWidth: '200px',
-                      maxWidth: '200px',
-                      minHeight: '200px',
-                      maxHeight: '200px'
+                      width: '250px',
+                      height: '250px',
+                      minWidth: '250px',
+                      maxWidth: '250px',
+                      minHeight: '250px',
+                      maxHeight: '250px'
                     }}>
-                      <img src={weatherResistantIcon} alt={t.products.weatherResistant} />
-                      <p>{t.products.weatherResistant}</p>
+                      <img src={weatherResistantIcon} alt={t.products.weatherResistant} style={{ width: '120px', height: '120px' }} />
+                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.weatherResistant}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
-                      width: '200px',
-                      height: '200px',
-                      minWidth: '200px',
-                      maxWidth: '200px',
-                      minHeight: '200px',
-                      maxHeight: '200px'
+                      width: '250px',
+                      height: '250px',
+                      minWidth: '250px',
+                      maxWidth: '250px',
+                      minHeight: '250px',
+                      maxHeight: '250px'
                     }}>
-                      <img src={durableIcon} alt={t.products.durableAndHeavyDuty} />
-                      <p>{t.products.durableAndHeavyDuty}</p>
+                      <img src={durableIcon} alt={t.products.durableAndHeavyDuty} style={{ width: '120px', height: '120px' }} />
+                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.durableAndHeavyDuty}</p>
                     </div>
                     <div className="feature-card" style={{
                       borderRadius: '0px',
-                      width: '200px',
-                      height: '200px',
-                      minWidth: '200px',
-                      maxWidth: '200px',
-                      minHeight: '200px',
-                      maxHeight: '200px'
+                      width: '250px',
+                      height: '250px',
+                      minWidth: '250px',
+                      maxWidth: '250px',
+                      minHeight: '250px',
+                      maxHeight: '250px'
                     }}>
-                      <img src={ecoFriendlyIcon} alt={t.products.reusableAndEcoFriendly} />
-                      <p>{t.products.reusableAndEcoFriendly}</p>
+                      <img src={ecoFriendlyIcon} alt={t.products.reusableAndEcoFriendly} style={{ width: '120px', height: '120px' }} />
+                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.reusableAndEcoFriendly}</p>
                     </div>
                   </div>
                 </div>

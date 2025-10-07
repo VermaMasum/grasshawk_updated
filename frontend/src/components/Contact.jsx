@@ -86,27 +86,30 @@ const Contact = ({ language = 'en' }) => {
           </h3>
           
           <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>📍 {t.contact.info.ourLocation}</h4>
-            <p style={{ color: '#4a5568', margin: '0' }}>
-              Grass Hawk Technologies<br />
-              1234 Innovation Drive<br />
-              Agricultural Park, CA 90210
+            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#e91e63' }}>📍</span> {t.contact.info.ourLocation}
+            </h4>
+            <p style={{ color: '#4a5568', margin: '0', marginLeft: '32px' }}>
+              3697 Green Bank Road<br />
+              Regina, SK S4V 1P6
             </p>
           </div>
 
           <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>📞 {t.contact.info.phoneNumbers}</h4>
-            <p style={{ color: '#4a5568', margin: '0' }}>
-              {t.contact.info.sales}: <a href="tel:+1-800-GRASS-01" style={{ color: '#2563eb' }}>+1 (800) GRASS-01</a><br />
-              {t.contact.info.support}: <a href="tel:+1-800-GRASS-02" style={{ color: '#2563eb' }}>+1 (800) GRASS-02</a>
+            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#e91e63' }}>📞</span> {t.contact.info.phoneNumbers}
+            </h4>
+            <p style={{ color: '#4a5568', margin: '0', marginLeft: '32px' }}>
+              <a href="tel:+1-639-590-9729" style={{ color: '#2563eb', textDecoration: 'underline' }}>+1 639 590 9729</a>
             </p>
           </div>
 
           <div>
-            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c' }}>✉️ {t.contact.info.emailAddresses}</h4>
-            <p style={{ color: '#4a5568', margin: '0' }}>
-              {t.contact.info.general}: <a href="mailto:info@grasshawk.com" style={{ color: '#2563eb' }}>info@grasshawk.com</a><br />
-              {t.contact.info.sales}: <a href="mailto:sales@grasshawk.com" style={{ color: '#2563eb' }}>sales@grasshawk.com</a>
+            <h4 style={{ marginBottom: '0.5rem', color: '#1a202c', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#e91e63' }}>✉️</span> {t.contact.info.emailAddresses}
+            </h4>
+            <p style={{ color: '#4a5568', margin: '0', marginLeft: '32px' }}>
+              <a href="mailto:contact.grasshawk@gmail.com" style={{ color: '#2563eb', textDecoration: 'underline' }}>contact.grasshawk@gmail.com</a>
             </p>
           </div>
         </div>

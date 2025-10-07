@@ -29,16 +29,16 @@ const Footer = ({ language = 'en' }) => {
         <div className="footer-section">
           <h3>{t.footer.contactInfo}</h3>
           <address>
-            <p>{t.footer.email}: info@moletrap.com</p>
-            <p>{t.footer.phone}: (123) 456-7890</p>
-            <p>{t.footer.address}: 123 Pest Control Ave, Garden City</p>
+            <p>{t.footer.email}: contact.grasshawk@gmail.com</p>
+            <p>{t.footer.phone}: +1 639 590 9729</p>
+            <p>{t.footer.address}: 3697 Green Bank Road, Regina, SK S4V 1P6</p>
           </address>
           <a href="/contact" className="global-button">{t.nav.contact}</a>
         </div>
       </div> {/* ✅ properly closing footer-container */}
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Mole Trap Solutions. {t.footer.rights}.</p>
+        <p>&copy; {new Date().getFullYear()} VIBGYOR Maple. {t.footer.rights}.</p>
       </div>
     </footer>
   );

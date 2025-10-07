@@ -17,7 +17,7 @@ export const translations = {
     
     // Products Dropdown
     productsDropdown: {
-      grasshawk: "Grasshawk Mole Trap",
+      grasshawk: "Grasshawk KLAW Mole Trap",
       ecoseed: "EcoSeed Pro",
       wintershield: "WinterShield",
       naturefeed: "NatureFeed"
@@ -59,12 +59,12 @@ export const translations = {
         description: "We design products that address real backyard challenges, from pest protection to garden preservation, without relying on harmful chemicals. Built with Canadian weather conditions in mind, VIBGYOR Maple solutions are durable, family-friendly, and environmentally responsible."
       },
       story: {
-        title: "Our Story",
-        paragraph1: "Founded with a commitment to excellence and innovation, VIBGYOR Maple has been at the forefront of backyard protection technology for over a decade. Our journey began with a simple observation: Canadian homeowners needed reliable, weather-resistant solutions for their outdoor spaces.",
-        paragraph2: "Today, we combine advanced engineering with sustainable practices to deliver products that not only protect your investment but also contribute to a healthier environment. Our research and development team continuously works to improve our offerings, ensuring they meet the evolving needs of modern homeowners.",
-        yearsInBusiness: "Years in Business",
-        productsSold: "Products Sold",
-        customerSatisfaction: "Customer Satisfaction"
+        title: "About VIBGYOR Maple",
+        paragraph1: "Founded with a passion for innovation and quality, VIBGYOR Maple is a new name in backyard protection—created to bring smart, reliable, and sustainable solutions to Canadian homes. Our story began with a clear purpose: to help homeowners protect and enhance their outdoor spaces with products designed for Canada's unique weather conditions.",
+        paragraph2: "At VIBGYOR Maple, we focus on engineering excellence, eco-conscious materials, and customer trust. Every product is developed through careful research and local insights, ensuring durability, safety, and real value for your home. As a growing company, we're committed to earning your confidence—one backyard at a time.",
+        yearsExperience: "Years of combined industry experience in product design and outdoor protection",
+        canadianSupport: "Canadian support team for local assistance",
+        backyardsProtected: "Backyards protected and counting"
       },
       values: {
         title: "Our Core Values",
@@ -169,8 +169,8 @@ export const translations = {
       addedToCart: "Product added to cart successfully!",
       errorAddingToCart: "Error adding to cart. Please try again.",
       grasshawk: {
-        name: "Grasshawk Mole Trap",
-        description: "Get rid of moles quickly and safely with the Grasshawk Mole Trap. Designed for efficiency, reliability, and eco-friendliness, this durable trap ensures effective mole control without harmful chemicals. Easy to set up and reusable, it's the perfect solution for protecting your lawn and garden."
+        name: "Grasshawk KLAW Mole Trap",
+        description: "Get rid of moles quickly and safely with the Grasshawk KLAW Mole Trap. Designed for efficiency, reliability, and eco-friendliness, this durable trap ensures effective mole control without harmful chemicals. Easy to set up and reusable, it's the perfect solution for protecting your lawn and garden."
       },
       ecoseed: {
         name: "EcoSeed Pro",
@@ -183,6 +183,14 @@ export const translations = {
       naturefeed: {
         name: "NatureFeed",
         description: "Organic lawn fertilizer designed for sustainable garden care. Coming soon with natural nutrient formulations."
+      },
+      gardenpro: {
+        name: "GardenPro Shield",
+        description: "Advanced garden protection system designed for year-round plant care. Coming soon with smart sensor technology."
+      },
+      soilmaster: {
+        name: "SoilMaster Pro",
+        description: "Professional soil enhancement solution for optimal plant growth. Coming soon with organic nutrient formulations."
       },
       features: "Features",
       reviews: "Customer Reviews",
@@ -226,7 +234,7 @@ export const translations = {
     // Footer
     footer: {
       aboutUs: "About Us",
-      aboutDescription: "We provide high-quality mole traps and pest control solutions to help protect your property and garden.",
+      aboutDescription: "VIBGYOR Maple brings smart, reliable, and sustainable backyard protection solutions designed for Canadian homes. Quality you can trust.",
       readMore: "Read More",
       quickLinks: "Quick Links",
       home: "Home",
@@ -257,7 +265,7 @@ export const translations = {
     
     // Products Dropdown
     productsDropdown: {
-      grasshawk: "Piège à Taupes Grasshawk",
+      grasshawk: "Piège à Taupes Grasshawk KLAW",
       ecoseed: "EcoSeed Pro",
       wintershield: "WinterShield",
       naturefeed: "NatureFeed"
@@ -299,12 +307,12 @@ export const translations = {
         description: "Nous concevons des produits qui répondent aux véritables défis des jardins, de la protection contre les nuisibles à la préservation des jardins, sans recourir à des produits chimiques nocifs. Conçues en tenant compte des conditions météorologiques canadiennes, les solutions VIBGYOR Maple sont durables, adaptées aux familles et respectueuses de l'environnement."
       },
       story: {
-        title: "Notre Histoire",
-        paragraph1: "Fondée avec un engagement envers l'excellence et l'innovation, VIBGYOR Maple est à la pointe de la technologie de protection des jardins depuis plus d'une décennie. Notre parcours a commencé par une simple observation : les propriétaires canadiens avaient besoin de solutions fiables et résistantes aux intempéries pour leurs espaces extérieurs.",
-        paragraph2: "Aujourd'hui, nous combinons ingénierie avancée et pratiques durables pour offrir des produits qui non seulement protègent votre investissement mais contribuent également à un environnement plus sain. Notre équipe de recherche et développement travaille continuellement à améliorer nos offres, en veillant à ce qu'elles répondent aux besoins évolutifs des propriétaires modernes.",
-        yearsInBusiness: "Années d'Activité",
-        productsSold: "Produits Vendus",
-        customerSatisfaction: "Satisfaction Client"
+        title: "À Propos de VIBGYOR Maple",
+        paragraph1: "Fondée avec une passion pour l'innovation et la qualité, VIBGYOR Maple est un nouveau nom dans la protection des jardins—créé pour apporter des solutions intelligentes, fiables et durables aux maisons canadiennes. Notre histoire a commencé avec un objectif clair : aider les propriétaires à protéger et améliorer leurs espaces extérieurs avec des produits conçus pour les conditions météorologiques uniques du Canada.",
+        paragraph2: "Chez VIBGYOR Maple, nous nous concentrons sur l'excellence en ingénierie, les matériaux écologiques et la confiance des clients. Chaque produit est développé grâce à des recherches approfondies et des connaissances locales, garantissant durabilité, sécurité et vraie valeur pour votre maison. En tant qu'entreprise en croissance, nous nous engageons à gagner votre confiance—un jardin à la fois.",
+        yearsExperience: "Années d'expérience combinée dans l'industrie de la conception de produits et de la protection extérieure",
+        canadianSupport: "Équipe de support canadienne pour assistance locale",
+        backyardsProtected: "Jardins protégés et en croissance"
       },
       values: {
         title: "Nos Valeurs Fondamentales",
@@ -409,8 +417,8 @@ export const translations = {
       addedToCart: "Produit ajouté au panier avec succès!",
       errorAddingToCart: "Erreur lors de l'ajout au panier. Veuillez réessayer.",
       grasshawk: {
-        name: "Piège à Taupes Grasshawk",
-        description: "Débarrassez-vous des taupes rapidement et en toute sécurité avec le piège à taupes Grasshawk. Conçu pour l'efficacité, la fiabilité et le respect de l'environnement, ce piège durable assure un contrôle efficace des taupes sans produits chimiques nocifs. Facile à installer et réutilisable, c'est la solution parfaite pour protéger votre pelouse et votre jardin."
+        name: "Piège à Taupes Grasshawk KLAW",
+        description: "Débarrassez-vous des taupes rapidement et en toute sécurité avec le piège à taupes Grasshawk KLAW. Conçu pour l'efficacité, la fiabilité et le respect de l'environnement, ce piège durable assure un contrôle efficace des taupes sans produits chimiques nocifs. Facile à installer et réutilisable, c'est la solution parfaite pour protéger votre pelouse et votre jardin."
       },
       ecoseed: {
         name: "EcoSeed Pro",
@@ -423,6 +431,14 @@ export const translations = {
       naturefeed: {
         name: "NatureFeed",
         description: "Engrais organique pour pelouse conçu pour un entretien durable du jardin. Bientôt disponible avec des formulations de nutriments naturels."
+      },
+      gardenpro: {
+        name: "GardenPro Shield",
+        description: "Système de protection de jardin avancé conçu pour les soins des plantes toute l'année. Bientôt disponible avec technologie de capteurs intelligents."
+      },
+      soilmaster: {
+        name: "SoilMaster Pro",
+        description: "Solution d'amélioration du sol professionnelle pour une croissance optimale des plantes. Bientôt disponible avec des formulations de nutriments organiques."
       },
       features: "Caractéristiques",
       reviews: "Avis des Clients",
@@ -466,7 +482,7 @@ export const translations = {
     // Footer
     footer: {
       aboutUs: "À Propos",
-      aboutDescription: "Nous fournissons des pièges à taupes et des solutions de contrôle des nuisibles de haute qualité pour aider à protéger votre propriété et votre jardin.",
+      aboutDescription: "VIBGYOR Maple apporte des solutions intelligentes, fiables et durables de protection des jardins conçues pour les maisons canadiennes. Une qualité à laquelle vous pouvez faire confiance.",
       readMore: "Lire Plus",
       quickLinks: "Liens Rapides",
       home: "Accueil",

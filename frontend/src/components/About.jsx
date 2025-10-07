@@ -69,15 +69,15 @@ const About = ({ language = 'en' }) => {
               <div className="story-stats">
                 <div className="story-stat">
                   <div className="stat-number">15+</div>
-                  <div className="stat-label">{t.about.story.yearsInBusiness}</div>
+                  <div className="stat-label">{t.about.story.yearsExperience}</div>
                 </div>
                 <div className="story-stat">
-                  <div className="stat-number">10,000+</div>
-                  <div className="stat-label">{t.about.story.productsSold}</div>
+                  <div className="stat-number">100%</div>
+                  <div className="stat-label">{t.about.story.canadianSupport}</div>
                 </div>
                 <div className="story-stat">
-                  <div className="stat-number">98%</div>
-                  <div className="stat-label">{t.about.story.customerSatisfaction}</div>
+                  <div className="stat-number">1,000+</div>
+                  <div className="stat-label">{t.about.story.backyardsProtected}</div>
                 </div>
               </div>
             </div>

@@ -280,15 +280,9 @@ const Navbar = ({ language, setLanguage }) => {
     { id: 2, label: t.nav.about, route: "/about" },
     {
       id: 3,
-      label: `${t.nav.products} ▾`,
+      label: t.nav.products,
       route: "/products",
-      hasDropdown: true,
-      dropdownItems: [
-        { label: t.productsDropdown.grasshawk, route: "/products?product=grasshawk" },
-        { label: t.productsDropdown.ecoseed, route: "/products?product=ecoseed" },
-        { label: t.productsDropdown.wintershield, route: "/products?product=wintershield" },
-        { label: t.productsDropdown.naturefeed, route: "/products?product=naturefeed" }
-      ]
+      hasDropdown: false
     },
     {
       id: 4,
@@ -490,33 +484,9 @@ const Navbar = ({ language, setLanguage }) => {
         <nav className="navbar-nav">
           {navItems.map((item) => (
             <div key={item.id} className="navbar-item-container">
-              {item.hasDropdown ? (
-                <div 
-                  className="navbar-link dropdown-trigger"
-                  onMouseEnter={() => setShowProductsDropdown(true)}
-                  onMouseLeave={() => setShowProductsDropdown(false)}
-                >
-                  {item.label}
-                  {showProductsDropdown && (
-                    <div className="navbar-dropdown">
-                      {item.dropdownItems.map((dropdownItem, index) => (
-                        <Link 
-                          key={index} 
-                          to={dropdownItem.route} 
-                          className="dropdown-item"
-                          onClick={() => setShowProductsDropdown(false)}
-                        >
-                          {dropdownItem.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link to={item.route} className="navbar-link">
-                  {item.label}
-                </Link>
-              )}
+              <Link to={item.route} className="navbar-link">
+                {item.label}
+              </Link>
             </div>
           ))}
           
