@@ -3,7 +3,7 @@ import { useCart } from "../contexts/CartContext";
 import { translations } from "../utils/translations";
 import "./Products.css";
 import MoleTrapInstructions from "./MoleTrapInstructions";
-import moletrapImage from "../assets/moletrap.png";
+import moletrapImage from "../assets/new_moletrap.jpg";
 import trapImage from "../assets/trap.png";
 import moleTrapHeroImage from "../assets/mole-trap-hero.jpg";
 import easySetupIcon from "../assets/easytosetup.png";
@@ -17,67 +17,21 @@ const ProductDetailsPage = ({ language = 'en' }) => {
   const { addToCart: addToCartContext } = useCart();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState('grasshawk'); // 'grasshawk' or 'vibgyormaple'
 
-  // Product list with the main Grasshawk product and additional coming soon products
-  const products = {
-    grasshawk: {
-      name: t.products.grasshawk.name,
-      price: 20,
-      description: t.products.grasshawk.description,
-      available: true,
-      company: "VIBGYOR Maple",
-      productLine: "Grasshawk Series",
-      image: moletrapImage
-    },
-    ecoseed: {
-      name: t.products.ecoseed.name,
-      price: 0,
-      description: t.products.ecoseed.description,
-      available: false,
-      company: "VIBGYOR Maple",
-      productLine: "EcoSeed Series",
-      image: trapImage
-    },
-    wintershield: {
-      name: t.products.wintershield.name,
-      price: 0,
-      description: t.products.wintershield.description,
-      available: false,
-      company: "VIBGYOR Maple",
-      productLine: "WinterShield Series",
-      image: moleTrapHeroImage
-    },
-    naturefeed: {
-      name: t.products.naturefeed.name,
-      price: 0,
-      description: t.products.naturefeed.description,
-      available: false,
-      company: "VIBGYOR Maple",
-      productLine: "NatureFeed Series",
-      image: moletrapImage
-    },
-    gardenpro: {
-      name: t.products.gardenpro?.name || "GardenPro Shield",
-      price: 0,
-      description: t.products.gardenpro?.description || "Advanced garden protection system designed for year-round plant care. Coming soon with smart sensor technology.",
-      available: false,
-      company: "VIBGYOR Maple",
-      productLine: "GardenPro Series",
-      image: trapImage
-    },
-    soilmaster: {
-      name: t.products.soilmaster?.name || "SoilMaster Pro",
-      price: 0,
-      description: t.products.soilmaster?.description || "Professional soil enhancement solution for optimal plant growth. Coming soon with organic nutrient formulations.",
-      available: false,
-      company: "VIBGYOR Maple",
-      productLine: "SoilMaster Series",
-      image: moleTrapHeroImage
-    }
+  // Product data for Grasshawk
+  const grasshawkProduct = {
+    name: t.products.grasshawk.name,
+    price: 20,
+    description: t.products.grasshawk.description,
+    available: true,
+    company: "VIBGYOR Maple",
+    productLine: "Grasshawk Series",
+    image: moletrapImage
   };
 
   // Default to the main Grasshawk product
-  const currentProduct = products.grasshawk;
+  const currentProduct = grasshawkProduct;
 
   // Add to cart function
   const addToCartBackend = async (product) => {
@@ -118,9 +72,32 @@ const ProductDetailsPage = ({ language = 'en' }) => {
     <section className="product-section" id="product">
       <div className="product-container">
         <div className="fullscreen-content">
-          <div className="fullscreen-header">
-            <h2>{t.products.ourProduct}: {currentProduct.name}</h2>
+          {/* Brand Selection Buttons */}
+          <div className="brand-selector">
+            <button 
+              className={`brand-button ${selectedBrand === 'grasshawk' ? 'active' : ''}`}
+              onClick={() => setSelectedBrand('grasshawk')}
+            >
+              <span className="brand-icon">🦅</span>
+              Grasshawk
+              {selectedBrand === 'grasshawk' && <span className="checkmark">✓</span>}
+            </button>
+            <button 
+              className={`brand-button ${selectedBrand === 'vibgyormaple' ? 'active' : ''}`}
+              onClick={() => setSelectedBrand('vibgyormaple')}
+            >
+              <span className="brand-icon">🍁</span>
+              VIBGYOR Maple
+              {selectedBrand === 'vibgyormaple' && <span className="checkmark">✓</span>}
+            </button>
           </div>
+
+          {/* Conditional Content Based on Selected Brand */}
+          {selectedBrand === 'grasshawk' ? (
+            <>
+              <div className="fullscreen-header">
+                <h2>{t.products.ourProduct}: {currentProduct.name}</h2>
+              </div>
 
           {/* ==== Product Row (Image + Info) ==== */}
           <div className="product-main-row">
@@ -185,31 +162,6 @@ const ProductDetailsPage = ({ language = 'en' }) => {
             </div>
           </div>
           {/* ==== END Product Row ==== */}
-
-          {/* ==== Other Products Preview ==== */}
-          <div className="other-products-section">
-            <h3 style={{ fontSize: '1.8rem', marginBottom: '2rem', textAlign: 'center' }}>
-              Other VIBGYOR Maple Products
-            </h3>
-            <div className="other-products-grid">
-              {Object.entries(products).filter(([key]) => key !== 'grasshawk').map(([key, product]) => (
-                <div key={key} className="other-product-card">
-                  <div className="other-product-image">
-                    <img src={product.image} alt={product.name} />
-                  </div>
-                  <div className="other-product-info">
-                    <h4>{product.name}</h4>
-                    <p>{product.description.length > 80 
-                      ? `${product.description.substring(0, 80)}...` 
-                      : product.description}</p>
-                    <div className="other-product-status">
-                      <span className="coming-soon-small">{t.products.comingSoon}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* ==== Instructions Section ==== */}
           <div className="instructions-section">
@@ -324,6 +276,68 @@ const ProductDetailsPage = ({ language = 'en' }) => {
               </div>
             </div>
           </div>
+            </>
+          ) : (
+            /* VIBGYOR Maple Coming Soon Section */
+            <div className="coming-soon-section">
+              <div className="coming-soon-container">
+                <div className="coming-soon-icon">
+                  <svg width="120" height="120" viewBox="0 0 120 120" className="maple-leaf-large">
+                    <defs>
+                      <linearGradient id="leaf-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{ stopColor: '#cc0000', stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: '#8b0000', stopOpacity: 1 }} />
+                      </linearGradient>
+                      <filter id="leaf-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#000" floodOpacity="0.3"/>
+                      </filter>
+                    </defs>
+                    <path 
+                      d="M60 10 L69 28 L88 22 L82 42 L102 46 L86 58 L92 74 L72 66 L60 90 L48 66 L28 74 L34 58 L18 46 L38 42 L32 22 L51 28 Z" 
+                      fill="url(#leaf-gradient)" 
+                      stroke="#8b0000" 
+                      strokeWidth="2" 
+                      filter="url(#leaf-shadow)"
+                    />
+                  </svg>
+                </div>
+                <h2 className="coming-soon-title">VIBGYOR Maple Products</h2>
+                <h3 className="coming-soon-subtitle">{t.products.comingSoon || 'Coming Soon'}</h3>
+                <p className="coming-soon-description">
+                  We're excited to bring you a complete range of premium backyard protection and garden care solutions. 
+                  Stay tuned for innovative products designed specifically for Canadian homes.
+                </p>
+                <div className="coming-soon-features">
+                  <div className="coming-soon-feature">
+                    <span className="feature-emoji">🌱</span>
+                    <span>EcoSeed Pro - Premium Grass Seeds</span>
+                  </div>
+                  <div className="coming-soon-feature">
+                    <span className="feature-emoji">❄️</span>
+                    <span>WinterShield - Winter Protection</span>
+                  </div>
+                  <div className="coming-soon-feature">
+                    <span className="feature-emoji">🌿</span>
+                    <span>NatureFeed - Organic Fertilizer</span>
+                  </div>
+                  <div className="coming-soon-feature">
+                    <span className="feature-emoji">🛡️</span>
+                    <span>GardenPro Shield - Advanced Protection</span>
+                  </div>
+                  <div className="coming-soon-feature">
+                    <span className="feature-emoji">🌾</span>
+                    <span>SoilMaster Pro - Soil Enhancement</span>
+                  </div>
+                </div>
+                <div className="coming-soon-cta">
+                  <p className="notify-text">Want to be notified when we launch?</p>
+                  <button className="notify-button" onClick={() => window.location.href = '/contact'}>
+                    Contact Us
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

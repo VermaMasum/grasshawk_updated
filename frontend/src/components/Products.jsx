@@ -240,7 +240,7 @@ import { useCart } from "../contexts/CartContext";
 import { translations } from "../utils/translations";
 import "./Products.css";
 import MoleTrapInstructions from "./MoleTrapInstructions";
-import moletrapImage from "../assets/moletrap.png";
+import moletrapImage from "../assets/new_moletrap.jpg";
 import trapImage from "../assets/trap.png";
 import moleTrapHeroImage from "../assets/mole-trap-hero.jpg";
 import easySetupIcon from "../assets/easytosetup.png";
@@ -254,6 +254,7 @@ const Products = ({ addToCart, language = 'en' }) => {
   const { addToCart: addToCartContext } = useCart();
   const [searchParams] = useSearchParams();
   const [selectedProduct, setSelectedProduct] = useState('grasshawk');
+  const [selectedBrand, setSelectedBrand] = useState('grasshawk'); // State for brand selection
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [showProductModal, setShowProductModal] = useState(false);
@@ -362,43 +363,75 @@ const Products = ({ addToCart, language = 'en' }) => {
       <div className="product-container">
         <h2>{t.products.title}</h2>
 
-        {/* ==== Product Cards Grid ==== */}
+        {/* ==== Single Product Card with Brand Selection ==== */}
         <div className="product-cards-grid">
-          {Object.entries(productList).map(([key, product]) => (
-            <div key={key} className="product-card" onClick={() => handleProductClick(key)}>
-              <div className="product-card-image">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="product-card-img"
-                />
-              </div>
-              <div className="product-card-content">
-                <h3 className="product-card-title">{product.name}</h3>
-                <p className="product-card-description">
-                  {product.description.length > 80 
-                    ? `${product.description.substring(0, 80)}...` 
-                    : product.description}
-                </p>
-                <div className="product-card-price">
-                  {product.available ? (
-                    <span className="price">${product.price}</span>
-                  ) : (
-                    <span className="coming-soon">{t.products.comingSoon}</span>
-                  )}
-                </div>
-                <button className="know-more-btn">
-                  {t.products.viewDetails}
+          <div className="product-card">
+            <div className="product-card-image">
+              <img
+                src={productList.grasshawk.image}
+                alt={productList.grasshawk.name}
+                className="product-card-img"
+              />
+            </div>
+            <div className="product-card-content">
+              <h3 className="product-card-title">VIBGYOR Maple Products</h3>
+              
+              {/* Brand Selection Buttons */}
+              <div className="brand-selector">
+                <button
+                  className={`brand-button ${selectedBrand === 'grasshawk' ? 'active' : ''}`}
+                  onClick={() => setSelectedBrand('grasshawk')}
+                >
+                  <span className="brand-icon">🦅</span>
+                  Grasshawk
+                  {selectedBrand === 'grasshawk' && <span className="checkmark">✓</span>}
+                </button>
+                <button
+                  className={`brand-button ${selectedBrand === 'vibgyormaple' ? 'active' : ''}`}
+                  onClick={() => setSelectedBrand('vibgyormaple')}
+                >
+                  <span className="brand-icon">🍁</span>
+                  VIBGYOR Maple
+                  {selectedBrand === 'vibgyormaple' && <span className="checkmark">✓</span>}
                 </button>
               </div>
+
+              <p className="product-card-description">
+                {selectedBrand === 'grasshawk' 
+                  ? productList.grasshawk.description
+                  : "Coming soon with innovative backyard protection solutions designed for Canadian homes."
+                }
+              </p>
+              
+              <div className="product-card-price">
+                {selectedBrand === 'grasshawk' ? (
+                  <span className="price">${productList.grasshawk.price}</span>
+                ) : (
+                  <span className="coming-soon">{t.products.comingSoon}</span>
+                )}
+              </div>
+              
+              <button 
+                className="know-more-btn"
+                onClick={() => {
+                  if (selectedBrand === 'grasshawk') {
+                    setModalProduct(productList.grasshawk);
+                    setShowProductModal(true);
+                  } else {
+                    setShowProductModal(true);
+                  }
+                }}
+              >
+                {t.products.viewDetails}
+              </button>
             </div>
-          ))}
+          </div>
         </div>
-        {/* ==== END Product Cards Grid ==== */}
+        {/* ==== END Single Product Card ==== */}
       </div>
 
       {/* ==== Product Detail Modal ==== */}
-      {showProductModal && modalProduct && (
+      {showProductModal && (
         <div className="fullscreen-modal-overlay" onClick={closeModal}>
           <div className="fullscreen-modal" onClick={(e) => e.stopPropagation()}>
             <button className="fullscreen-close-btn" onClick={closeModal}>
@@ -406,17 +439,40 @@ const Products = ({ addToCart, language = 'en' }) => {
             </button>
             
             <div className="fullscreen-content">
-              <div className="fullscreen-header">
-                <h2>{t.products.ourProduct}: {modalProduct.name}</h2>
+              {/* Brand Selection Buttons in Modal */}
+              <div className="brand-selector">
+                <button
+                  className={`brand-button ${selectedBrand === 'grasshawk' ? 'active' : ''}`}
+                  onClick={() => setSelectedBrand('grasshawk')}
+                >
+                  <span className="brand-icon">🦅</span>
+                  Grasshawk
+                  {selectedBrand === 'grasshawk' && <span className="checkmark">✓</span>}
+                </button>
+                <button
+                  className={`brand-button ${selectedBrand === 'vibgyormaple' ? 'active' : ''}`}
+                  onClick={() => setSelectedBrand('vibgyormaple')}
+                >
+                  <span className="brand-icon">🍁</span>
+                  VIBGYOR Maple
+                  {selectedBrand === 'vibgyormaple' && <span className="checkmark">✓</span>}
+                </button>
               </div>
+
+              {/* Conditional Content Based on Selected Brand */}
+              {selectedBrand === 'grasshawk' ? (
+                <>
+                  <div className="fullscreen-header">
+                    <h2>{t.products.ourProduct}: {productList.grasshawk.name}</h2>
+                  </div>
 
                 {/* ==== Product Row (Image + Info) ==== */}
                 <div className="product-main-row">
                   <div className="product-main-image-col">
                     <div className="product-main-image-card">
                       <img
-                        src={modalProduct.image}
-                        alt={modalProduct.name}
+                        src={productList.grasshawk.image}
+                        alt={productList.grasshawk.name}
                         className="product-center-image"
                       />
                     </div>
@@ -425,8 +481,8 @@ const Products = ({ addToCart, language = 'en' }) => {
                   <div className="product-main-info-col">
                     <div className="product-main-info-card">
                       <div className="product-company-info">
-                        <span className="company-name">{modalProduct.company}</span>
-                        <span className="product-line">{modalProduct.productLine}</span>
+                        <span className="company-name">{productList.grasshawk.company}</span>
+                        <span className="product-line">{productList.grasshawk.productLine}</span>
                       </div>
                       <div className="product-title-with-logo">
                         <div className="product-logo">
@@ -440,30 +496,19 @@ const Products = ({ addToCart, language = 'en' }) => {
                                   fill="black" stroke="red" strokeWidth="1" filter="url(#small-shadow)"/>
                           </svg>
                         </div>
-                        <h3>{modalProduct.name}</h3>
+                        <h3>{productList.grasshawk.name}</h3>
                       </div>
-                      <p>{modalProduct.description}</p>
-                      {modalProduct.available ? (
-                        <>
-                          <p>
-                            <strong>${modalProduct.price}</strong>
-                          </p>
-                          <button 
-                            onClick={() => addToCartBackend(modalProduct)}
-                            disabled={loading}
-                            className="add-to-cart-btn"
-                          >
-                            {loading ? t.products.adding || 'Adding...' : t.products.addToCart}
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <p className="coming-soon-price">{t.products.comingSoon}</p>
-                          <button disabled className="coming-soon-btn">
-                            {t.products.comingSoon}
-                          </button>
-                        </>
-                      )}
+                      <p>{productList.grasshawk.description}</p>
+                      <p>
+                        <strong>${productList.grasshawk.price}</strong>
+                      </p>
+                      <button 
+                        onClick={() => addToCartBackend(productList.grasshawk)}
+                        disabled={loading}
+                        className="add-to-cart-btn"
+                      >
+                        {loading ? t.products.adding || 'Adding...' : t.products.addToCart}
+                      </button>
                       {message && (
                         <div className={`message ${message.includes('successfully') ? 'success' : 'error'}`}>
                           {message}
@@ -588,6 +633,55 @@ const Products = ({ addToCart, language = 'en' }) => {
                   </div>
                 </div>
                 {/* ==== END Customer Reviews ==== */}
+                </>
+              ) : (
+                /* VIBGYOR Maple Coming Soon Section */
+                <div className="coming-soon-section">
+                  <div className="coming-soon-container">
+                    <div className="coming-soon-icon">
+                      <svg width="120" height="120" viewBox="0 0 120 120" className="maple-leaf-large">
+                        <defs>
+                          <filter id="leaf-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="#888" floodOpacity="0.3"/>
+                          </filter>
+                        </defs>
+                        <path d="M60 8 L70 25 L85 20 L80 35 L95 38 L85 50 L90 60 L70 55 L60 75 L50 55 L30 60 L35 50 L25 38 L40 35 L35 20 L50 25 Z" 
+                              fill="#e74c3c" stroke="#c0392b" strokeWidth="2" filter="url(#leaf-shadow)"/>
+                      </svg>
+                    </div>
+                    <h2 className="coming-soon-title">VIBGYOR Maple Products</h2>
+                    <h3 className="coming-soon-subtitle">{t.products.comingSoon || 'Coming Soon'}</h3>
+                    <p className="coming-soon-description">
+                      We're excited to bring you a complete range of premium backyard protection and garden care solutions.
+                      Stay tuned for innovative products designed specifically for Canadian homes.
+                    </p>
+                    <div className="coming-soon-features">
+                      <div className="coming-soon-feature">
+                        <span className="feature-emoji">🌱</span>
+                        <span>EcoSeed Pro - Premium Grass Seeds</span>
+                      </div>
+                      <div className="coming-soon-feature">
+                        <span className="feature-emoji">🛡️</span>
+                        <span>WinterShield - Plant Protection</span>
+                      </div>
+                      <div className="coming-soon-feature">
+                        <span className="feature-emoji">🌿</span>
+                        <span>NatureFeed - Organic Nutrients</span>
+                      </div>
+                      <div className="coming-soon-feature">
+                        <span className="feature-emoji">🌲</span>
+                        <span>GardenPro - Smart Garden Tools</span>
+                      </div>
+                    </div>
+                    <div className="coming-soon-cta">
+                      <p className="notify-text">Want to be notified when we launch?</p>
+                      <button className="notify-button" onClick={() => window.location.href = '/contact'}>
+                        Contact Us
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

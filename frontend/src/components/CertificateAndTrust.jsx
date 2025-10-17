@@ -2,7 +2,7 @@ import React from "react";
 import { translations } from "../utils/translations";
 import "./CertificateAndTrust.css";
 import logoVibgyor from "../assets/logo_vibgyor.png";
-import canadaGovLogo from "../assets/canada_gov_logo.jpg";
+import canadaGovLogo from "../assets/new_canada_gov_logo.jpg";
 
 const CertificateAndTrust = ({ language = 'en' }) => {
   const t = translations[language] || translations.en;

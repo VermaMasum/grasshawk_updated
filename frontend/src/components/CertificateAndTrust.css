@@ -69,10 +69,10 @@
 
 /* Icons */
 .icon {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   margin: 0 auto 16px auto;
-  background-color: #ffd6dc;
+  background-color: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -95,21 +95,27 @@
 }
 
 .location-icon::before {
-  content: "📍";
+  content: "";
 }
 
-/* Logo styling for canada-logo */
+/* Logo styling for canada-logo in certification card */
 .canada-logo {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
+  border-radius: 50%;
+  padding: 4px;
+  background: white;
 }
 
-/* Logo styling for canada-gov-logo */
+/* Logo styling for canada-gov-logo in registered design section */
 .canada-gov-logo {
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
+  border-radius: 50%;
+  padding: 15px;
+  background: white;
 }
 
 .quality-assurance-section {
@@ -149,9 +155,9 @@
 }
 
 .registered-design-logo {
-  width: 120px;
-  height: 120px;
-  background-color: #ffd6dc;
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -220,6 +226,12 @@
     font-size: 0.9rem;
   }
 
+  .canada-logo {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+  }
+
   .quality-assurance-section {
     padding: 20px 16px;
   }
@@ -234,13 +246,14 @@
   }
 
   .registered-design-logo {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 
   .canada-gov-logo {
-    width: 60px;
-    height: 60px;
+    width: 160px;
+    height: 160px;
+    padding: 12px;
   }
 }
 
@@ -276,6 +289,12 @@
     font-size: 0.85rem;
   }
 
+  .canada-logo {
+    width: 36px;
+    height: 36px;
+    padding: 3px;
+  }
+
   .quality-assurance-section {
     padding: 16px 12px;
   }
@@ -294,13 +313,14 @@
   }
 
   .registered-design-logo {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
   }
 
   .canada-gov-logo {
-    width: 50px;
-    height: 50px;
+    width: 140px;
+    height: 140px;
+    padding: 10px;
   }
 
   .registered-design-card p {
