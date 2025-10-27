@@ -366,6 +366,26 @@ const Products = ({ addToCart, language = 'en' }) => {
         {/* ==== Single Product Card with Brand Selection ==== */}
         <div className="product-cards-grid">
           <div className="product-card">
+            {/* Brand Selection Buttons */}
+            <div className="brand-selector">
+              <button
+                className={`brand-button ${selectedBrand === 'grasshawk' ? 'active' : ''}`}
+                onClick={() => setSelectedBrand('grasshawk')}
+              >
+                <span className="brand-icon">🦅</span>
+                Grasshawk
+                {selectedBrand === 'grasshawk' && <span className="checkmark">✓</span>}
+              </button>
+              <button
+                className={`brand-button ${selectedBrand === 'vibgyormaple' ? 'active' : ''}`}
+                onClick={() => setSelectedBrand('vibgyormaple')}
+              >
+                <span className="brand-icon">🍁</span>
+                VIBGYOR Maple
+                {selectedBrand === 'vibgyormaple' && <span className="checkmark">✓</span>}
+              </button>
+            </div>
+
             <div className="product-card-image">
               <img
                 src={productList.grasshawk.image}
@@ -375,26 +395,6 @@ const Products = ({ addToCart, language = 'en' }) => {
             </div>
             <div className="product-card-content">
               <h3 className="product-card-title">VIBGYOR Maple Products</h3>
-              
-              {/* Brand Selection Buttons */}
-              <div className="brand-selector">
-                <button
-                  className={`brand-button ${selectedBrand === 'grasshawk' ? 'active' : ''}`}
-                  onClick={() => setSelectedBrand('grasshawk')}
-                >
-                  <span className="brand-icon">🦅</span>
-                  Grasshawk
-                  {selectedBrand === 'grasshawk' && <span className="checkmark">✓</span>}
-                </button>
-                <button
-                  className={`brand-button ${selectedBrand === 'vibgyormaple' ? 'active' : ''}`}
-                  onClick={() => setSelectedBrand('vibgyormaple')}
-                >
-                  <span className="brand-icon">🍁</span>
-                  VIBGYOR Maple
-                  {selectedBrand === 'vibgyormaple' && <span className="checkmark">✓</span>}
-                </button>
-              </div>
 
               <p className="product-card-description">
                 {selectedBrand === 'grasshawk' 

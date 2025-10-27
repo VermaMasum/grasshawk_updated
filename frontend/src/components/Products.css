@@ -894,7 +894,7 @@ div.features-section div.features-grid div.feature-card {
   border-radius: 20px;
   box-shadow: 0 8px 32px var(--shadow-light);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  overflow: hidden;
+  overflow: visible;
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
