@@ -249,21 +249,26 @@ import weatherResistantIcon from "../assets/weatherresistance.png";
 import durableIcon from "../assets/durableandheavyduty.png";
 import ecoFriendlyIcon from "../assets/reusableandecofriendly.png";
 
-const Products = ({ addToCart, language = 'en' }) => {
+const Products = ({ addToCart, language = "en" }) => {
   const t = translations[language] || translations.en;
   const { addToCart: addToCartContext } = useCart();
   const [searchParams] = useSearchParams();
-  const [selectedProduct, setSelectedProduct] = useState('grasshawk');
-  const [selectedBrand, setSelectedBrand] = useState('grasshawk'); // State for brand selection
+  const [selectedProduct, setSelectedProduct] = useState("grasshawk");
+  const [selectedBrand, setSelectedBrand] = useState("grasshawk"); // State for brand selection
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [showProductModal, setShowProductModal] = useState(false);
   const [modalProduct, setModalProduct] = useState(null);
 
   // Handle URL parameters for product selection
   useEffect(() => {
-    const productParam = searchParams.get('product');
-    if (productParam && ['grasshawk', 'ecoseed', 'wintershield', 'naturefeed'].includes(productParam)) {
+    const productParam = searchParams.get("product");
+    if (
+      productParam &&
+      ["grasshawk", "ecoseed", "wintershield", "naturefeed"].includes(
+        productParam
+      )
+    ) {
       setSelectedProduct(productParam);
     }
   }, [searchParams]);
@@ -272,38 +277,38 @@ const Products = ({ addToCart, language = 'en' }) => {
   const addToCartBackend = async (product) => {
     if (!product || !product.available) {
       setMessage(t.products.comingSoon);
-      setTimeout(() => setMessage(''), 3000);
+      setTimeout(() => setMessage(""), 3000);
       return;
     }
 
     try {
       setLoading(true);
-      setMessage('');
+      setMessage("");
 
       // Use the cart context to add item
       const result = await addToCartContext({
-        id: product.name.toLowerCase().replace(/\s+/g, '-'),
+        id: product.name.toLowerCase().replace(/\s+/g, "-"),
         name: product.name,
         price: product.price,
-        image: '/api/placeholder/300/200'
+        image: "/api/placeholder/300/200",
       });
 
       if (result.success) {
         setMessage(t.products.addedToCart);
-        setTimeout(() => setMessage(''), 3000);
+        setTimeout(() => setMessage(""), 3000);
       } else {
         setMessage(result.message || t.products.errorAddingToCart);
-        setTimeout(() => setMessage(''), 3000);
+        setTimeout(() => setMessage(""), 3000);
       }
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      console.error("Error adding to cart:", error);
       setMessage(t.products.errorAddingToCart);
-      setTimeout(() => setMessage(''), 3000);
+      setTimeout(() => setMessage(""), 3000);
     } finally {
       setLoading(false);
     }
   };
-  
+
   const productList = {
     grasshawk: {
       name: t.products.grasshawk.name,
@@ -312,7 +317,7 @@ const Products = ({ addToCart, language = 'en' }) => {
       available: true,
       company: "VIBGYOR Maple",
       productLine: "Grasshawk Series",
-      image: moletrapImage
+      image: moletrapImage,
     },
     ecoseed: {
       name: t.products.ecoseed.name,
@@ -321,7 +326,7 @@ const Products = ({ addToCart, language = 'en' }) => {
       available: false,
       company: "VIBGYOR Maple",
       productLine: "EcoSeed Series",
-      image: trapImage
+      image: trapImage,
     },
     wintershield: {
       name: t.products.wintershield.name,
@@ -330,7 +335,7 @@ const Products = ({ addToCart, language = 'en' }) => {
       available: false,
       company: "VIBGYOR Maple",
       productLine: "WinterShield Series",
-      image: moleTrapHeroImage
+      image: moleTrapHeroImage,
     },
     naturefeed: {
       name: t.products.naturefeed.name,
@@ -339,8 +344,8 @@ const Products = ({ addToCart, language = 'en' }) => {
       available: false,
       company: "VIBGYOR Maple",
       productLine: "NatureFeed Series",
-      image: moletrapImage
-    }
+      image: moletrapImage,
+    },
   };
 
   const currentProduct = productList[selectedProduct] || productList.grasshawk;
@@ -369,20 +374,28 @@ const Products = ({ addToCart, language = 'en' }) => {
             {/* Brand Selection Buttons */}
             <div className="brand-selector">
               <button
-                className={`brand-button ${selectedBrand === 'grasshawk' ? 'active' : ''}`}
-                onClick={() => setSelectedBrand('grasshawk')}
+                className={`brand-button ${
+                  selectedBrand === "grasshawk" ? "active" : ""
+                }`}
+                onClick={() => setSelectedBrand("grasshawk")}
               >
                 <span className="brand-icon">🦅</span>
                 Grasshawk
-                {selectedBrand === 'grasshawk' && <span className="checkmark">✓</span>}
+                {selectedBrand === "grasshawk" && (
+                  <span className="checkmark">✓</span>
+                )}
               </button>
               <button
-                className={`brand-button ${selectedBrand === 'vibgyormaple' ? 'active' : ''}`}
-                onClick={() => setSelectedBrand('vibgyormaple')}
+                className={`brand-button ${
+                  selectedBrand === "vibgyormaple" ? "active" : ""
+                }`}
+                onClick={() => setSelectedBrand("vibgyormaple")}
               >
                 <span className="brand-icon">🍁</span>
                 VIBGYOR Maple
-                {selectedBrand === 'vibgyormaple' && <span className="checkmark">✓</span>}
+                {selectedBrand === "vibgyormaple" && (
+                  <span className="checkmark">✓</span>
+                )}
               </button>
             </div>
 
@@ -394,27 +407,26 @@ const Products = ({ addToCart, language = 'en' }) => {
               />
             </div>
             <div className="product-card-content">
-              <h3 className="product-card-title">VIBGYOR Maple Products</h3>
+              <h3 className="product-card-title">Grasshawk KLAW</h3>
 
               <p className="product-card-description">
-                {selectedBrand === 'grasshawk' 
+                {selectedBrand === "grasshawk"
                   ? productList.grasshawk.description
-                  : "Coming soon with innovative backyard protection solutions designed for Canadian homes."
-                }
+                  : "Coming soon with innovative backyard protection solutions designed for Canadian homes."}
               </p>
-              
+
               <div className="product-card-price">
-                {selectedBrand === 'grasshawk' ? (
+                {selectedBrand === "grasshawk" ? (
                   <span className="price">${productList.grasshawk.price}</span>
                 ) : (
                   <span className="coming-soon">{t.products.comingSoon}</span>
                 )}
               </div>
-              
-              <button 
+
+              <button
                 className="know-more-btn"
                 onClick={() => {
-                  if (selectedBrand === 'grasshawk') {
+                  if (selectedBrand === "grasshawk") {
                     setModalProduct(productList.grasshawk);
                     setShowProductModal(true);
                   } else {
@@ -433,227 +445,381 @@ const Products = ({ addToCart, language = 'en' }) => {
       {/* ==== Product Detail Modal ==== */}
       {showProductModal && (
         <div className="fullscreen-modal-overlay" onClick={closeModal}>
-          <div className="fullscreen-modal" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fullscreen-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button className="fullscreen-close-btn" onClick={closeModal}>
               ×
             </button>
-            
+
             <div className="fullscreen-content">
               {/* Brand Selection Buttons in Modal */}
               <div className="brand-selector">
                 <button
-                  className={`brand-button ${selectedBrand === 'grasshawk' ? 'active' : ''}`}
-                  onClick={() => setSelectedBrand('grasshawk')}
+                  className={`brand-button ${
+                    selectedBrand === "grasshawk" ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedBrand("grasshawk")}
                 >
                   <span className="brand-icon">🦅</span>
                   Grasshawk
-                  {selectedBrand === 'grasshawk' && <span className="checkmark">✓</span>}
+                  {selectedBrand === "grasshawk" && (
+                    <span className="checkmark">✓</span>
+                  )}
                 </button>
                 <button
-                  className={`brand-button ${selectedBrand === 'vibgyormaple' ? 'active' : ''}`}
-                  onClick={() => setSelectedBrand('vibgyormaple')}
+                  className={`brand-button ${
+                    selectedBrand === "vibgyormaple" ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedBrand("vibgyormaple")}
                 >
                   <span className="brand-icon">🍁</span>
                   VIBGYOR Maple
-                  {selectedBrand === 'vibgyormaple' && <span className="checkmark">✓</span>}
+                  {selectedBrand === "vibgyormaple" && (
+                    <span className="checkmark">✓</span>
+                  )}
                 </button>
               </div>
 
               {/* Conditional Content Based on Selected Brand */}
-              {selectedBrand === 'grasshawk' ? (
+              {selectedBrand === "grasshawk" ? (
                 <>
                   <div className="fullscreen-header">
-                    <h2>{t.products.ourProduct}: {productList.grasshawk.name}</h2>
+                    <h2>
+                      {t.products.ourProduct}: {productList.grasshawk.name}
+                    </h2>
                   </div>
 
-                {/* ==== Product Row (Image + Info) ==== */}
-                <div className="product-main-row">
-                  <div className="product-main-image-col">
-                    <div className="product-main-image-card">
-                      <img
-                        src={productList.grasshawk.image}
-                        alt={productList.grasshawk.name}
-                        className="product-center-image"
-                      />
+                  {/* ==== Product Row (Image + Info) ==== */}
+                  <div className="product-main-row">
+                    <div className="product-main-image-col">
+                      <div className="product-main-image-card">
+                        <img
+                          src={productList.grasshawk.image}
+                          alt={productList.grasshawk.name}
+                          className="product-center-image"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="product-main-info-col">
+                      <div className="product-main-info-card">
+                        <div className="product-company-info">
+                          <span className="company-name">
+                            {productList.grasshawk.company}
+                          </span>
+                          <span className="product-line">
+                            {productList.grasshawk.productLine}
+                          </span>
+                        </div>
+                        <div className="product-title-with-logo">
+                          <div className="product-logo">
+                            <svg
+                              width="40"
+                              height="40"
+                              viewBox="0 0 40 40"
+                              className="maple-leaf-small"
+                            >
+                              <defs>
+                                <filter
+                                  id="small-shadow"
+                                  x="-20%"
+                                  y="-20%"
+                                  width="140%"
+                                  height="140%"
+                                >
+                                  <feDropShadow
+                                    dx="1"
+                                    dy="1"
+                                    stdDeviation="1"
+                                    floodColor="#888"
+                                    floodOpacity="0.3"
+                                  />
+                                </filter>
+                              </defs>
+                              <path
+                                d="M20 3 L23 8 L28 6 L26 12 L32 13 L28 18 L30 22 L23 20 L20 28 L17 20 L10 22 L12 18 L8 13 L14 12 L12 6 L17 8 Z"
+                                fill="black"
+                                stroke="red"
+                                strokeWidth="1"
+                                filter="url(#small-shadow)"
+                              />
+                            </svg>
+                          </div>
+                          <h3>{productList.grasshawk.name}</h3>
+                        </div>
+                        <p>{productList.grasshawk.description}</p>
+                        <p>
+                          <strong>${productList.grasshawk.price}</strong>
+                        </p>
+                        <button
+                          onClick={() =>
+                            addToCartBackend(productList.grasshawk)
+                          }
+                          disabled={loading}
+                          className="add-to-cart-btn"
+                        >
+                          {loading
+                            ? t.products.adding || "Adding..."
+                            : t.products.addToCart}
+                        </button>
+                        {message && (
+                          <div
+                            className={`message ${
+                              message.includes("successfully")
+                                ? "success"
+                                : "error"
+                            }`}
+                          >
+                            {message}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
+                  {/* ==== END Product Row ==== */}
 
-                  <div className="product-main-info-col">
-                    <div className="product-main-info-card">
-                      <div className="product-company-info">
-                        <span className="company-name">{productList.grasshawk.company}</span>
-                        <span className="product-line">{productList.grasshawk.productLine}</span>
-                      </div>
-                      <div className="product-title-with-logo">
-                        <div className="product-logo">
-                          <svg width="40" height="40" viewBox="0 0 40 40" className="maple-leaf-small">
-                            <defs>
-                              <filter id="small-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                                <feDropShadow dx="1" dy="1" stdDeviation="1" floodColor="#888" floodOpacity="0.3"/>
-                              </filter>
-                            </defs>
-                            <path d="M20 3 L23 8 L28 6 L26 12 L32 13 L28 18 L30 22 L23 20 L20 28 L17 20 L10 22 L12 18 L8 13 L14 12 L12 6 L17 8 Z" 
-                                  fill="black" stroke="red" strokeWidth="1" filter="url(#small-shadow)"/>
-                          </svg>
-                        </div>
-                        <h3>{productList.grasshawk.name}</h3>
-                      </div>
-                      <p>{productList.grasshawk.description}</p>
-                      <p>
-                        <strong>${productList.grasshawk.price}</strong>
-                      </p>
-                      <button 
-                        onClick={() => addToCartBackend(productList.grasshawk)}
-                        disabled={loading}
-                        className="add-to-cart-btn"
+                  {/* ==== Instructions Section ==== */}
+                  <div className="instructions-section">
+                    <MoleTrapInstructions />
+                  </div>
+
+                  {/* ==== Features Section ==== */}
+                  <div className="features-section">
+                    <h3 style={{ fontSize: "2rem", marginBottom: "2rem" }}>
+                      {t.products.features}
+                    </h3>
+                    <div className="features-grid">
+                      <div
+                        className="feature-card"
+                        style={{
+                          borderRadius: "0px",
+                          width: "250px",
+                          height: "250px",
+                          minWidth: "250px",
+                          maxWidth: "250px",
+                          minHeight: "250px",
+                          maxHeight: "250px",
+                        }}
                       >
-                        {loading ? t.products.adding || 'Adding...' : t.products.addToCart}
-                      </button>
-                      {message && (
-                        <div className={`message ${message.includes('successfully') ? 'success' : 'error'}`}>
-                          {message}
+                        <img
+                          src={easySetupIcon}
+                          alt={t.products.easyToSetUp}
+                          style={{ width: "120px", height: "120px" }}
+                        />
+                        <p
+                          style={{
+                            fontSize: "1.1rem",
+                            fontWeight: "600",
+                            marginTop: "15px",
+                          }}
+                        >
+                          {t.products.easyToSetUp}
+                        </p>
+                      </div>
+                      <div
+                        className="feature-card"
+                        style={{
+                          borderRadius: "0px",
+                          width: "250px",
+                          height: "250px",
+                          minWidth: "250px",
+                          maxWidth: "250px",
+                          minHeight: "250px",
+                          maxHeight: "250px",
+                        }}
+                      >
+                        <img
+                          src={petFriendlyIcon}
+                          alt={t.products.petFriendly}
+                          style={{ width: "120px", height: "120px" }}
+                        />
+                        <p
+                          style={{
+                            fontSize: "1.1rem",
+                            fontWeight: "600",
+                            marginTop: "15px",
+                          }}
+                        >
+                          {t.products.petFriendly}
+                        </p>
+                      </div>
+                      <div
+                        className="feature-card"
+                        style={{
+                          borderRadius: "0px",
+                          width: "250px",
+                          height: "250px",
+                          minWidth: "250px",
+                          maxWidth: "250px",
+                          minHeight: "250px",
+                          maxHeight: "250px",
+                        }}
+                      >
+                        <img
+                          src={weatherResistantIcon}
+                          alt={t.products.weatherResistant}
+                          style={{ width: "120px", height: "120px" }}
+                        />
+                        <p
+                          style={{
+                            fontSize: "1.1rem",
+                            fontWeight: "600",
+                            marginTop: "15px",
+                          }}
+                        >
+                          {t.products.weatherResistant}
+                        </p>
+                      </div>
+                      <div
+                        className="feature-card"
+                        style={{
+                          borderRadius: "0px",
+                          width: "250px",
+                          height: "250px",
+                          minWidth: "250px",
+                          maxWidth: "250px",
+                          minHeight: "250px",
+                          maxHeight: "250px",
+                        }}
+                      >
+                        <img
+                          src={durableIcon}
+                          alt={t.products.durableAndHeavyDuty}
+                          style={{ width: "120px", height: "120px" }}
+                        />
+                        <p
+                          style={{
+                            fontSize: "1.1rem",
+                            fontWeight: "600",
+                            marginTop: "15px",
+                          }}
+                        >
+                          {t.products.durableAndHeavyDuty}
+                        </p>
+                      </div>
+                      <div
+                        className="feature-card"
+                        style={{
+                          borderRadius: "0px",
+                          width: "250px",
+                          height: "250px",
+                          minWidth: "250px",
+                          maxWidth: "250px",
+                          minHeight: "250px",
+                          maxHeight: "250px",
+                        }}
+                      >
+                        <img
+                          src={ecoFriendlyIcon}
+                          alt={t.products.reusableAndEcoFriendly}
+                          style={{ width: "120px", height: "120px" }}
+                        />
+                        <p
+                          style={{
+                            fontSize: "1.1rem",
+                            fontWeight: "600",
+                            marginTop: "15px",
+                          }}
+                        >
+                          {t.products.reusableAndEcoFriendly}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ==== Customer Reviews Section ==== */}
+                  <div className="reviews-section">
+                    <h3>{t.products.reviews}</h3>
+                    <div className="reviews-grid">
+                      <div className="review-card">
+                        <div className="review-header">
+                          <span className="reviewer-name">Sarah J.</span>
+                          <span className="review-rating">★★★★★</span>
                         </div>
-                      )}
+                        <p className="review-text">
+                          "This mole trap saved my garden! After trying
+                          everything, the Grass Hawk worked on the first try.
+                          Easy to set up and very effective."
+                        </p>
+                      </div>
+
+                      <div className="review-card">
+                        <div className="review-header">
+                          <span className="reviewer-name">Mike T.</span>
+                          <span className="review-rating">★★★★★</span>
+                        </div>
+                        <p className="review-text">
+                          "Professional quality at an affordable price. The
+                          instructions were clear and I caught 3 moles in the
+                          first week. Highly recommend!"
+                        </p>
+                      </div>
+
+                      <div className="review-card">
+                        <div className="review-header">
+                          <span className="reviewer-name">Lisa M.</span>
+                          <span className="review-rating">★★★★☆</span>
+                        </div>
+                        <p className="review-text">
+                          "Great product! It took a couple of days to figure out
+                          the best placement, but once I did, it worked
+                          perfectly. Customer service was very helpful too."
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* ==== END Product Row ==== */}
-
-                {/* ==== Instructions Section ==== */}
-                <div className="instructions-section">
-                  <MoleTrapInstructions />
-                </div>
-
-                {/* ==== Features Section ==== */}
-                <div className="features-section">
-                  <h3 style={{ fontSize: '2rem', marginBottom: '2rem' }}>{t.products.features}</h3>
-                  <div className="features-grid">
-                    <div className="feature-card" style={{
-                      borderRadius: '0px',
-                      width: '250px',
-                      height: '250px',
-                      minWidth: '250px',
-                      maxWidth: '250px',
-                      minHeight: '250px',
-                      maxHeight: '250px'
-                    }}>
-                      <img src={easySetupIcon} alt={t.products.easyToSetUp} style={{ width: '120px', height: '120px' }} />
-                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.easyToSetUp}</p>
-                    </div>
-                    <div className="feature-card" style={{
-                      borderRadius: '0px',
-                      width: '250px',
-                      height: '250px',
-                      minWidth: '250px',
-                      maxWidth: '250px',
-                      minHeight: '250px',
-                      maxHeight: '250px'
-                    }}>
-                      <img src={petFriendlyIcon} alt={t.products.petFriendly} style={{ width: '120px', height: '120px' }} />
-                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.petFriendly}</p>
-                    </div>
-                    <div className="feature-card" style={{
-                      borderRadius: '0px',
-                      width: '250px',
-                      height: '250px',
-                      minWidth: '250px',
-                      maxWidth: '250px',
-                      minHeight: '250px',
-                      maxHeight: '250px'
-                    }}>
-                      <img src={weatherResistantIcon} alt={t.products.weatherResistant} style={{ width: '120px', height: '120px' }} />
-                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.weatherResistant}</p>
-                    </div>
-                    <div className="feature-card" style={{
-                      borderRadius: '0px',
-                      width: '250px',
-                      height: '250px',
-                      minWidth: '250px',
-                      maxWidth: '250px',
-                      minHeight: '250px',
-                      maxHeight: '250px'
-                    }}>
-                      <img src={durableIcon} alt={t.products.durableAndHeavyDuty} style={{ width: '120px', height: '120px' }} />
-                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.durableAndHeavyDuty}</p>
-                    </div>
-                    <div className="feature-card" style={{
-                      borderRadius: '0px',
-                      width: '250px',
-                      height: '250px',
-                      minWidth: '250px',
-                      maxWidth: '250px',
-                      minHeight: '250px',
-                      maxHeight: '250px'
-                    }}>
-                      <img src={ecoFriendlyIcon} alt={t.products.reusableAndEcoFriendly} style={{ width: '120px', height: '120px' }} />
-                      <p style={{ fontSize: '1.1rem', fontWeight: '600', marginTop: '15px' }}>{t.products.reusableAndEcoFriendly}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* ==== Customer Reviews Section ==== */}
-                <div className="reviews-section">
-                  <h3>{t.products.reviews}</h3>
-                  <div className="reviews-grid">
-                    <div className="review-card">
-                      <div className="review-header">
-                        <span className="reviewer-name">Sarah J.</span>
-                        <span className="review-rating">★★★★★</span>
-                      </div>
-                      <p className="review-text">
-                        "This mole trap saved my garden! After trying everything, the
-                        Grass Hawk worked on the first try. Easy to set up and very
-                        effective."
-                      </p>
-                    </div>
-
-                    <div className="review-card">
-                      <div className="review-header">
-                        <span className="reviewer-name">Mike T.</span>
-                        <span className="review-rating">★★★★★</span>
-                      </div>
-                      <p className="review-text">
-                        "Professional quality at an affordable price. The instructions
-                        were clear and I caught 3 moles in the first week. Highly
-                        recommend!"
-                      </p>
-                    </div>
-
-                    <div className="review-card">
-                      <div className="review-header">
-                        <span className="reviewer-name">Lisa M.</span>
-                        <span className="review-rating">★★★★☆</span>
-                      </div>
-                      <p className="review-text">
-                        "Great product! It took a couple of days to figure out the best
-                        placement, but once I did, it worked perfectly. Customer service
-                        was very helpful too."
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {/* ==== END Customer Reviews ==== */}
+                  {/* ==== END Customer Reviews ==== */}
                 </>
               ) : (
                 /* VIBGYOR Maple Coming Soon Section */
                 <div className="coming-soon-section">
                   <div className="coming-soon-container">
                     <div className="coming-soon-icon">
-                      <svg width="120" height="120" viewBox="0 0 120 120" className="maple-leaf-large">
+                      <svg
+                        width="120"
+                        height="120"
+                        viewBox="0 0 120 120"
+                        className="maple-leaf-large"
+                      >
                         <defs>
-                          <filter id="leaf-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="#888" floodOpacity="0.3"/>
+                          <filter
+                            id="leaf-shadow"
+                            x="-20%"
+                            y="-20%"
+                            width="140%"
+                            height="140%"
+                          >
+                            <feDropShadow
+                              dx="2"
+                              dy="2"
+                              stdDeviation="3"
+                              floodColor="#888"
+                              floodOpacity="0.3"
+                            />
                           </filter>
                         </defs>
-                        <path d="M60 8 L70 25 L85 20 L80 35 L95 38 L85 50 L90 60 L70 55 L60 75 L50 55 L30 60 L35 50 L25 38 L40 35 L35 20 L50 25 Z" 
-                              fill="#e74c3c" stroke="#c0392b" strokeWidth="2" filter="url(#leaf-shadow)"/>
+                        <path
+                          d="M60 8 L70 25 L85 20 L80 35 L95 38 L85 50 L90 60 L70 55 L60 75 L50 55 L30 60 L35 50 L25 38 L40 35 L35 20 L50 25 Z"
+                          fill="#e74c3c"
+                          stroke="#c0392b"
+                          strokeWidth="2"
+                          filter="url(#leaf-shadow)"
+                        />
                       </svg>
                     </div>
-                    <h2 className="coming-soon-title">VIBGYOR Maple Products</h2>
-                    <h3 className="coming-soon-subtitle">{t.products.comingSoon || 'Coming Soon'}</h3>
+                    <h2 className="coming-soon-title">
+                      VIBGYOR Maple Products
+                    </h2>
+                    <h3 className="coming-soon-subtitle">
+                      {t.products.comingSoon || "Coming Soon"}
+                    </h3>
                     <p className="coming-soon-description">
-                      We're excited to bring you a complete range of premium backyard protection and garden care solutions.
-                      Stay tuned for innovative products designed specifically for Canadian homes.
+                      We're excited to bring you a complete range of premium
+                      backyard protection and garden care solutions. Stay tuned
+                      for innovative products designed specifically for Canadian
+                      homes.
                     </p>
                     <div className="coming-soon-features">
                       <div className="coming-soon-feature">
@@ -674,8 +840,13 @@ const Products = ({ addToCart, language = 'en' }) => {
                       </div>
                     </div>
                     <div className="coming-soon-cta">
-                      <p className="notify-text">Want to be notified when we launch?</p>
-                      <button className="notify-button" onClick={() => window.location.href = '/contact'}>
+                      <p className="notify-text">
+                        Want to be notified when we launch?
+                      </p>
+                      <button
+                        className="notify-button"
+                        onClick={() => (window.location.href = "/contact")}
+                      >
                         Contact Us
                       </button>
                     </div>
